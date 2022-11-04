@@ -1,3 +1,0 @@
-# Oppiäppi
-
-Mobiilikehitysprojekti
