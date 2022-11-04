@@ -1,2 +1,3 @@
-# oppiapp
+# Oppiäppi
+
 Mobiilikehitysprojekti
