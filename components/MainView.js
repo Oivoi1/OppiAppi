@@ -4,15 +4,17 @@ import React from "react";
 const MainView = () => {
   return (
     <View style={styles.main__container}>
-      <TouchableOpacity style={styles.link__container}>
-        <Text style={styles.link__container__font}>MainView</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.link__container}>
-        <Text style={styles.link__container__font}>MainView 2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.link__container}>
-        <Text style={styles.link__container__font}>MainView 3</Text>
-      </TouchableOpacity>
+      <View style={styles.content__container}>
+        <TouchableOpacity style={styles.link__container}>
+          <Text style={styles.link__container__font}>MainView</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link__container}>
+          <Text style={styles.link__container__font}>MainView 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link__container}>
+          <Text style={styles.link__container__font}>MainView 3</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -21,6 +23,13 @@ export default MainView;
 
 const styles = StyleSheet.create({
   main__container: {
+    flex: 1,
+    backgroundColor: "#D7E2E8",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  content__container: {
     width: "75%",
     height: "80%",
     alignItems: "center",
