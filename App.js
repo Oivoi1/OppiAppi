@@ -12,6 +12,7 @@ import MainView from "./components/MainView";
 
 // <----- UTILS -----> //
 import { AppHeaderContext } from "./utils/AppHeaderContext";
+import AdditionalContent from './views/AdditionalContent';
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(1);
@@ -81,6 +82,9 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </AppHeaderContext.Provider>
+   
+      
+    
   );
 }
 
