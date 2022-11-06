@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
 // <----- VIEWS -----> //
-import CompetenceGoalsView from './views/CompetenceGoalsView';
-import MainView from "./components/MainView";
-import TuvaScreen from './views/TuvaScreen';
-import AdditionalContent from './views/AdditionalContent';
+import CompetenceGoalsView from "./views/CompetenceGoalsView";
+import MainView from "./views/MainView";
+import TuvaScreen from "./views/TuvaScreen";
+import AdditionalContent from "./views/AdditionalContent";
 
 // <----- UTILS -----> //
 import { AppHeaderContext } from "./utils/AppHeaderContext";
@@ -20,8 +20,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   return (
-
-       <AppHeaderContext.Provider
+    <AppHeaderContext.Provider
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
       <NavigationContainer>
@@ -81,9 +80,6 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </AppHeaderContext.Provider>
-   
-      
-    
   );
 }
 

@@ -1,12 +1,17 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Linking } from 'react-native';
-import Constants from 'expo-constants';
-import React, { useState } from 'react';
-import Counter from '../components/Counter';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Linking,
+} from "react-native";
+import Constants from "expo-constants";
+import React, { useState } from "react";
+import Counter from "../components/Counter";
 
 export default function TuvaScreen() {
-  
   const [totalPoints, setTotalPoints] = useState(8);
-
 
   const stringDataTuva = [
     {
@@ -62,48 +67,56 @@ export default function TuvaScreen() {
       title: "Valinnaiset opinnot",
       scope: "1-10 viikkoa",
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
-      initValue: 1, 
+      initValue: 1,
       maxValue: 10,
     },
   ];
 
-
-const onPress = async(url) => {
-const supported = await Linking.canOpenURL(url);
-if (supported) {
-await Linking.openURL(url);
-}
- else {
-  Alert.alert(`Virheellinen osoite: ${url}`);
- }
-};
+  const onPress = async (url) => {
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Virheellinen osoite: ${url}`);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TUVA-koulutuksen osat</Text>
       <ScrollView>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
-        {stringDataTuva.map((item) => (
-          <View style={styles.itemContainer}
-                key={item.id}>
-          <TouchableOpacity
-            onPress={() => onPress(item.url)}
-            style={styles.customButton}
-          >
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              <Text style={styles.itemScope}>{item.scope}</Text>
-            
-          </TouchableOpacity>
-          <View style={styles.counterBar}>
-            <Counter initValue={item.initValue} maxValue={item.maxValue} totalPoints={totalPoints} setTotalPoints={setTotalPoints} />
-          </View>
-          </View>
-        
-         ))}
-         <Text style={styles.instructions}>Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.</Text>
-        <Text>{totalPoints}/38</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          {stringDataTuva.map((item) => (
+            <View style={styles.itemContainer} key={item.id}>
+              <TouchableOpacity
+                onPress={() => onPress(item.url)}
+                style={styles.customButton}
+              >
+                <Text style={styles.itemTitle}>{item.title}</Text>
+                <Text style={styles.itemScope}>{item.scope}</Text>
+              </TouchableOpacity>
+              <View style={styles.counterBar}>
+                <Counter
+                  initValue={item.initValue}
+                  maxValue={item.maxValue}
+                  totalPoints={totalPoints}
+                  setTotalPoints={setTotalPoints}
+                />
+              </View>
+            </View>
+          ))}
+          <Text style={styles.instructions}>
+            Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38
+            viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.
+          </Text>
+          <Text>{totalPoints}/38</Text>
         </View>
-        
       </ScrollView>
     </View>
   );
@@ -113,24 +126,23 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusbarHeight,
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    justifyContent: "center",
     padding: 8,
-    backgroundColor: '#FFFFFF'
-    
+    backgroundColor: "#FFFFFF",
   },
-  heading:{
+  heading: {
     marginTop: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 24,
-    textAlign: 'center',
+    textAlign: "center",
   },
 
   itemContainer: {
     marginTop: 12,
-    width: '45%',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    width: "45%",
+    flexDirection: "column",
+    justifyContent: "center",
     paddingStart: 5,
     paddingEnd: 5,
     paddingTop: 10,
@@ -139,33 +151,28 @@ const styles = StyleSheet.create({
   },
 
   itemTitle: {
-   fontSize: 18,
-   fontWeight: 'bold',
-   paddingLeft: 5,
-   paddigRight: 5,
-   paddingBottom: 5,
-   textAlign: 'center',
-   
+    fontSize: 18,
+    fontWeight: "bold",
+    paddingLeft: 5,
+    paddigRight: 5,
+    paddingBottom: 5,
+    textAlign: "center",
   },
   itemScope: {
-   fontSize: 16,
-   paddingLeft: 10,
-   paddigRight: 10,
-   paddingBottom: 5,
-   alignSelf: 'center',
-   
+    fontSize: 16,
+    paddingLeft: 10,
+    paddigRight: 10,
+    paddingBottom: 5,
+    alignSelf: "center",
   },
 
   customButton: {
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 1,
     borderRadius: 20,
     padding: 10,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
 
-  instructions: {
-
-  },
-
+  instructions: {},
 });
