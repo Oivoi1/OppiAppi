@@ -1,4 +1,4 @@
-import CompetenceGoalsView from './components/CompetenceGoalsView';
+import CompetenceGoalsView from './views/CompetenceGoalsView';
 
 export default function App() {
   return (
