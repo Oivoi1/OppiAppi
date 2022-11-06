@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, Text, Linking, SafeAreaView, ScrollView, TouchableOpacity, StatusBar, Button} from 'react-native';
 import Modal from 'react-native-modal'
+import Position from '../components/Position';
 
 export default function AdditionalContent() {
 
@@ -73,7 +74,7 @@ export default function AdditionalContent() {
             <TouchableOpacity style={styles.button} onPress={() => Linking.openURL('https://luovi.inschool.fi/')}>
               <Text style={styles.buttonText}>Wilma</Text>
             </TouchableOpacity>
-
+            <Position/>
         </ScrollView>
     </SafeAreaView>
   );
