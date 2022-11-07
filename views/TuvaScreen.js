@@ -36,7 +36,6 @@ export default function TuvaScreen() {
           ))}
           
         </View>
-        
       </ScrollView>
     </View>
   );
@@ -46,15 +45,14 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusbarHeight,
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    justifyContent: "center",
     padding: 8,
-    backgroundColor: '#FFFFFF'
-    
+    backgroundColor: "#FFFFFF",
   },
-  heading:{
+  heading: {
     marginTop: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 24,
     textAlign: "center",
   },
@@ -66,9 +64,9 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     marginTop: 12,
-    width: '45%',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    width: "45%",
+    flexDirection: "column",
+    justifyContent: "center",
     paddingStart: 5,
     paddingEnd: 5,
     paddingTop: 10,
@@ -77,33 +75,28 @@ const styles = StyleSheet.create({
   },
 
   itemTitle: {
-   fontSize: 18,
-   fontWeight: 'bold',
-   paddingLeft: 5,
-   paddigRight: 5,
-   paddingBottom: 5,
-   textAlign: 'center',
-   
+    fontSize: 18,
+    fontWeight: "bold",
+    paddingLeft: 5,
+    paddigRight: 5,
+    paddingBottom: 5,
+    textAlign: "center",
   },
   itemScope: {
-   fontSize: 16,
-   paddingLeft: 10,
-   paddigRight: 10,
-   paddingBottom: 5,
-   alignSelf: 'center',
-   
+    fontSize: 16,
+    paddingLeft: 10,
+    paddigRight: 10,
+    paddingBottom: 5,
+    alignSelf: "center",
   },
 
   customButton: {
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 1,
     borderRadius: 20,
     padding: 10,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
 
-  instructions: {
-
-  },
-
+  instructions: {},
 });

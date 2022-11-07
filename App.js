@@ -1,5 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native';
-import TuvaScreen from './views/TuvaScreen';
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
+
+// <----- VIEWS -----> //
+import CompetenceGoalsView from "./views/CompetenceGoalsView";
+import MainView from "./views/MainView";
+import TuvaScreen from "./views/TuvaScreen";
+import AdditionalContent from "./views/AdditionalContent";
+
+// <----- UTILS -----> //
+import { AppHeaderContext } from "./utils/AppHeaderContext";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
@@ -20,7 +32,7 @@ export default function App() {
 
               if (route.name == "Main") {
                 iconName = focused ? "home" : "home-outline";
-              } else if (route.name === "Tuva") {
+              } else if (route.name === "Testi") {
                 iconName = focused ? "add-circle" : "add-circle-outline";
               } else if (route.name === "Archive") {
                 iconName = focused ? "archive" : "archive-outline";
@@ -65,14 +77,6 @@ export default function App() {
             }}
             // initialParams={fontsLoaded}
           />
-          <Tab.Screen
-            name="Tuva"
-            component={TuvaScreen}
-            options={{
-              title: "TUVA",
-            }}
-            // initialParams={fontsLoaded}
-          />
         </Tab.Navigator>
       </NavigationContainer>
     </AppHeaderContext.Provider>
@@ -80,10 +84,20 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  headerViews: {
+    flexDirection: "row",
+    borderWidth: 1,
+    padding: 5,
+    borderRadius: 15,
+  },
+  headerLeftView: {
+    marginLeft: 10,
+  },
+  headerSidesText: {
+    fontSize: 20,
+    marginHorizontal: 8,
+  },
+  headerRightView: {
+    marginRight: 10,
   },
 });
