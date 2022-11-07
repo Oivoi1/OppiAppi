@@ -1,6 +1,7 @@
 import {StyleSheet,Text,View,TouchableOpacity,ScrollView} from "react-native";
 import Constants from "expo-constants";
 import React, { useState } from "react";
+// <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 
 export default function TuvaScreen() {
