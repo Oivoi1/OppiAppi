@@ -1,107 +1,40 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Linking } from 'react-native';
-import Constants from 'expo-constants';
-import React, { useState } from 'react';
-import Counter from '../components/Counter';
+import {StyleSheet,Text,View,TouchableOpacity,ScrollView} from "react-native";
+import Constants from "expo-constants";
+import React, { useState } from "react";
+import Counter from "../components/Counter";
 
 export default function TuvaScreen() {
-  
-  const [totalPoints, setTotalPoints] = useState(8);
-
-
-  const stringDataTuva = [
-    {
-      id: 1,
-      title: "Opiskelu- ja urasuunnittelutaidot",
-      scope: "2-10 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
-      initValue: 2,
-      maxValue: 10,
-    },
-    {
-      id: 2,
-      title: "Perustaitojen vahvistaminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
-      initValue: 1,
-      maxValue: 30,
-    },
-    {
-      id: 3,
-      title: "Lukiokoulutuksen opinnot ja niihin valmentautuminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
-      initValue: 1,
-      maxValue: 30,
-    },
-    {
-      id: 4,
-      title: "Ammatillisen koulutuksen opinnot ja niihin valmentautuminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
-      initValue: 1,
-      maxValue: 30,
-    },
-    {
-      id: 5,
-      title: "Työelämätaidot ja työelämässä tapahtuva oppiminen",
-      scope: "1-20 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
-      initValue: 1,
-      maxValue: 20,
-    },
-    {
-      id: 6,
-      title: "Arjen taidot ja yhteiskunnallinen osallisuus",
-      scope: "1-20 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
-      initValue: 1,
-      maxValue: 20,
-    },
-    {
-      id: 7,
-      title: "Valinnaiset opinnot",
-      scope: "1-10 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
-      initValue: 1, 
-      maxValue: 10,
-    },
-  ];
-
-
-const onPress = async(url) => {
-const supported = await Linking.canOpenURL(url);
-if (supported) {
-await Linking.openURL(url);
-}
- else {
-  Alert.alert(`Virheellinen osoite: ${url}`);
- }
-};
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>TUVA-koulutuksen osat</Text>
+      {strings.map((item, index) => (
+        <Text key={index} style={styles.heading}>{item.tuvaHeading}</Text>
+      ))}
       <ScrollView>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
-        {stringDataTuva.map((item) => (
-          <View style={styles.itemContainer}
-                key={item.id}>
-          <TouchableOpacity
-            onPress={() => onPress(item.url)}
-            style={styles.customButton}
-          >
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              <Text style={styles.itemScope}>{item.scope}</Text>
-            
-          </TouchableOpacity>
-          <View style={styles.counterBar}>
-            <Counter initValue={item.initValue} maxValue={item.maxValue} totalPoints={totalPoints} setTotalPoints={setTotalPoints} />
-          </View>
-          </View>
-        
-         ))}
-         <Text style={styles.instructions}>Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.</Text>
-        <Text>{totalPoints}/38</Text>
+        <View
+          style={styles.viewContainer}
+        >
+          {tuvaDataArr.map((item) => (
+            <View style={styles.itemContainer} key={item.id}>
+              <TouchableOpacity
+                onPress={() => onPressOpenLink(item.url)}
+                style={styles.customButton}
+              >
+                <Text style={styles.itemTitle}>{item.title}</Text>
+                <Text style={styles.itemScope}>{item.scope}</Text>
+              </TouchableOpacity>
+              <View style={styles.counterBar}>
+                <Counter
+                  initValue={item.initValue}
+                  maxValue={item.maxValue}
+                />
+              </View>
+            </View>
+          ))}
+          {strings.map((item, index) => (
+            <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
+          ))}
+          
         </View>
         
       </ScrollView>
@@ -123,7 +56,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontWeight: 'bold',
     fontSize: 24,
-    textAlign: 'center',
+    textAlign: "center",
+  },
+  viewContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
 
   itemContainer: {

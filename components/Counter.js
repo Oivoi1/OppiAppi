@@ -1,43 +1,41 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React, {useReducer, useEffect} from 'react'
+import React, {useContext, useReducer} from 'react'
 
-export default function Counter({initValue, maxValue, totalPoints, setTotalPoints}) {
-  
-  useEffect(() => {
-    if(totalPoints >= 38){
-      setTotalPoints(38)
-    }
-    else if(totalPoints <= 8) {
-      setTotalPoints(8)
-    }
-  
-  }, [totalPoints])
-  
- 
-    const initialState = {count :initValue}
-  
-      
+// <----- UTILS -----> //
+import { handleSetStudyWeeksAdd, handleSetStudyWeeksSubstrack } from '../utils/HeaderStateFunctions'
+import { AppHeaderContext } from '../utils/AppHeaderContext'
+
+export default function Counter({initValue, maxValue}) {
+    
+  //global-state from App.js
+  const {studyWeeks, setStudyWeeks} = useContext(AppHeaderContext);
+    
+  //usereducer init-state and reducer function.
+  const initialState = {count :initValue}
+        
 const  reducer = (state, action) => {
      
   switch (action.type) {
     case 'add':
   
-        if(state.count < maxValue) {
+        if(state.count < maxValue && studyWeeks <= 38) {
           return {
             count: state.count + 1 
           }
-    }
+        
+        }
       else {
-        return {count: maxValue }
+        return {count: state.count}
       }
 
     case 'substract':
-      if(state.count > initValue) {
+      if(state.count > initValue && studyWeeks <= 38) {
       return {
          count: state.count - 1 
       }
-    }else {
-      return { count: initValue }
+    }
+    else {
+      return { count: state.count }
     }
   
     default:
@@ -50,12 +48,12 @@ const [state, dispatch] = useReducer(reducer, initialState);
       <>
       <View style={styles.counterContainer}>
       <TouchableOpacity  
-      onPress={() => dispatch({type: 'substract'}, setTotalPoints(prevValue => prevValue - 1))}
-       ><Text style={styles.counterLabelSubs}>-</Text>
+      onPress={() =>{ dispatch({type: 'substract'}); state.count > initValue ? handleSetStudyWeeksSubstrack(setStudyWeeks, studyWeeks) : null;}}
+       ><Text style={styles.counterLabelSubstract}>-</Text>
        </TouchableOpacity>
        <Text style={styles.counterLabel}>{state.count}</Text>
       <TouchableOpacity 
-      onPress={() => dispatch({type: 'add'}, setTotalPoints(prevValue => prevValue + 1))} >
+      onPress={() =>{ studyWeeks < 38 ? dispatch({type: 'add'}) : null; state.count < maxValue ? handleSetStudyWeeksAdd(setStudyWeeks, studyWeeks) : null;}}>
           <Text style={styles.counterLabelAdd}>+</Text>
       </TouchableOpacity>
       </View>
@@ -84,7 +82,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
          },
 
-      counterLabelSubs: {
+      counterLabelSubstract: {
         fontSize: 16,
         padding: 10,
         fontWeight: 'bold',
