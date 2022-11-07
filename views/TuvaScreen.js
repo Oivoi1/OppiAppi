@@ -3,6 +3,10 @@ import Constants from "expo-constants";
 import React, { useState } from "react";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
+// <----- DATA -----> //
+import { strings, tuvaDataArr } from "../data/data";
+// <----- FUNCTIONS -----> //
+import { onPressOpenLink } from "../utils/Functions";
 
 export default function TuvaScreen() {
 
