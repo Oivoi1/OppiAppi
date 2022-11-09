@@ -10,9 +10,9 @@ const checked = require( '../assets/checked_button.png' )
 const data = {
   competenceData: [
     {
-      buttonText: 'Hyvinvointi- osaaminen',
+      buttonText: 'Kulttuuri- osaaminen',
       completed: false,
-      detailsTitle: 'Minä osaan: Hyvinvointiosaaminen',
+      detailsTitle: 'Minä osaan: Kulttuuriosaaminen',
       description: 'Opiskelija syventää tietojaan ja ymmärrystään omasta identiteetistään sekä opiskeluyhteisön ja yhteiskunnan moninaisuudesta, jossa erilaiset identiteetit, kielet, uskonnot ja katsomukset elävät rinnakkain ja vuorovaikutuksessa keskenään. Opiskelija saa kokemuksia kansainvälisyydestä omassa arjessaan ja opiskeluympäristössään sekä esimerkiksi vierailujen, kulttuuritapahtumien, verkostoyhteistyön tai muun yhteistön kautta. Mahdollinen kieliprofiilin laatiminen tukee osaltaan opiskelijan ymmärrystä kielellisestä identiteetistään sekä hänen kasvuaan kielenoppijana ja -käyttäjänä.',
       tasks: [
         {
@@ -45,44 +45,153 @@ const data = {
       buttonText: 'Monilukutaito',
       completed: true,
       detailsTitle: 'Minä osaan: Monilukutaito',
-      description: '',
+      description: 'Opiskelija kehittyy viestien tulkitsijana ja tuottajana sekä harjaantuu toimimaan erilaisten tekstien kanssa. Opiskelija osaa tarkastella ja tulkita kriittisesti erilaisia tekstejä. Tekstillä tarkoitetaan laajasti sekä puhuttuja että kirjoitettuja tekstejä, jotka sisältävät erilaisia kielimuotoja arkikielestä opiskelun kieleen ja eri tiedonalojen käsitteelliseen kieleen. Luku- ja kirjoitustaidon ohella opiskelija kehittää kuvanlukutaitoaan, medialukutaitoaan ja numeerista lukutaitoaan opiskelusuunnitelmansa mukaisesti.',
       tasks: [
-
+        {
+          title: 'Osaan toimia erilaisissa vuorovaikutustilanteissa.',
+          checked: true,
+        },
+        {
+          title: 'Kirjoitan eri tilanteisiin soveltuvaa tekstiä.',
+          checked: false,
+        },
+        {
+          title: 'Hankin opinnoissani tarvittavia matematiikan taitoja.',
+          checked: false,
+        },
+        {
+          title: 'Haen tietoa eri lähteistä.',
+          checked: true,
+        },
+        {
+          title: 'Osaan arvioida tiedon luotettavuutta.',
+          checked: false,
+        },
+        {
+          title: 'Osaan käyttää eri viestintätapoja.',
+          checked: false,
+        },
+        ,
+        {
+          title: 'Ymmärrän tekijänoikeudet.',
+          checked: false,
+        }
       ]
     },
     {
       buttonText: 'Digiosaaminen',
-      completed: true,
+      completed: false,
       detailsTitle: 'Minä osaan: Digiosaaminen',
-      description: '',
+      description: 'Opiskelija osaa käyttää digitaalisia palveluita osana oppimista ja ongelmanratkaisua. Opiskelija osaa toimia vastuullisesti sosiaalisessa mediassa sekä käyttää digitaalisia palveluita asioidessaan viranomaisten ja muiden sähköisiä asiointia edellyttävien palveluntarjoajien kanssa.',
       tasks: [
-
+        {
+          title: 'Kehitän ja päivitän digiosaamistani.',
+          checked: false,
+        },
+        {
+          title: 'Käytän sähköisiä välineitä ja sovelluksia.',
+          checked: false,
+        },
+        {
+          title: 'Toimin sähköisissä oppimisympäristöissä asiallisesti.',
+          checked: false,
+        },
+        {
+          title: 'Toimin vastuullisesti sosiaalisessa mediassa.',
+          checked: false,
+        },
+        {
+          title: 'Käytän digitaalisia palveluita.',
+          checked: false,
+        },
       ]
     },
     {
       buttonText: 'Ympäristö- osaaminen',
       completed: false,
       detailsTitle: 'Minä osaan: Ympäristöosaaminen',
-      description: '',
+      description: 'Opiskelija ymmärtää kestävän kehityksen merkityksen yhteiskunnalle ja maapallolle ja osaa toimia kestävän kehityksen mukaisesti. Opiskelija tunnistaa ja ymmärtää keskeisiä ympäristön muutoksia  ja ihmisen toiminnan merkityksen niihin. Hän tuntee kestävän kehityksen tavoitteet ja ymmärtää ilmiöiden vaikutuksen toisiinsa, mukaan lukien kulttuurisen, sosiaalisen ja taloudellisen näkökulman. Opiskelijaa osaa toimia kestävää elämäntapaa tukien ja ottaa vastuuta ympäristöstä yhteistyössä muiden kanssa.',
       tasks: [
-
+        {
+          title: 'Pohdin kestävän tulevaisuuden periaatteiden toteutumista omassa ja yhteisöni toiminnassa.',
+          checked: false,
+        },
+        {
+          title: 'Toimin kestävän tulevaisuuden periaatteiden mukaisesti.',
+          checked: false,
+        },
+        {
+          title: 'Ymmärrän, millaisia vaikutuksia omalla ja muiden toiminnalla on.',
+          checked: false,
+        },
+        {
+          title: 'Kannustan muita toimimaan kestävän tulevaisuuden periaatteiden mukaan.',
+          checked: false,
+        },
       ]
     },
     {
-      buttonText: 'Kulttuuri- osaaminen',
+      buttonText: 'Hyvinvointi -osaaminen',
       completed: false,
-      detailsTitle: 'Minä osaan: Kulttuuriosaaminen',
-      description: '',
+      detailsTitle: 'Minä osaan: Hyvinvointiosaaminen',
+      description: 'Opiskelija ymmärtää terveyden ja terveellisten elämäntapojen merkityksen. Hän vaalii fyysistä, psyykkistä ja sosiaalista toimintakykyään ja hyvinvointiaan. Opiskelija omaksuu hyvinvointiaan tukevia toimintatapoja sekä tunnistaa niitä edistäviä yhteisöjä. Hän osaa suunnitella omaa ajankäyttöään siten, että opiskelu ja vapaa-aika vuorottelevat tarkoituksenmukaisesti. Opiskelija osaa hakea tietoa, apua ja tukea oman hyvinvointinsa ylläpitämiseen sekä hakeutua tarvittaessa hyvinvoinnin ja terveydenhuollon palveluiden pariin.',
       tasks: [
-
+        {
+          title: 'Tunnistan terveyttä ja hyvinvointia edistäviä ja haittaavia tekijöitä.',
+          checked: false,
+        },
+        {
+          title: 'Ymmärrän omien valintojen merkityksen hyvinvoinnilleni.',
+          checked: false,
+        },
+        {
+          title: 'Pidän huolta omasta fyysisestä, psyykkisestä ja sosiaalisesta hyvinvoinnistani.',
+          checked: false,
+        },
+        {
+          title: 'Ymmärrän opiskelun, levon ja vapaa-ajan vuorottelun merkityksen hyvinvoinnille.',
+          checked: false,
+        },
+        {
+          title: 'Pidän yllä opintoja tukevaa vuorokausirytmiä.',
+          checked: false,
+        },
+        {
+          title: 'Osaan käyttää alueen sosiaali- ja terveydenhuollon palveluita.',
+          checked: false,
+        },
+        {
+          title: 'Osallistun omaa hyvinvointia edistäviin liikunta- ja kulttuurimuotoihin.',
+          checked: false,
+        },
       ]
     },
     {
       buttonText: 'Yhteiskunta- osaaminen',
       completed: false,
       detailsTitle: 'Minä osaan: Yhteiskuntaosaaminen',
-      description: '',
+      description: 'Opiskelija ymmärtää demokraattisen, oikeudenmukaisen sekä tasa-arvoon ja yhdenvertaisuuteen perustuvan yhteiskunnan toimintaperiaatteita ja rakenteita. Hän osaa vaikuttaa oman ryhmänsä ja oppilaitoksensa asioihin sekä ymmärtää, miten yhteiskunnallisiin kysymyksiin voi ottaa kantaa.  Opiskelija omaksuu aktiivisen kansalaisuuden ja toimijuuden taitoja. Opiskelija ymmärtää työn merkityksen yksilön elämässä ja yhteiskunnassa.',
       tasks: [
+        {
+          title: 'Tähtään työelämään.',
+          checked: false,
+        },
+        {
+          title: 'Osallistun oman yhteisöni päätöksentekoon.',
+          checked: false,
+        },
+        {
+          title: 'Toimin tasa-arvoisesti ja oikeudenmukaisesti.',
+          checked: false,
+        },
+        {
+          title: 'Tunnen demokratian periaatteet.',
+          checked: false,
+        },
+        {
+          title: 'Tutustun yhteiskunnan toimintaan ja vaikuttamisen eri tapoihin.',
+          checked: false,
+        },
 
       ]
     },
@@ -90,18 +199,72 @@ const data = {
       buttonText: 'Vuorovaikutus- osaaminen',
       completed: false,
       detailsTitle: 'Minä osaan: Vuorovaikutusosaaminen',
-      description: '',
+      description: 'Opiskelija pyrkii toimimaan tilanteen vaatimalla tavalla erilaisissa vuorovaikutustilanteissa sekä ilmaisee erilaisia näkökantoja rakentavasti. Hän oppii kuuntelemaan ja kunnioittamaan toisten näkemyksiä ja tuomaan omia näkökulmiaan esille yksilönä ja ryhmän jäsenenä sekä kehittää empatiakykyään. Opiskelija osaa käyttää viestinnässä eri kieliä asianmukaisesti ja toimivasti. Opiskelija osaa viestiä asianmukaisesti myös erilaisilla sosiaalisen median alustoilla.',
       tasks: [
-
+        {
+          title: 'Osaan kuunnella ja keskustella huomioiden toiset.',
+          checked: false,
+        },
+        {
+          title: 'Tunnistan roolit erilaisissa yhteisöissä ja vuorovaikutustilanteissa.',
+          checked: false,
+        },
+        {
+          title: 'Osallistun turvallisen ilmapiirin rakentamiseen yhdessä muun opiskelijayhteisön kanssa.',
+          checked: false,
+        },
+        {
+          title: 'Kunnioitan eri yhteisöjen tapoja toimia.',
+          checked: false,
+        },
+        {
+          title: 'Harjoittelen tunnetaitoja.',
+          checked: false,
+        },
       ]
     },
     {
       buttonText: 'Oppimaan oppiminen',
       completed: false,
       detailsTitle: 'Minä osaan: Oppimaan oppiminen',
-      description: '',
+      description: 'Opiskelija osaa hankkia tietoa sekä jäsentää, arvioida ja soveltaa sitä. Hän osaa ottaa vastuuta opinnoistaan ja suunnitella niitä tavoitteellisesti. Hän tunnistaa ja osaa käyttää tarkoituksenmukaisia ja monipuolisia oppimistapoja ja -strategioita ja ymmärtää vertaisryhmän ja muun lähipiirin merkityksen oppimisen ja opiskelun tukena. Opiskelija kehittää opiskelukielen taitoaan tavoitteellisesti siten, että pystyy käyttämään puhuttua ja kirjoittua kieltä erilaisissa oppimisympäristöissä.',
       tasks: [
-
+        {
+          title: 'Tunnistat omia vahvuuksiasi.',
+          checked: false,
+        },
+        {
+          title: 'Tunnistat, mihin tarvitset apua ja ohjausta.',
+          checked: false,
+        },
+        {
+          title: 'Suunnittelet omia tavoitteitasi ja opintojasi.',
+          checked: false,
+        },
+        {
+          title: 'Etsin aktiivisesti tietoa.',
+          checked: false,
+        },
+        {
+          title: 'Tiedän miten opin parhaiten.',
+          checked: false,
+        },
+        {
+          title: 'Osaan toimia erilaisissa oppimisympäristöissä.',
+          checked: false,
+        },
+        {
+          title: 'Vahvistan suomen kielen taitoani.',
+          checked: false,
+        },
+        {
+          title: 'Otan vastuun opinnoistani.',
+          checked: false,
+        },
+        {
+          title: 'Osaan toimia itsenäisesti ja ryhmässä.',
+          checked: false,
+        },
       ]
     }
   ]
