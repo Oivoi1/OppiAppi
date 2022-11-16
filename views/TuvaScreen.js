@@ -1,6 +1,7 @@
-import {StyleSheet,Text,View,TouchableOpacity,ScrollView} from "react-native";
-import Constants from "expo-constants";
+import {StyleSheet,Text,View,TouchableOpacity,ScrollView, Button} from "react-native";
 import React, { useState } from "react";
+import Modal from 'react-native-modal';
+import { Ionicons } from "@expo/vector-icons";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 // <----- DATA -----> //
@@ -9,36 +10,52 @@ import { strings, tuvaDataArr } from "../data/data";
 import { onPressOpenLink } from "../utils/Functions";
 
 export default function TuvaScreen() {
+ 
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
+      <ScrollView>
+      
       {strings.map((item, index) => (
         <Text key={index} style={styles.heading}>{item.tuvaHeading}</Text>
       ))}
-      <ScrollView>
+      
         <View
           style={styles.viewContainer}
         >
+          
           {tuvaDataArr.map((item) => (
             <View style={styles.itemContainer} key={item.id}>
               <TouchableOpacity
                 onPress={() => onPressOpenLink(item.url)}
-                style={styles.customButton}
               >
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <Text style={styles.itemScope}>{item.scope}</Text>
               </TouchableOpacity>
-              <View style={styles.counterBar}>
+               <View style={styles.buttonContainer}>
                 <Counter
                   initValue={item.initValue}
                   maxValue={item.maxValue}
                 />
-              </View>
+                <TouchableOpacity style={styles.iconHelp}
+                onPress={() => {setIsModalVisible(!isModalVisible)}}>
+                  <Ionicons name="help" size={28} color="black" />
+                  </TouchableOpacity>
+                  </View>
+                  <Modal
+        animationType="fade"
+        visible={isModalVisible}
+      >
+      {strings.map((item, index) => (
+            <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
+          ))} 
+          <Button title="Sulje" onPress={() => setIsModalVisible(!isModalVisible)} /> 
+      </Modal>
+                
             </View>
           ))}
-          {strings.map((item, index) => (
-            <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
-          ))}
+          
           
         </View>
       </ScrollView>
@@ -48,12 +65,10 @@ export default function TuvaScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusbarHeight,
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    padding: 8,
-    backgroundColor: "#FFFFFF",
+      flex: 1,
+      backgroundColor: "#F5F5F5",
+      alignItems: "center",
+      justifyContent: "center",
   },
   heading: {
     marginTop: 10,
@@ -62,21 +77,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   viewContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    width: "95%",
+    alignItems: "center",
     justifyContent: "space-between",
   },
 
   itemContainer: {
-    marginTop: 12,
-    width: "45%",
+    marginTop:10,
+    width: "90%",
     flexDirection: "column",
-    justifyContent: "center",
-    paddingStart: 5,
-    paddingEnd: 5,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginRight: 10,
+    borderColor: "black",
+    borderWidth: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 15,
+    elevation: 8,
+    backgroundColor: '#8ED1FC',
   },
 
   itemTitle: {
@@ -95,13 +111,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
-  customButton: {
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 20,
-    padding: 10,
-    justifyContent: "space-between",
+  instructions: {
+    marginTop: 10,
   },
-
-  instructions: {},
+  iconHelp: {
+    alignItems:'center',
+      backgroundColor: '#F5F5F5',
+      borderRadius: 40,
+      borderWidth: 0.5,
+      width: 40,
+      height: 40,
+      justifyContent: 'center',
+      alignSelf: 'flex-end',
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+    
+  }
 });
