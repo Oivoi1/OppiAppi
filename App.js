@@ -71,7 +71,7 @@ export default function App() {
         >
           <Tab.Screen
             name="Main"
-            component={MainView}
+            component={CompetenceGoalsView}
             options={{
               title: "Pääsivu",
             }}
