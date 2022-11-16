@@ -1,5 +1,5 @@
-import {StyleSheet,Text,View,TouchableOpacity,ScrollView, Button} from "react-native";
-import React, { useState } from "react";
+import {StyleSheet,Text,View,TouchableOpacity,ScrollView, Button, SafeAreaView} from "react-native";
+import React, { useState} from "react";
 import Modal from 'react-native-modal';
 import { Ionicons } from "@expo/vector-icons";
 // <----- COMPONENTS -----> //
@@ -10,11 +10,21 @@ import { strings, tuvaDataArr } from "../data/data";
 import { onPressOpenLink } from "../utils/Functions";
 
 export default function TuvaScreen() {
- 
+  
+  
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+
+  const handleModalOpenPress = ( itemId ) => {
+    setIsModalVisible(!isModalVisible)
+  }
+  const handleModalClosePress = () => {
+    setIsModalVisible(!isModalVisible)
+  }
+  
   return (
     <View style={styles.container}>
+      <SafeAreaView>
       <ScrollView>
       
       {strings.map((item, index) => (
@@ -37,20 +47,23 @@ export default function TuvaScreen() {
                 <Counter
                   initValue={item.initValue}
                   maxValue={item.maxValue}
+                  
                 />
                 <TouchableOpacity style={styles.iconHelp}
-                onPress={() => {setIsModalVisible(!isModalVisible)}}>
+                onPress={() =>{ handleModalOpenPress(item.id) }}>
                   <Ionicons name="help" size={28} color="black" />
                   </TouchableOpacity>
                   </View>
-                  <Modal
+                  <Modal style={styles.modalContainer}
         animationType="fade"
         visible={isModalVisible}
       >
       {strings.map((item, index) => (
+            
             <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
+            
           ))} 
-          <Button title="Sulje" onPress={() => setIsModalVisible(!isModalVisible)} /> 
+          <Button title="Sulje" onPress={() => handleModalClosePress()} /> 
       </Modal>
                 
             </View>
@@ -59,6 +72,7 @@ export default function TuvaScreen() {
           
         </View>
       </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -71,25 +85,27 @@ const styles = StyleSheet.create({
       justifyContent: "center",
   },
   heading: {
-    marginTop: 10,
+    marginTop: 2,
+    marginBottom: 2,
     fontWeight: "bold",
     fontSize: 24,
     textAlign: "center",
   },
   viewContainer: {
     width: "95%",
+    height: "85%",
     alignItems: "center",
     justifyContent: "space-between",
   },
 
   itemContainer: {
-    marginTop:10,
+    marginBottom: 10,
     width: "90%",
     flexDirection: "column",
     borderColor: "black",
     borderWidth: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
     borderRadius: 15,
     elevation: 8,
     backgroundColor: '#8ED1FC',
@@ -113,6 +129,8 @@ const styles = StyleSheet.create({
 
   instructions: {
     marginTop: 10,
+    marginBottom: 10,
+    fontSize: 14,
   },
   iconHelp: {
     alignItems:'center',
@@ -123,11 +141,31 @@ const styles = StyleSheet.create({
       height: 40,
       justifyContent: 'center',
       alignSelf: 'flex-end',
+      position: 'absolute',
+      top: 5,
+      right: 0,
+      
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+
     
-  }
+    
+  },
+  modalContainer: {
+    backgroundColor: '#8ED1FC',
+    width: '60%',
+    maxHeight: "50%",
+    padding: 40,
+    borderRadius: 15,
+    borderColor: '#000000',
+    borderWidth: 1,
+    
+   
+    
+  },
 });

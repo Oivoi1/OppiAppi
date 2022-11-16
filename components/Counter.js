@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React, {useContext, useReducer} from 'react'
+import React, {useContext, useReducer, useEffect} from 'react'
 
 // <----- UTILS -----> //
 import { handleSetStudyWeeksAdd, handleSetStudyWeeksSubstrack } from '../utils/HeaderStateFunctions'
@@ -7,11 +7,14 @@ import { AppHeaderContext } from '../utils/AppHeaderContext'
 
 export default function Counter({initValue, maxValue}) {
     
-  //global-state from App.js
+  //global-state from App.js 
   const {studyWeeks, setStudyWeeks} = useContext(AppHeaderContext);
     
   //usereducer init-state and reducer function.
-  const initialState = {count :initValue}
+  const initialState = {count :initValue};
+ 
+  
+  
         
 const  reducer = (state, action) => {
      
@@ -42,18 +45,23 @@ const  reducer = (state, action) => {
       throw new Error();
   }
 }
+
 const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
       <>
       <View style={styles.counterContainer}>
       <TouchableOpacity  
-      onPress={() =>{ dispatch({type: 'substract'}); state.count > initValue ? handleSetStudyWeeksSubstrack(setStudyWeeks, studyWeeks) : null;}}
+      onPress={() =>{ dispatch({type: 'substract'}); 
+      state.count > initValue ? handleSetStudyWeeksSubstrack(setStudyWeeks, studyWeeks) : null; 
+      }}
        ><Text style={styles.counterLabelSubstract}>-</Text>
        </TouchableOpacity>
        <Text style={styles.counterLabel}>{state.count}</Text>
       <TouchableOpacity 
-      onPress={() =>{ studyWeeks < 38 ? dispatch({type: 'add'}) : null; state.count < maxValue ? handleSetStudyWeeksAdd(setStudyWeeks, studyWeeks) : null;}}>
+      onPress={() =>{ studyWeeks < 38 ? dispatch({type: 'add'}) : null; 
+      state.count < maxValue ? handleSetStudyWeeksAdd(setStudyWeeks, studyWeeks) : null; 
+      }}>
           <Text style={styles.counterLabelAdd}>+</Text>
       </TouchableOpacity>
       </View>
