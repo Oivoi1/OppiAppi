@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, Button } from 'react-native'
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native'
 import React, { useState } from 'react'
 import { COMPETENCE_DATA, ICONS, THEME, NUMERIC } from '../data/data'
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 110
 
+/**
+ * Back button
+ */
 const CustomButton = ( { onPress, imgSource } ) => {
   return (
     <TouchableOpacity
@@ -21,6 +24,9 @@ const CustomButton = ( { onPress, imgSource } ) => {
   )
 }
 
+/**
+ * 
+ */
 const CompetenceIndicator = ( { top, left, item, allCompleted, onPress } ) => {
   const imgSource = allCompleted ? ICONS[ 'candyGreen' ] : ICONS[ 'candyBlue' ];
   return (
@@ -39,26 +45,50 @@ const CompetenceIndicator = ( { top, left, item, allCompleted, onPress } ) => {
   )
 }
 
-const CompetenceDetailsCheckbox = ( { taskName, checked } ) => {
+/**
+ * 
+ */
+const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted } ) => {
   const imgSource = checked ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+
+  const handleButtonPress = ( index ) => {
+    handleCompleted(index)
+  }
+
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
+      onPress={() => handleButtonPress(index)}
       style={ styles.checkTaskContainer }
       activeOpacity={ NUMERIC.opacityTouchFade }
-      >
+    >
       <Image style={ styles.checkTaskImg } source={ imgSource } />
-      <Text>{ taskName }</Text>
+      <Text style={ styles.checkTaskText }>{ taskName }</Text>
     </TouchableOpacity>
   )
 }
 
-const CompetenceDetails = ( { item, tasksCompleted } ) => {
-  console.log( item )
+/**
+ * 
+ */
+const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) => {
+
+  const handleCompleted = ( index ) => {
+    let newArray = [...tasksCompleted] 
+    newArray[index] = !newArray[index]
+    handleTaskStatusChange(index, newArray)
+  }
+
   return (
     <View>
       <Text style={ styles.title }>{ item.detailsTitle }</Text>
       <Text style={ styles.detailsDescription }>{ item.description }</Text>
-      { item.tasks.map( ( task, index ) => <CompetenceDetailsCheckbox key={ index } taskName={ task.title } checked={ tasksCompleted[ index ] } /> ) }
+      { item.tasks.map( ( task, index ) => <CompetenceDetailsCheckbox
+        key={ index }
+        index={ index }
+        taskName={ task.title }
+        checked={ tasksCompleted[ index ] }
+        handleCompleted={ handleCompleted }
+      /> ) }
     </View>
   )
 }
@@ -78,13 +108,14 @@ const competenceUserData = COMPETENCE_DATA.map( ( item ) => {
 
 /**
  * Returns absolute top/left values to group of elements in circular formation respect to parent element
+ * 
  * @param {number} noOfElements Number of elements to draw total (included center element)
  * @param {number} radius Circumference elements distance to center
  * @param {number} startAngle Angle where first element is drawn
  * @param {number} centerX Group center point X
  * @param {number} centerY Group center point Y
  * @param {number} elementSize Diameter of single element
- * @returns 
+ * @returns Array of objects with x and y for location
  */
 const calcElementPositions = (
   noOfElements,
@@ -123,8 +154,7 @@ const calcElementPositions = (
 }
 
 /**
- * Screen for students competence checklist
- * @returns CompetenceGoalsView
+ * View for students competence checklist
  */
 const CompetenceGoalsView = () => {
   const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
@@ -145,19 +175,24 @@ const CompetenceGoalsView = () => {
     setShowDetailsFrom( index )
   }
 
+  const handleTaskStatusChange = (taskIndex, taskArray) => {
+    console.log(tasksCompleted)
+    console.log(taskIndex, taskArray)
+  }
+
   // Show general view when showDetailsFrom is null
   if ( showDetailsFrom === null ) {
     return (
       <View style={ styles.viewContainer }>
         <Text style={ styles.title }>Oppiäppi: Minä osaan</Text>
         <View style={ styles.buttonContainer }>
-          { COMPETENCE_DATA.map( ( item, index ) => <CompetenceIndicator 
-                                                      key={ index } 
-                                                      top={ elementPositions[ index ].top } 
-                                                      left={ elementPositions[ index ].left } 
-                                                      item={ item } 
-                                                      allCompleted={false}
-                                                      onPress={ () => handleButtonPress( index ) } /> ) }
+          { COMPETENCE_DATA.map( ( item, index ) => <CompetenceIndicator
+            key={ index }
+            top={ elementPositions[ index ].top }
+            left={ elementPositions[ index ].left }
+            item={ item }
+            allCompleted={ false }
+            onPress={ () => handleButtonPress( index ) } /> ) }
         </View>
       </View>
     )
@@ -165,33 +200,41 @@ const CompetenceGoalsView = () => {
   // Show details view when details are selected
   else {
     return (
-      <View style={ styles.detailsContainer }>
-        <CustomButton
-          onPress={ () => setShowDetailsFrom( null ) }
-          imgSource={ ICONS[ 'backArrow' ] }
-        />
-        <CompetenceDetails
-          item={ COMPETENCE_DATA[ showDetailsFrom ] }
-          tasksCompleted={ tasksCompleted }
-        />
-      </View>
+      <ScrollView style={ styles.scrollView }>
+        <View style={ styles.detailsContainer }>
+          <CustomButton
+            onPress={ () => setShowDetailsFrom( null ) }
+            imgSource={ ICONS[ 'backArrow' ] }
+          />
+          <CompetenceDetails
+            item={ COMPETENCE_DATA[ showDetailsFrom ] }
+            tasksCompleted={ tasksCompleted[ showDetailsFrom ].taskCompleted }
+            handleTaskStatusChange={ handleTaskStatusChange }
+          />
+        </View>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create( {
   viewContainer: {
-    backgroundColor: '#F3F2EC',
+    backgroundColor: THEME.lightBackground,
     position: 'relative',
     flexGrow: 1,
     padding: SCREEN_PADDING,
   },
+  scrollView: {
+    // flex: 1,
+    // height: '100%',
+  },
   detailsContainer: {
-    backgroundColor: '#F3F2EC',
-    justifyContent: 'flex-start',
     borderWidth: 1,
+    backgroundColor: THEME.lightBackground,
+    // justifyContent: 'flex-start',
+    // flexGrow: 1,
     padding: 10,
-    height: '100%'
+    // height: '100%'
   },
   title: {
     fontSize: 25,
@@ -223,20 +266,23 @@ const styles = StyleSheet.create( {
     textAlign: 'center',
   },
   checkTaskContainer: {
-    backgroundColor: '#d9d9d9',
+    backgroundColor: THEME.lightGray,
     borderRadius: 20,
     flexDirection: 'row',
-    height: 40,
+    height: 'auto',
     width: 'auto',
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: 10,
-    padding: 4,
+    padding: 5,
   },
   checkTaskImg: {
     height: 30,
     width: 30,
-    marginRight: 5,
+    marginRight: 10,
+  },
+  checkTaskText: {
+    width: '85%',
   },
   customButton: {
     alignItems: 'center',

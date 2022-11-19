@@ -1,5 +1,14 @@
 // Data 
 
+// Storage keys
+export const COMPETENCE_STORAGE_KEY = '@competence_data'
+
+// Vibration patterns. Time unit is ms. Odd cells are pause and even cells are vibration duration.
+
+export const NOTIFY_VIBRATE = [ 0, 200 ]; // 0 ms pause, 200 ms vibration
+export const SHORT_VIBRATE = [ 0, 100 ]; // 0 ms pause, 100 ms vibration
+export const LONG_VIBRATE = [ 0, 500 ]; // 0 ms pause, 500 ms vibration
+
 // Icon resources
 export const ICONS = {
   'candyBlue': require( '../assets/candy_blue.png' ),
@@ -16,12 +25,14 @@ export const NUMERIC = {
 
 // Theme colors
 export const THEME = {
+  'black': '#000',
   'lightBackground': '#F3F2EC',
   'darkBlue': '#023B5D',
   'blue': '#0693E3',
   'lightBlue': '#8ED1FC',
   'brightRed': '#D3232E',
-  'gray': '#ABB8C3'
+  'gray': '#ABB8C3',
+  'lightGray': '#d9d9d9'
 }
 
 export const COMPETENCE_DATA = [
