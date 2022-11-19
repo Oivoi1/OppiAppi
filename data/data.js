@@ -87,7 +87,6 @@ export const COMPETENCE_DATA = [
       {
         title: 'Osaan käyttää eri viestintätapoja.',
       },
-      ,
       {
         title: 'Ymmärrän tekijänoikeudet.',
       }

@@ -25,7 +25,7 @@ const CustomButton = ( { onPress, imgSource } ) => {
 }
 
 /**
- * 
+ * Candy like buttons CompetenceGoalsView
  */
 const CompetenceIndicator = ( { top, left, item, allCompleted, onPress } ) => {
   const imgSource = allCompleted ? ICONS[ 'candyGreen' ] : ICONS[ 'candyBlue' ];
@@ -52,12 +52,12 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
   const imgSource = checked ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
 
   const handleButtonPress = ( index ) => {
-    handleCompleted(index)
+    handleCompleted( index )
   }
 
   return (
     <TouchableOpacity
-      onPress={() => handleButtonPress(index)}
+      onPress={ () => handleButtonPress( index ) }
       style={ styles.checkTaskContainer }
       activeOpacity={ NUMERIC.opacityTouchFade }
     >
@@ -73,9 +73,9 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
 const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) => {
 
   const handleCompleted = ( index ) => {
-    let newArray = [...tasksCompleted] 
-    newArray[index] = !newArray[index]
-    handleTaskStatusChange(index, newArray)
+    let newArray = [ ...tasksCompleted ]
+    newArray[ index ] = !newArray[ index ]
+    handleTaskStatusChange( newArray )
   }
 
   return (
@@ -175,9 +175,11 @@ const CompetenceGoalsView = () => {
     setShowDetailsFrom( index )
   }
 
-  const handleTaskStatusChange = (taskIndex, taskArray) => {
-    console.log(tasksCompleted)
-    console.log(taskIndex, taskArray)
+  // Update completed tasks to state
+  const handleTaskStatusChange = ( taskArray ) => {
+    let newTasksCompleted = [ ...tasksCompleted ]
+    newTasksCompleted[ showDetailsFrom ].taskCompleted = taskArray
+    setTasksCompleted( newTasksCompleted )
   }
 
   // Show general view when showDetailsFrom is null
@@ -191,7 +193,7 @@ const CompetenceGoalsView = () => {
             top={ elementPositions[ index ].top }
             left={ elementPositions[ index ].left }
             item={ item }
-            allCompleted={ false }
+            allCompleted={ tasksCompleted[ index ].taskCompleted.every(task => task === true) }
             onPress={ () => handleButtonPress( index ) } /> ) }
         </View>
       </View>
