@@ -39,7 +39,7 @@ export default function App() {
                 iconName = focused
                   ? "checkmark-done"
                   : "checkmark-done-outline";
-              } else if (route.name === "AdditionalContent") {
+              } else if (route.name === "AdditionalContentView") {
                 iconName = focused
                   ? "ellipsis-horizontal-circle-sharp"
                   : "ellipsis-horizontal-circle-outline";
@@ -102,7 +102,7 @@ export default function App() {
           />
           <Tab.Screen
             name="AdditionalContent"
-            component={AdditionalContent}
+            component={AdditionalContentView}
             options={{
               title: "Muuta",
             }}
