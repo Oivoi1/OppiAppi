@@ -12,6 +12,7 @@ import AdditionalContentView from "./views/AdditionalContentView";
 
 // <----- UTILS -----> //
 import { AppHeaderContext } from "./utils/AppHeaderContext";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
@@ -30,23 +31,29 @@ export default function App() {
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
 
-              if (route.name == "Main") {
+              if (route.name == "MainView") {
                 iconName = focused ? "home" : "home-outline";
-              } else if (route.name === "Tuva") {
-                iconName = focused ? "add-circle" : "add-circle-outline";
-              } else if (route.name === "Archive") {
-                iconName = focused ? "archive" : "archive-outline";
+              } else if (route.name === "TuvaScreen") {
+                iconName = focused ? "bulb" : "bulb-outline";
+              } else if (route.name === "CompetenceGoalsView") {
+                iconName = focused
+                  ? "checkmark-done"
+                  : "checkmark-done-outline";
+              } else if (route.name === "AdditionalContent") {
+                iconName = focused
+                  ? "ellipsis-horizontal-circle-sharp"
+                  : "ellipsis-horizontal-circle-outline";
               }
 
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             headerStyle: {
-              backgroundColor: "#81c8ee",
+              backgroundColor: "#023B5D",
             },
             headerTitleAlign: "center",
             headerLeft: () => (
               <View style={[styles.headerViews, styles.headerLeftView]}>
-                <Ionicons name="calendar" size={28} color="blue" />
+                <Ionicons name="calendar" size={28} color="#8ED1FC" />
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
               </View>
             ),
@@ -57,35 +64,52 @@ export default function App() {
               </View>
             ),
 
-            headerTintColor: "#102A57",
+            headerTintColor: "#8ED1FC",
             tabBarItemStyle: {
-              backgroundColor: "#ede8e4",
+              backgroundColor: "#023B5D",
             },
             headerTitleStyle: {
               // fontFamily: "Poppins-Bold",
             },
-            tabBarActiveTintColor: "#284277",
-            tabBarInactiveTintColor: "gray",
+            tabBarActiveTintColor: "#FFF",
+            tabBarInactiveTintColor: "#8ED1FC",
             tabBarHideOnKeyboard: "true",
           })}
         >
           <Tab.Screen
-            name="Main"
-            component={CompetenceGoalsView}
+            name="MainView"
+            component={MainView}
             options={{
               title: "Pääsivu",
             }}
             // initialParams={fontsLoaded}
           />
           <Tab.Screen
-            name="Tuva"
+            name="TuvaScreen"
             component={TuvaScreen}
             options={{
               title: "TUVA",
             }}
             // initialParams={fontsLoaded}
           />
+          <Tab.Screen
+            name="CompetenceGoalsView"
+            component={CompetenceGoalsView}
+            options={{
+              title: "Minä osaan",
+            }}
+            // initialParams={fontsLoaded}
+          />
+          <Tab.Screen
+            name="AdditionalContent"
+            component={AdditionalContent}
+            options={{
+              title: "Muuta",
+            }}
+            // initialParams={fontsLoaded}
+          />
         </Tab.Navigator>
+        <StatusBar style="light" />
       </NavigationContainer>
     </AppHeaderContext.Provider>
   );
@@ -94,6 +118,7 @@ export default function App() {
 const styles = StyleSheet.create({
   headerViews: {
     flexDirection: "row",
+    borderColor: "#FFF",
     borderWidth: 1,
     padding: 5,
     borderRadius: 15,
@@ -102,6 +127,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   headerSidesText: {
+    color: "#FFF",
     fontSize: 20,
     marginHorizontal: 8,
   },
