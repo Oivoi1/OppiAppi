@@ -35,7 +35,7 @@ return (
     <>
       <View>
         <Text style={styles.label}>Ulkoilman lämpötila</Text>
-        <Text style={styles.info}>{temp}</Text>
+        <Text style={styles.info}>{temp} °C</Text>
         <Image source={{uri: icon}} style={styles.image}/>
       </View>  
     </>

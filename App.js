@@ -8,7 +8,7 @@ import { useState } from "react";
 import CompetenceGoalsView from "./views/CompetenceGoalsView";
 import MainView from "./views/MainView";
 import TuvaScreen from "./views/TuvaScreen";
-import AdditionalContent from "./views/AdditionalContent";
+import AdditionalContentView from "./views/AdditionalContentView";
 
 // <----- UTILS -----> //
 import { AppHeaderContext } from "./utils/AppHeaderContext";
