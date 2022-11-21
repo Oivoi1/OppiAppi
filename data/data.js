@@ -1,5 +1,5 @@
 // Data
-const dataPublicTransport = [
+export const dataPublicTransport = [
     {
       id: 1,
       city: "Helsinki",
