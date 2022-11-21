@@ -1,153 +1,158 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Linking,
-} from "react-native";
-import Constants from "expo-constants";
-import React, { useState } from "react";
+import {StyleSheet,Text,View,TouchableOpacity,ScrollView, SafeAreaView, Button, Image} from "react-native";
+import React, { useState} from "react";
+import Modal from 'react-native-modal';
+
+import { Ionicons } from "@expo/vector-icons";
+// <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
+// <----- DATA -----> //
+import { strings, tuvaDataArr } from "../data/data";
+const unchecked = require( '../assets/unchecked_button.png' )
+const checked = require( '../assets/checked_button.png' )
+
+// <----- FUNCTIONS -----> //
+import { onPressOpenLink } from "../utils/Functions";
 
 export default function TuvaScreen() {
-  const [totalPoints, setTotalPoints] = useState(8);
+  
+  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState(null);
+  const [modalWeeks, setModalWeeks] = useState(0);
+  const [showModalDetails, setShowModalDetails] = useState(false);
+ 
+  
+  const handleModalOpen = (itemId) => {
+   //changed index to match dataid
+    const newIndex = itemId + 1;
+    //current index to counter
+    setClickedIndex(newIndex);
+    setIsModalVisible(!isModalVisible);
+    //console.log(refIndex);
+  }
+  const handleModalClose = () => {
+    setIsModalVisible(!isModalVisible);
+  }
+  const handleModalButtonPress = ( index ) => {
+    //console.log( index )
+    let newArr = [...tuvaDataArr]
+    const arrIndex = newArr.findIndex(object => {
+      return object.id === index; });
+      if (arrIndex !== -1) {
+    newArr[index].checked(true);
+    setShowModalDetails( !showModalDetails )
 
-  const stringDataTuva = [
-    {
-      id: 1,
-      title: "Opiskelu- ja urasuunnittelutaidot",
-      scope: "2-10 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
-      initValue: 2,
-      maxValue: 10,
-    },
-    {
-      id: 2,
-      title: "Perustaitojen vahvistaminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
-      initValue: 1,
-      maxValue: 30,
-    },
-    {
-      id: 3,
-      title: "Lukiokoulutuksen opinnot ja niihin valmentautuminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
-      initValue: 1,
-      maxValue: 30,
-    },
-    {
-      id: 4,
-      title: "Ammatillisen koulutuksen opinnot ja niihin valmentautuminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
-      initValue: 1,
-      maxValue: 30,
-    },
-    {
-      id: 5,
-      title: "Työelämätaidot ja työelämässä tapahtuva oppiminen",
-      scope: "1-20 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
-      initValue: 1,
-      maxValue: 20,
-    },
-    {
-      id: 6,
-      title: "Arjen taidot ja yhteiskunnallinen osallisuus",
-      scope: "1-20 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
-      initValue: 1,
-      maxValue: 20,
-    },
-    {
-      id: 7,
-      title: "Valinnaiset opinnot",
-      scope: "1-10 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
-      initValue: 1,
-      maxValue: 10,
-    },
-  ];
-
-  const onPress = async (url) => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Virheellinen osoite: ${url}`);
-    }
-  };
-
+      }
+  }
+  const ModalDetailsCheckbox = ( { task,index } ) => {
+    const imgSource = showModalDetails ? checked : unchecked;
+    
+    
+    return (
+      <TouchableOpacity style={ styles.checkTaskContainer }
+        onPress={ () => handleModalButtonPress( index )}>
+        <Image style={ styles.checkTaskImg } source={ imgSource } />
+      </TouchableOpacity>
+    )
+  
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>TUVA-koulutuksen osat</Text>
+      <SafeAreaView>
       <ScrollView>
+      
+      {strings.map((item, index) => (
+        <Text key={index} style={styles.heading}>{item.tuvaHeading}</Text>
+      ))}
+      
         <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-          }}
+          style={styles.viewContainer}
         >
-          {stringDataTuva.map((item) => (
+          
+          {tuvaDataArr.map((item, index) => (
             <View style={styles.itemContainer} key={item.id}>
               <TouchableOpacity
-                onPress={() => onPress(item.url)}
-                style={styles.customButton}
+                onPress={() => onPressOpenLink(item.url)}
               >
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <Text style={styles.itemScope}>{item.scope}</Text>
               </TouchableOpacity>
-              <View style={styles.counterBar}>
+               <View style={styles.buttonContainer}>
                 <Counter
                   initValue={item.initValue}
                   maxValue={item.maxValue}
-                  totalPoints={totalPoints}
-                  setTotalPoints={setTotalPoints}
+                  itemId={item.id}
+                  setModalWeeks={setModalWeeks}
+                  clickedIndex={clickedIndex}
+                  
                 />
-              </View>
+                <TouchableOpacity style={styles.iconHelp}
+                onPress={() =>{ handleModalOpen(index) }}>
+                  <Ionicons name="help" size={28} color="black" />
+                  </TouchableOpacity>
+                  </View>
+                  <Modal style={styles.modalContainer}
+        animationType="fade"
+        visible={isModalVisible}
+      >
+      {strings.map((item, index) => (
+            
+            <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
+            
+          ))} 
+          <Text>{modalWeeks}</Text>
+          {
+          Array(modalWeeks).fill(<ModalDetailsCheckbox />).map((_, index)=>(
+            <ModalDetailsCheckbox key={index} task={item.checked} index={index} />
+          ))}
+                    
+          <Button title="Sulje" onPress={() => handleModalClose()} /> 
+      </Modal>
+                  
+                
             </View>
           ))}
-          <Text style={styles.instructions}>
-            Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38
-            viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.
-          </Text>
-          <Text>{totalPoints}/38</Text>
+          
+          
         </View>
       </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusbarHeight,
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    padding: 8,
-    backgroundColor: "#FFFFFF",
+      flex: 1,
+      backgroundColor: "#F5F5F5",
+      alignItems: "center",
+      justifyContent: "center",
   },
   heading: {
-    marginTop: 10,
+    marginTop: 2,
+    marginBottom: 2,
     fontWeight: "bold",
     fontSize: 24,
     textAlign: "center",
   },
+  viewContainer: {
+    width: "95%",
+    height: "85%",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 
   itemContainer: {
-    marginTop: 12,
-    width: "45%",
+    marginBottom: 10,
+    width: "90%",
     flexDirection: "column",
-    justifyContent: "center",
-    paddingStart: 5,
-    paddingEnd: 5,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginRight: 10,
+    borderColor: "black",
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    borderRadius: 15,
+    elevation: 8,
+    backgroundColor: '#8ED1FC',
   },
 
   itemTitle: {
@@ -166,13 +171,59 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
-  customButton: {
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 20,
-    padding: 10,
-    justifyContent: "space-between",
+  instructions: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 14,
   },
+  iconHelp: {
+    alignItems:'center',
+      backgroundColor: '#F5F5F5',
+      borderRadius: 40,
+      borderWidth: 0.5,
+      width: 40,
+      height: 40,
+      justifyContent: 'center',
+      alignSelf: 'flex-end',
+      position: 'absolute',
+      top: 5,
+      right: 0,
+      
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
 
-  instructions: {},
+    
+    
+  },
+  modalContainer: {
+    backgroundColor: '#8ED1FC',
+    width: '60%',
+    maxHeight: "50%",
+    padding: 40,
+    borderRadius: 15,
+    borderColor: '#000000',
+    borderWidth: 1,
+  },
+  checkTaskContainer: {
+    backgroundColor: '#d9d9d9',
+    borderRadius: 20,
+    flexDirection: 'row',
+    height: 40,
+    width: 'auto',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 10,
+    padding: 4,
+  },
+  checkTaskImg: {
+    height: 30,
+    width: 30,
+    marginRight: 5,
+  },
+  
 });

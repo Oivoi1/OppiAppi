@@ -14,7 +14,7 @@ import AdditionalContent from "./views/AdditionalContent";
 import { AppHeaderContext } from "./utils/AppHeaderContext";
 
 export default function App() {
-  const [studyWeeks, setStudyWeeks] = useState(1);
+  const [studyWeeks, setStudyWeeks] = useState(8);
   const [trophies, setTrophies] = useState(1);
 
   const Tab = createBottomTabNavigator();
@@ -32,7 +32,7 @@ export default function App() {
 
               if (route.name == "Main") {
                 iconName = focused ? "home" : "home-outline";
-              } else if (route.name === "Testi") {
+              } else if (route.name === "Tuva") {
                 iconName = focused ? "add-circle" : "add-circle-outline";
               } else if (route.name === "Archive") {
                 iconName = focused ? "archive" : "archive-outline";
@@ -74,6 +74,14 @@ export default function App() {
             component={CompetenceGoalsView}
             options={{
               title: "Pääsivu",
+            }}
+            // initialParams={fontsLoaded}
+          />
+          <Tab.Screen
+            name="Tuva"
+            component={TuvaScreen}
+            options={{
+              title: "TUVA",
             }}
             // initialParams={fontsLoaded}
           />
