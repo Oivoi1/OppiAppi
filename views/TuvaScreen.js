@@ -1,11 +1,15 @@
-import {StyleSheet,Text,View,TouchableOpacity,ScrollView, Button, SafeAreaView} from "react-native";
+import {StyleSheet,Text,View,TouchableOpacity,ScrollView, SafeAreaView, Button, Image} from "react-native";
 import React, { useState} from "react";
 import Modal from 'react-native-modal';
+
 import { Ionicons } from "@expo/vector-icons";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 // <----- DATA -----> //
 import { strings, tuvaDataArr } from "../data/data";
+const unchecked = require( '../assets/unchecked_button.png' )
+const checked = require( '../assets/checked_button.png' )
+
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/Functions";
 
@@ -13,15 +17,45 @@ export default function TuvaScreen() {
   
   
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-
-  const handleModalOpenPress = ( itemId ) => {
-    setIsModalVisible(!isModalVisible)
-  }
-  const handleModalClosePress = () => {
-    setIsModalVisible(!isModalVisible)
-  }
+  const [clickedIndex, setClickedIndex] = useState(null);
+  const [modalWeeks, setModalWeeks] = useState(0);
+  const [showModalDetails, setShowModalDetails] = useState(false);
+ 
   
+  const handleModalOpen = (itemId) => {
+   //changed index to match dataid
+    const newIndex = itemId + 1;
+    //current index to counter
+    setClickedIndex(newIndex);
+    setIsModalVisible(!isModalVisible);
+    //console.log(refIndex);
+  }
+  const handleModalClose = () => {
+    setIsModalVisible(!isModalVisible);
+  }
+  const handleModalButtonPress = ( index ) => {
+    //console.log( index )
+    let newArr = [...tuvaDataArr]
+    const arrIndex = newArr.findIndex(object => {
+      return object.id === index; });
+      if (arrIndex !== -1) {
+    newArr[index].checked(true);
+    setShowModalDetails( !showModalDetails )
+
+      }
+  }
+  const ModalDetailsCheckbox = ( { task,index } ) => {
+    const imgSource = showModalDetails ? checked : unchecked;
+    
+    
+    return (
+      <TouchableOpacity style={ styles.checkTaskContainer }
+        onPress={ () => handleModalButtonPress( index )}>
+        <Image style={ styles.checkTaskImg } source={ imgSource } />
+      </TouchableOpacity>
+    )
+  
+  }
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -35,7 +69,7 @@ export default function TuvaScreen() {
           style={styles.viewContainer}
         >
           
-          {tuvaDataArr.map((item) => (
+          {tuvaDataArr.map((item, index) => (
             <View style={styles.itemContainer} key={item.id}>
               <TouchableOpacity
                 onPress={() => onPressOpenLink(item.url)}
@@ -47,10 +81,13 @@ export default function TuvaScreen() {
                 <Counter
                   initValue={item.initValue}
                   maxValue={item.maxValue}
+                  itemId={item.id}
+                  setModalWeeks={setModalWeeks}
+                  clickedIndex={clickedIndex}
                   
                 />
                 <TouchableOpacity style={styles.iconHelp}
-                onPress={() =>{ handleModalOpenPress(item.id) }}>
+                onPress={() =>{ handleModalOpen(index) }}>
                   <Ionicons name="help" size={28} color="black" />
                   </TouchableOpacity>
                   </View>
@@ -63,8 +100,15 @@ export default function TuvaScreen() {
             <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
             
           ))} 
-          <Button title="Sulje" onPress={() => handleModalClosePress()} /> 
+          <Text>{modalWeeks}</Text>
+          {
+          Array(modalWeeks).fill(<ModalDetailsCheckbox />).map((_, index)=>(
+            <ModalDetailsCheckbox key={index} task={item.checked} index={index} />
+          ))}
+                    
+          <Button title="Sulje" onPress={() => handleModalClose()} /> 
       </Modal>
+                  
                 
             </View>
           ))}
@@ -164,8 +208,22 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#000000',
     borderWidth: 1,
-    
-   
-    
   },
+  checkTaskContainer: {
+    backgroundColor: '#d9d9d9',
+    borderRadius: 20,
+    flexDirection: 'row',
+    height: 40,
+    width: 'auto',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 10,
+    padding: 4,
+  },
+  checkTaskImg: {
+    height: 30,
+    width: 30,
+    marginRight: 5,
+  },
+  
 });

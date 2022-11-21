@@ -6,6 +6,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
       initValue: 2,
       maxValue: 10,
+      checked: false,
     },
     {
       id: 2,
@@ -14,6 +15,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
       initValue: 1,
       maxValue: 30,
+      checked: false,
     },
     {
       id: 3,
@@ -22,6 +24,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
       initValue: 1,
       maxValue: 30,
+      checked: false,
     },
     {
       id: 4,
@@ -30,6 +33,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
       initValue: 1,
       maxValue: 30,
+      checked: false,
     },
     {
       id: 5,
@@ -38,6 +42,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
       initValue: 1,
       maxValue: 20,
+      checked: false,
     },
     {
       id: 6,
@@ -46,6 +51,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
       initValue: 1,
       maxValue: 20,
+      checked: false,
     },
     {
       id: 7,
@@ -54,6 +60,7 @@ export const tuvaDataArr = [
       url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
       initValue: 1,
       maxValue: 10,
+      checked: false,
     },
   ];
 export const strings = [
