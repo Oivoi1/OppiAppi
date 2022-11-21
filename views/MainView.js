@@ -7,18 +7,24 @@ const MainView = ({ navigation }) => {
       <View style={styles.content__container}>
         <TouchableOpacity
           style={styles.link__container}
-          // onPress={() => navigation.navigate("sivun nimi")}
+          onPress={() => navigation.navigate("TuvaScreen")}
         >
-          <Text style={styles.link__container__font}>Minun TUVA-opinnot</Text>
+          <Text style={styles.link__container__header}>Minun TUVA-opinnot</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.link__container}>
-          <Text style={styles.link__container__font}>Minä osaan</Text>
-          <Text>Laaja-alaiset tavoitteet</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.link__container}>
-          <Text style={styles.link__container__font}>
-            Muuta hyödyllistä sisältöä
+        <TouchableOpacity
+          style={styles.link__container}
+          onPress={() => navigation.navigate("CompetenceGoalsView")}
+        >
+          <Text style={styles.link__container__header}>Minä osaan</Text>
+          <Text style={styles.link__container__paragraph}>
+            Laaja-alaiset tavoitteet
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.link__container}
+          onPress={() => navigation.navigate("AdditionalContent")}
+        >
+          <Text style={styles.link__container__header}>Muuta hyödyllistä</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -30,7 +36,7 @@ export default MainView;
 const styles = StyleSheet.create({
   main__container: {
     flex: 1,
-    backgroundColor: "#D7E2E8",
+    backgroundColor: "#F3F2EC",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -40,20 +46,28 @@ const styles = StyleSheet.create({
     height: "80%",
     alignItems: "center",
     justifyContent: "space-evenly",
-    borderWidth: 1,
-    borderRadius: 15,
   },
   link__container: {
-    width: "80%",
-    backgroundColor: "#FCC9C5",
+    width: "95%",
+    height: "20%",
+    backgroundColor: "#8ED1FC",
+
     borderWidth: 2,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 15,
     elevation: 8,
+    shadowColor: "#023B5D",
     alignItems: "center",
+    justifyContent: "center",
   },
-  link__container__font: {
+  link__container__header: {
+    color: "#000",
+    fontSize: 28,
+    textAlign: "center",
+  },
+  link__container__paragraph: {
+    color: "#000",
     fontSize: 20,
     textAlign: "center",
   },
