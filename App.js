@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,6 +13,9 @@ import AdditionalContentView from "./views/AdditionalContentView";
 // <----- UTILS -----> //
 import { AppHeaderContext } from "./utils/AppHeaderContext";
 import { StatusBar } from "expo-status-bar";
+
+// <----- DATA -----> //
+import { THEME } from "./data/data";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
@@ -48,31 +51,48 @@ export default function App() {
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             headerStyle: {
-              backgroundColor: "#023B5D",
+              backgroundColor: THEME.darkBlue,
             },
             headerTitleAlign: "center",
             headerLeft: () => (
-              <View style={[styles.headerViews, styles.headerLeftView]}>
-                <Ionicons name="calendar" size={28} color="#8ED1FC" />
+              <TouchableOpacity
+                style={[styles.headerViews, styles.headerLeftView]}
+                onPress={() =>
+                  Alert.alert(
+                    "Tämä on:",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  )
+                }
+              >
+                <Ionicons name="calendar" size={28} color={THEME.lightBlue} />
+
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
-              </View>
+              </TouchableOpacity>
             ),
             headerRight: () => (
-              <View style={[styles.headerViews, styles.headerRightView]}>
+              <TouchableOpacity
+                style={[styles.headerViews, styles.headerRightView]}
+                onPress={() =>
+                  Alert.alert(
+                    "Tämä on 2:",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  )
+                }
+              >
                 <Text style={styles.headerSidesText}>{trophies}</Text>
                 <Ionicons name="trophy" size={28} color="gold" />
-              </View>
+              </TouchableOpacity>
             ),
 
-            headerTintColor: "#8ED1FC",
+            headerTintColor: THEME.lightBlue,
             tabBarItemStyle: {
-              backgroundColor: "#023B5D",
+              backgroundColor: THEME.darkBlue,
             },
             headerTitleStyle: {
               // fontFamily: "Poppins-Bold",
             },
             tabBarActiveTintColor: "#FFF",
-            tabBarInactiveTintColor: "#8ED1FC",
+            tabBarInactiveTintColor: THEME.lightBlue,
             tabBarHideOnKeyboard: "true",
           })}
         >
@@ -101,7 +121,7 @@ export default function App() {
             // initialParams={fontsLoaded}
           />
           <Tab.Screen
-            name="AdditionalContent"
+            name="AdditionalContentView"
             component={AdditionalContentView}
             options={{
               title: "Muuta",

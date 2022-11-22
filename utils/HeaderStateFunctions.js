@@ -1,15 +1,14 @@
-// Funktio opiskeluviikkojen päivitystä varten
+// Function for study week state updating
 export const handleSetStudyWeeksAdd = (setStudyWeeks, studyWeeks) => {
-  // Voisko tähän lisätä toasteri tai alerti, että on maksimi/ kaikki viikot tehty?
+  // Maybe add toast or alert that study weeks are complete?
+
   studyWeeks === 38 ? null : setStudyWeeks(studyWeeks + 1);
 };
 export const handleSetStudyWeeksSubstrack = (setStudyWeeks, studyWeeks) => {
   studyWeeks === 8 ? null : setStudyWeeks(studyWeeks - 1);
 };
 
-// Funktio palkinto päivitystä varten
+// Function for trophies state updating
 export const handleSetTrophies = (setTrophies, trophies) => {
   setTrophies(trophies + 1);
 };
-
-
