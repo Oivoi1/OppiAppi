@@ -15,7 +15,7 @@ import { onPressOpenLink } from "../utils/Functions";
 
 export default function TuvaScreen() {
   
-  
+  // <---state variables---> //
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   const [modalWeeks, setModalWeeks] = useState(0);
@@ -23,33 +23,30 @@ export default function TuvaScreen() {
  
   
   const handleModalOpen = (itemId) => {
-   //changed index to match dataid
+   //changed index to match datas id because id from data starts from 1
     const newIndex = itemId + 1;
     //current index to counter
     setClickedIndex(newIndex);
     setIsModalVisible(!isModalVisible);
-    //console.log(refIndex);
   }
+
   const handleModalClose = () => {
     setIsModalVisible(!isModalVisible);
   }
+//handle toggle course done or not
   const handleModalButtonPress = ( index ) => {
-    //console.log( index )
-    let newArr = [...tuvaDataArr]
-    const arrIndex = newArr.findIndex(object => {
-      return object.id === index; });
-      if (arrIndex !== -1) {
-    newArr[index].checked(true);
-    setShowModalDetails( !showModalDetails )
-
-      }
+        setShowModalDetails(prevState => ({
+          ...showModalDetails,
+          [index]: !prevState[index]
+        }));
+      console.log(showModalDetails) 
   }
-  const ModalDetailsCheckbox = ( { task,index } ) => {
-    const imgSource = showModalDetails ? checked : unchecked;
-    
-    
+  //Renders modals buttons for course complition
+  const ModalDetailsCheckbox = ( { index, itemId } ) => {
+    const imgSource = showModalDetails[index] ? checked : unchecked;
     return (
-      <TouchableOpacity style={ styles.checkTaskContainer }
+      <TouchableOpacity 
+      style={styles.checkTaskButton}
         onPress={ () => handleModalButtonPress( index )}>
         <Image style={ styles.checkTaskImg } source={ imgSource } />
       </TouchableOpacity>
@@ -101,11 +98,12 @@ export default function TuvaScreen() {
             
           ))} 
           <Text>{modalWeeks}</Text>
+          <View style={styles.checkTaskContainer}>
           {
           Array(modalWeeks).fill(<ModalDetailsCheckbox />).map((_, index)=>(
-            <ModalDetailsCheckbox key={index} task={item.checked} index={index} />
+            <ModalDetailsCheckbox key={index} index={index} itemId={item.id}/>
           ))}
-                    
+             </View>       
           <Button title="Sulje" onPress={() => handleModalClose()} /> 
       </Modal>
                   
@@ -202,28 +200,32 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     backgroundColor: '#8ED1FC',
-    width: '60%',
-    maxHeight: "50%",
+    maxWidth: '70%',
+    maxHeight: "70%",
     padding: 40,
     borderRadius: 15,
     borderColor: '#000000',
     borderWidth: 1,
   },
   checkTaskContainer: {
-    backgroundColor: '#d9d9d9',
-    borderRadius: 20,
     flexDirection: 'row',
-    height: 40,
+    flexWrap: 'wrap',
+    height: 'auto',
     width: 'auto',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 10,
-    padding: 4,
+    marginLeft:10,
+  },
+  checkTaskButton: {
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: "#F5F5F5",
+    borderRadius: 50,
+    margin: 5,
   },
   checkTaskImg: {
     height: 30,
     width: 30,
-    marginRight: 5,
   },
   
 });

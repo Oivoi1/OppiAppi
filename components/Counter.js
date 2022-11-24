@@ -20,20 +20,17 @@ export default function Counter({initValue, maxValue, itemId, setModalWeeks, cli
  //this is for passing state to modalweeks
     useEffect(() => {
   const handleModalOpen = (clickedIndex) => { 
+    
     //console.log(state.count)
     //console.log(clickedIndex)
     if (state.id === clickedIndex && clickedIndex !== undefined && clickedIndex !== null ) {
     console.log(state);
-      let newCount=state.count
-    
+    let newCount=state.count 
     setModalWeeks(newCount);
-    
-    
   }
+  
 }
-  handleModalOpen(clickedIndex);
- 
-   
+  handleModalOpen(clickedIndex); 
  }, [clickedIndex])
  
   
