@@ -2,7 +2,8 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 
 // <----- VIEWS -----> //
 import CompetenceGoalsView from "./views/CompetenceGoalsView";
@@ -22,6 +23,20 @@ export default function App() {
   const [trophies, setTrophies] = useState(1);
 
   const Tab = createBottomTabNavigator();
+
+  // Theme fonts
+  const [fontsLoaded] = useFonts({
+    Bold: require("./assets/fonts/FiraSans-Bold.ttf"),
+    SemiBold: require("./assets/fonts/FiraSans-SemiBold.ttf"),
+    Regular: require("./assets/fonts/FiraSans-Regular.ttf"),
+    Light: require("./assets/fonts/FiraSans-Light.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  } else {
+    console.log("Fonts OK.");
+  }
 
   return (
     <AppHeaderContext.Provider
@@ -88,8 +103,12 @@ export default function App() {
             tabBarItemStyle: {
               backgroundColor: THEME.darkBlue,
             },
+            tabBarLabelStyle: {
+              fontFamily: "Regular",
+            },
             headerTitleStyle: {
-              // fontFamily: "Poppins-Bold",
+              fontFamily: "SemiBold",
+              letterSpacing: 1.75,
             },
             tabBarActiveTintColor: "#FFF",
             tabBarInactiveTintColor: THEME.lightBlue,
@@ -100,9 +119,9 @@ export default function App() {
             name="MainView"
             component={MainView}
             options={{
-              title: "Pääsivu",
+              title: "PÄÄSIVU",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="TuvaScreen"
@@ -116,7 +135,7 @@ export default function App() {
             name="CompetenceGoalsView"
             component={CompetenceGoalsView}
             options={{
-              title: "Minä osaan",
+              title: "MINÄ OSAAN",
             }}
             // initialParams={fontsLoaded}
           />
@@ -124,7 +143,7 @@ export default function App() {
             name="AdditionalContentView"
             component={AdditionalContentView}
             options={{
-              title: "Muuta",
+              title: "MUUTA",
             }}
             // initialParams={fontsLoaded}
           />
@@ -150,6 +169,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 20,
     marginHorizontal: 8,
+    fontFamily: "Regular",
   },
   headerRightView: {
     marginRight: 10,
