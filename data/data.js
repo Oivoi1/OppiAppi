@@ -11,13 +11,19 @@ export const NOTIFY_VIBRATE = [0, 200]; // 0 ms pause, 200 ms vibration
 export const SHORT_VIBRATE = [0, 100]; // 0 ms pause, 100 ms vibration
 export const LONG_VIBRATE = [0, 500]; // 0 ms pause, 500 ms vibration
 
+import candyBlueSvg from '../assets/candy_blue.svg'
+import candyGreenSvg from '../assets/candy_green.svg'
+import backArrowSvg from '../assets/back_arrow.svg'
+import uncheckedSvg from '../assets/unchecked_button.svg'
+import checkedSvg from '../assets/checked_button.svg'
+
 // Icon resources
-export const ICONS = {
-  candyBlue: require("../assets/candy_blue.png"),
-  candyGreen: require("../assets/candy_green.png"),
-  backArrow: require("../assets/back_arrow.png"),
-  unchecked: require("../assets/unchecked_button.png"),
-  checked: require("../assets/checked_button.png"),
+export const ICONS_SVG = {
+  candyBlueSvg: candyBlueSvg,
+  candyGreenSvg: candyGreenSvg,
+  backArrowSvg: backArrowSvg,
+  uncheckedSvg: uncheckedSvg,
+  checkedSvg: checkedSvg,
 };
 
 // Numeric constants
