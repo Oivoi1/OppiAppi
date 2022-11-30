@@ -29,14 +29,6 @@ export default function AdditionalContentView() {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.title}>Muuta hyödyllistä sisältöä</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            onPress("https://luovi.fi/opiskelen-luovissa/ruokalistat/")
-          }
-        >
-          <Text style={styles.buttonText}>Luovin ruokalistat</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleModal}>
           <Text style={styles.buttonText}>Joukkoliikenteen aikataulut</Text>
           <Modal isVisible={isModalVisible}>
@@ -55,6 +47,14 @@ export default function AdditionalContentView() {
               <Text style={styles.buttonText}>Sulje</Text>
             </TouchableOpacity>
           </Modal>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            onPress("https://luovi.fi/opiskelen-luovissa/ruokalistat/")
+          }
+        >
+          <Text style={styles.buttonText}>Luovin ruokalistat</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#8ED1FC",
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
-    elevation: 15,
+    elevation: 10,
     width: "95%",
     marginBottom: 20,
     alignSelf: "center",
