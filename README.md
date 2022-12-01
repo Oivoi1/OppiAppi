@@ -110,6 +110,12 @@ This is an example of how to list things you need to use the software and how to
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
+| Main View  | Tuva View |
+| ------------- | ------------- |
+|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/mainView.png" alt="Main View" width="270" height="570">|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/tuva.png" alt="Tuva View" width="270" height="570">|
+|<p align="center">App's starting page</p>|<p align="center">Study weeks selector</p>|
+
+
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
