@@ -129,7 +129,7 @@ export default function App() {
             options={{
               title: "TUVA",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="CompetenceGoalsView"
@@ -137,7 +137,7 @@ export default function App() {
             options={{
               title: "MINÄ OSAAN",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="AdditionalContentView"
@@ -145,7 +145,7 @@ export default function App() {
             options={{
               title: "MUUTA",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
         </Tab.Navigator>
         <StatusBar style="light" />

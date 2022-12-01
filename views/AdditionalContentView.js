@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  Linking,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, Text, Linking, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import Position from "../components/Position";
-import { dataPublicTransport } from "../data/data";
+import { dataPublicTransport, THEME, dataLinks } from "../data/data";
+
 
 export default function AdditionalContentView() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -48,36 +41,15 @@ export default function AdditionalContentView() {
             </TouchableOpacity>
           </Modal>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            onPress("https://luovi.fi/opiskelen-luovissa/ruokalistat/")
-          }
-        >
-          <Text style={styles.buttonText}>Luovin ruokalistat</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onPress("http://masto.luovi.fi/")}
-        >
-          <Text style={styles.buttonText}>Opiskelijaintra Masto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onPress("https://luovi.inschool.fi/")}
-        >
-          <Text style={styles.buttonText}>Wilma</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            Linking.openURL(
-              "https://luovi.fi/tutustu-ja-hae-luoviin/tapahtumakalenteri/"
-            )
-          }
-        >
-          <Text style={styles.buttonText}>Tapahtumakalenteri</Text>
-        </TouchableOpacity>
+        {dataLinks.map((item) => (
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={() => onPress(item.url)}
+                  style={styles.button}
+                >
+                  <Text style={styles.buttonText}>{item.title}</Text>
+                </TouchableOpacity>
+              ))}
         <Position />
       </ScrollView>
     </SafeAreaView>
@@ -87,8 +59,7 @@ export default function AdditionalContentView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F3F2EC",
-    paddingTop: StatusBar.currentHeight,
+    backgroundColor: THEME.lightBackground,
     alignItems: "center",
   },
   scrollView: {
@@ -98,10 +69,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     padding: 10,
     margin: 5,
-    fontWeight: "bold",
+    fontFamily: "Bold",
   },
   button: {
-    backgroundColor: "#8ED1FC",
+    backgroundColor: THEME.lightBlue,
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
@@ -114,9 +85,10 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 15,
     textAlign: "center",
+    fontFamily: "Regular"
   },
   buttonClose: {
-    backgroundColor: "#023B5D",
+    backgroundColor: THEME.darkBlue,
     padding: 10,
     borderRadius: 10,
     width: "85%",

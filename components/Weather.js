@@ -48,15 +48,15 @@ return (
 
 const styles = StyleSheet.create({
     label: {
-        fontWeight: 'bold',
+        fontFamily: 'SemiBold',
         marginTop: 10,
         fontSize: 24,
         alignSelf: 'center'
     },
     smallLabel: {
-        fontWeight: 'bold',
+        fontWeight: 'Regular',
         marginTop: 10,
-        fontSize: 16,
+        fontSize: 18,
         alignSelf: 'center'
     },
     info: {
