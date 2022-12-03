@@ -304,7 +304,7 @@ const styles = StyleSheet.create( {
     ]
   },
   checkTaskContainer: {
-    backgroundColor: THEME.lightGray,
+    backgroundColor: THEME.lightBlue,
     borderRadius: 20,
     flexDirection: 'row',
     height: 'auto',
