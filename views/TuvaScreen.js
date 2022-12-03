@@ -11,16 +11,14 @@ const unchecked = require( '../assets/unchecked_button.png' )
 const checked = require( '../assets/checked_button.png' )
 
 // <----- FUNCTIONS -----> //
-import { onPressOpenLink } from "../utils/Functions";
+import { onPressOpenLink } from "../utils/GeneralFunctions";
 
 export default function TuvaScreen() {
-  
   
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   const [modalWeeks, setModalWeeks] = useState(0);
   const [showModalDetails, setShowModalDetails] = useState(false);
- 
   
   const handleModalOpen = (itemId) => {
    //changed index to match dataid

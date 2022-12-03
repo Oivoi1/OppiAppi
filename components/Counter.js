@@ -3,7 +3,7 @@ import React, {useContext, useReducer, useEffect,} from 'react'
 
 // <----- UTILS -----> //
 import { handleSetStudyWeeksAdd, handleSetStudyWeeksSubstrack } from '../utils/HeaderStateFunctions'
-import { AppHeaderContext } from '../utils/AppHeaderContext'
+import { AppHeaderContext } from '../utils/GeneralFunctions'
 
 
 export default function Counter({initValue, maxValue, itemId, setModalWeeks, clickedIndex}) {

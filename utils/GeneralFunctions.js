@@ -1,6 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ToastAndroid, Vibration } from 'react-native';
 import { SHORT_VIBRATE, LONG_VIBRATE, NOTIFY_VIBRATE } from "../data/data";
+import { createContext } from "react";
+
+/**
+ * Application state context.
+ */
+export const AppHeaderContext = createContext(null);
 
 /**
  * Get data from the phone data storage.
@@ -47,6 +53,19 @@ export const showNotification = ( msg ) => {
   );
   Vibration.vibrate( NOTIFY_VIBRATE );
 }
+
+/**
+ * Function for opening links.
+ * @param {String} url 
+ */
+export const onPressOpenLink = async (url) => {
+  const supported = await Linking.canOpenURL(url);
+  if (supported) {
+    await Linking.openURL(url);
+  } else {
+    Alert.alert(`Virheellinen osoite: ${url}`);
+  }
+};
 
 /**
  * Short vibrate (100 ms).

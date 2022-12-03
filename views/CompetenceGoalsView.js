@@ -1,12 +1,13 @@
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native'
-import React, { useState } from 'react'
-import { COMPETENCE_DATA, ICONS_SVG, THEME, NUMERIC } from '../data/data'
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
+import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 120
 
 /**
- * Back button
+ * Go back to previous page from details view
  */
 const BackButton = ( { onPress } ) => {
   return (
@@ -23,7 +24,11 @@ const BackButton = ( { onPress } ) => {
 /**
  * Candy like buttons CompetenceGoalsView
  */
-const CompetenceIndicator = ( { top, left, item, allCompleted, onPress } ) => {
+const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
+  const allCompleted =  tasks.every( task => task === true )
+  const completedTasks = tasks.filter(task => task === true).length
+  const totalTasks = tasks.length
+
   return (
     <TouchableOpacity
       style={ [ styles.button, { top: top, left: left } ] }
@@ -39,7 +44,7 @@ const CompetenceIndicator = ( { top, left, item, allCompleted, onPress } ) => {
           width={ INDICATOR_SIZE }
           height={ INDICATOR_SIZE }
         /> }
-      <Text style={ styles.buttonText }>{ item.buttonText }</Text>
+      <Text style={ styles.buttonTaskText }>{`${completedTasks}/${totalTasks}`}</Text>
       <Text style={ styles.buttonText }>{ item.buttonText }</Text>
     </TouchableOpacity>
   )
@@ -155,10 +160,26 @@ const calcElementPositions = (
 /**
  * View for students competence checklist
  */
-const CompetenceGoalsView = ( { route, navigation } ) => {
+const CompetenceGoalsView = () => {
   const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
-  //const { fontsLoaded } = route.params;
+
+  // Use-effect gets data from storage if it exists
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataFromStorage = await getDataFromStorage(COMPETENCE_STORAGE_KEY)
+      return dataFromStorage
+    }
+
+    const data = fetchData()
+    console.log(data)
+    // const tasksCompletedData = getDataFromStorage(COMPETENCE_STORAGE_KEY) === null ? competenceUserData : dataFromStorage
+    // setTasksCompleted(tasksCompletedData)
+    return () => {
+      // saveDataToStorage(COMPETENCE_STORAGE_KEY, tasksCompleted)
+    }
+  }, [])
+  
 
   // Calc competence indicator locations
   const elementPositions = calcElementPositions(
@@ -182,6 +203,12 @@ const CompetenceGoalsView = ( { route, navigation } ) => {
     setTasksCompleted( newTasksCompleted )
   }
 
+  if(!tasksCompleted) {
+    return(
+      <View><Text>Loading...</Text></View>
+    )
+  }
+
   // Show general view when showDetailsFrom is null
   if ( showDetailsFrom === null ) {
     return (
@@ -193,7 +220,7 @@ const CompetenceGoalsView = ( { route, navigation } ) => {
             top={ elementPositions[ index ].top }
             left={ elementPositions[ index ].left }
             item={ item }
-            allCompleted={ tasksCompleted[ index ].taskCompleted.every( task => task === true ) }
+            tasks={ tasksCompleted[ index ].taskCompleted }
             onPress={ () => handleButtonPress( index ) } /> ) }
         </View>
       </View>
@@ -267,6 +294,14 @@ const styles = StyleSheet.create( {
     fontFamily: 'SemiBold',
     position: 'absolute',
     textAlign: 'center',
+  },
+  buttonTaskText: {
+    fontFamily: 'Regular',
+    position: 'absolute',
+    textAlign: 'center',
+    transform: [
+      {translateY: 30}
+    ]
   },
   checkTaskContainer: {
     backgroundColor: THEME.lightGray,
