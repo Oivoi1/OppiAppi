@@ -1,5 +1,5 @@
 import {StyleSheet,Text,View,TouchableOpacity,ScrollView, SafeAreaView, Button, Image} from "react-native";
-import React, { useState} from "react";
+import React, { useState, useContext} from "react";
 import Modal from 'react-native-modal';
 
 import { Ionicons } from "@expo/vector-icons";
@@ -12,19 +12,30 @@ const checked = require( '../assets/checked_button.png' )
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/Functions";
+// <----- UTILS -----> //
+import { handleSetTrophies } from '../utils/HeaderStateFunctions'
+import { AppHeaderContext } from '../utils/AppHeaderContext'
 
-export default function TuvaScreen() {
+export default function TuvaView() {
+  //global-state from App.js 
+  const {trophies, setTrophies} = useContext(AppHeaderContext);
+
   
   // <---state variables---> //
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   const [modalWeeks, setModalWeeks] = useState(0);
-  const [showModalDetails, setShowModalDetails] = useState(false);
- 
+  const [showModalDetailFromFirst, setShowModalDetailFromFirst] = useState(false);
+  const [showModalDetailFromSecond, setShowModalDetailFromSecond] = useState(false);
+  const [showModalDetailFromThird, setShowModalDetailFromThird] = useState(false);
+  const [showModalDetailFromFourth, setShowModalDetailFromFourth] = useState(false);
+  const [showModalDetailFromFifth, setShowModalDetailFromFifth] = useState(false);
+  const [showModalDetailFromSixth, setShowModalDetailFromSixth] = useState(false);
+  const [showModalDetailFromSeventh, setShowModalDetailFromSeventh] = useState(false);
   
-  const handleModalOpen = (itemId) => {
-   //changed index to match datas id because id from data starts from 1
-    const newIndex = itemId + 1;
+  const handleModalOpen = (index) => {
+   //changed index to match data's id because id from data starts from 1
+    const newIndex = index + 1;
     //current index to counter
     setClickedIndex(newIndex);
     setIsModalVisible(!isModalVisible);
@@ -34,20 +45,96 @@ export default function TuvaScreen() {
     setIsModalVisible(!isModalVisible);
   }
 //handle toggle course done or not
-  const handleModalButtonPress = ( index ) => {
-        setShowModalDetails(prevState => ({
-          ...showModalDetails,
+  const handleModalButtonPress = ( index, itemId ) => {
+       switch(itemId) {
+        
+        case 1:
+          
+          setShowModalDetailFromFirst(prevState => ({
+            ...showModalDetailFromFirst,
+            [index]: !prevState[index]
+          }));
+          !showModalDetailFromFirst[index] ? handleSetTrophies(setTrophies,trophies) : null
+       case 2:
+        
+          setShowModalDetailFromSecond(prevState => ({
+            ...showModalDetailFromSecond,
+            [index]: !prevState[index]
+          }));
+          !showModalDetailFromSecond[index] ? handleSetTrophies(setTrophies,trophies) : null
+       case 3:
+        
+            setShowModalDetailFromThird(prevState => ({
+              ...showModalDetailFromThird,
+              [index]: !prevState[index]
+            }));
+            !showModalDetailFromThird[index] ? handleSetTrophies(setTrophies,trophies) : null
+       case 4:
+        
+       setShowModalDetailFromFourth(prevState => ({
+        ...showModalDetailFromFourth,
+        [index]: !prevState[index]
+      }));
+      !showModalDetailFromFourth[index] ? handleSetTrophies(setTrophies,trophies) : null
+      case 5:
+        
+        setShowModalDetailFromFifth(prevState => ({
+          ...showModalDetailFromFifth,
           [index]: !prevState[index]
         }));
-      console.log(showModalDetails) 
+        !showModalDetailFromFifth[index] ? handleSetTrophies(setTrophies,trophies) : null
+        case 6: 
+        
+        setShowModalDetailFromSixth(prevState => ({
+          ...showModalDetailFromSixth,
+          [index]: !prevState[index]
+        }));
+        !showModalDetailFromSixth[index] ? handleSetTrophies(setTrophies,trophies) : null
+        case 7: 
+        
+        setShowModalDetailFromSeventh(prevState => ({
+          ...showModalDetailFromSeventh,
+          [index]: !prevState[index]
+        }));
+        !showModalDetailFromSeventh[index] ? handleSetTrophies(setTrophies,trophies) : null
+       
+        default: 
+        if(itemId === null || itemId === undefined) {
+          throw new Error();
+        }
+      }  
   }
   //Renders modals buttons for course complition
-  const ModalDetailsCheckbox = ( { index, itemId } ) => {
-    const imgSource = showModalDetails[index] ? checked : unchecked;
+  const ModalDetailsCheckbox = ( { index } ) => {
+    const itemId = clickedIndex;
+      let imgSource = null;
+//console.log(clickedIndex)
+    if(itemId === 1) {
+      imgSource = showModalDetailFromFirst[index] ? checked : unchecked;
+    }
+   else if(itemId === 2) {
+      imgSource = showModalDetailFromSecond[index] ? checked : unchecked;
+    }
+    else if(itemId === 3) {
+      imgSource = showModalDetailFromThird[index] ? checked : unchecked;
+    }
+    else if(itemId === 4) {
+      imgSource = showModalDetailFromFourth[index] ? checked : unchecked;
+    }
+    else if(itemId === 5) {
+      imgSource = showModalDetailFromFifth[index] ? checked : unchecked;
+    }
+    else if(itemId === 6) {
+      imgSource = showModalDetailFromSixth[index] ? checked : unchecked;
+    }
+    else if(itemId === 7) {
+      imgSource = showModalDetailFromSeventh[index] ? checked : unchecked;
+    }
+   
     return (
       <TouchableOpacity 
       style={styles.checkTaskButton}
-        onPress={ () => handleModalButtonPress( index )}>
+        onPress={ () => handleModalButtonPress(  index, itemId )}>
         <Image style={ styles.checkTaskImg } source={ imgSource } />
       </TouchableOpacity>
     )
@@ -100,8 +187,9 @@ export default function TuvaScreen() {
           <Text>{modalWeeks}</Text>
           <View style={styles.checkTaskContainer}>
           {
-          Array(modalWeeks).fill(<ModalDetailsCheckbox />).map((_, index)=>(
-            <ModalDetailsCheckbox key={index} index={index} itemId={item.id}/>
+          Array(modalWeeks).fill(<ModalDetailsCheckbox />).map((_,index)=>(
+            <ModalDetailsCheckbox key={index} 
+            index={index} />
           ))}
              </View>       
           <Button title="Sulje" onPress={() => handleModalClose()} /> 

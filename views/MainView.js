@@ -7,7 +7,7 @@ const MainView = ({ navigation }) => {
       <View style={styles.content__container}>
         <TouchableOpacity
           style={styles.link__container}
-          onPress={() => navigation.navigate("TuvaScreen")}
+          onPress={() => navigation.navigate("TuvaView")}
         >
           <Text style={styles.link__container__header}>Minun TUVA-opinnot</Text>
         </TouchableOpacity>
