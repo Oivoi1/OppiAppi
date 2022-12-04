@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
+import { THEME } from "../data/data";
 
-const MainView = ({ navigation }) => {
+const MainView = ({ route, navigation }) => {
+  // Bringing fonts into MainView by getting params
+  const { fontsLoaded } = route.params;
+
   return (
     <View style={styles.main__container}>
       <View style={styles.content__container}>
@@ -22,7 +26,7 @@ const MainView = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.link__container}
-          onPress={() => navigation.navigate("AdditionalContent")}
+          onPress={() => navigation.navigate("AdditionalContentView")}
         >
           <Text style={styles.link__container__header}>Muuta hyödyllistä</Text>
         </TouchableOpacity>
@@ -36,7 +40,7 @@ export default MainView;
 const styles = StyleSheet.create({
   main__container: {
     flex: 1,
-    backgroundColor: "#F3F2EC",
+    backgroundColor: THEME.lightBackground,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
   link__container: {
     width: "95%",
     height: "20%",
-    backgroundColor: "#8ED1FC",
+    backgroundColor: THEME.lightBlue,
 
     borderWidth: 2,
     paddingVertical: 10,
@@ -62,13 +66,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   link__container__header: {
-    color: "#000",
+    color: THEME.black,
     fontSize: 28,
     textAlign: "center",
+    fontFamily: "Regular",
   },
   link__container__paragraph: {
-    color: "#000",
+    color: THEME.black,
     fontSize: 20,
     textAlign: "center",
+    fontFamily: "Light",
   },
 });

@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 
 // <----- VIEWS -----> //
 import CompetenceGoalsView from "./views/CompetenceGoalsView";
@@ -14,11 +15,28 @@ import AdditionalContentView from "./views/AdditionalContentView";
 import { AppHeaderContext } from "./utils/AppHeaderContext";
 import { StatusBar } from "expo-status-bar";
 
+// <----- DATA -----> //
+import { THEME } from "./data/data";
+
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
   const [trophies, setTrophies] = useState(1);
 
   const Tab = createBottomTabNavigator();
+
+  // Theme fonts
+  const [fontsLoaded] = useFonts({
+    Bold: require("./assets/fonts/FiraSans-Bold.ttf"),
+    SemiBold: require("./assets/fonts/FiraSans-SemiBold.ttf"),
+    Regular: require("./assets/fonts/FiraSans-Regular.ttf"),
+    Light: require("./assets/fonts/FiraSans-Light.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  } else {
+    console.log("Fonts OK.");
+  }
 
   return (
     <AppHeaderContext.Provider
@@ -48,31 +66,52 @@ export default function App() {
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             headerStyle: {
-              backgroundColor: "#023B5D",
+              backgroundColor: THEME.darkBlue,
             },
             headerTitleAlign: "center",
             headerLeft: () => (
-              <View style={[styles.headerViews, styles.headerLeftView]}>
-                <Ionicons name="calendar" size={28} color="#8ED1FC" />
+              <TouchableOpacity
+                style={[styles.headerViews, styles.headerLeftView]}
+                onPress={() =>
+                  Alert.alert(
+                    "Tämä on:",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  )
+                }
+              >
+                <Ionicons name="calendar" size={28} color={THEME.lightBlue} />
+
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
-              </View>
+              </TouchableOpacity>
             ),
             headerRight: () => (
-              <View style={[styles.headerViews, styles.headerRightView]}>
+              <TouchableOpacity
+                style={[styles.headerViews, styles.headerRightView]}
+                onPress={() =>
+                  Alert.alert(
+                    "Tämä on 2:",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  )
+                }
+              >
                 <Text style={styles.headerSidesText}>{trophies}</Text>
                 <Ionicons name="trophy" size={28} color="gold" />
-              </View>
+              </TouchableOpacity>
             ),
 
-            headerTintColor: "#8ED1FC",
+            headerTintColor: THEME.lightBlue,
             tabBarItemStyle: {
-              backgroundColor: "#023B5D",
+              backgroundColor: THEME.darkBlue,
+            },
+            tabBarLabelStyle: {
+              fontFamily: "Regular",
             },
             headerTitleStyle: {
-              // fontFamily: "Poppins-Bold",
+              fontFamily: "SemiBold",
+              letterSpacing: 1.75,
             },
             tabBarActiveTintColor: "#FFF",
-            tabBarInactiveTintColor: "#8ED1FC",
+            tabBarInactiveTintColor: THEME.lightBlue,
             tabBarHideOnKeyboard: "true",
           })}
         >
@@ -80,9 +119,9 @@ export default function App() {
             name="MainView"
             component={MainView}
             options={{
-              title: "Pääsivu",
+              title: "PÄÄSIVU",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="TuvaView"
@@ -96,15 +135,15 @@ export default function App() {
             name="CompetenceGoalsView"
             component={CompetenceGoalsView}
             options={{
-              title: "Minä osaan",
+              title: "MINÄ OSAAN",
             }}
             // initialParams={fontsLoaded}
           />
           <Tab.Screen
-            name="AdditionalContent"
+            name="AdditionalContentView"
             component={AdditionalContentView}
             options={{
-              title: "Muuta",
+              title: "MUUTA",
             }}
             // initialParams={fontsLoaded}
           />
@@ -130,6 +169,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 20,
     marginHorizontal: 8,
+    fontFamily: "Regular",
   },
   headerRightView: {
     marginRight: 10,
