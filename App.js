@@ -20,7 +20,7 @@ import { THEME } from "./data/data";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
-  const [trophies, setTrophies] = useState(1);
+  const [trophies, setTrophies] = useState(0);
 
   const Tab = createBottomTabNavigator();
 
@@ -129,7 +129,7 @@ export default function App() {
             options={{
               title: "TUVA",
             }}
-            // initialParams={fontsLoaded}
+             initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="CompetenceGoalsView"

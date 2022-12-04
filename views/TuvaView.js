@@ -1,28 +1,31 @@
 import {StyleSheet,Text,View,TouchableOpacity,ScrollView, SafeAreaView, Button, Image} from "react-native";
-import React, { useState, useContext} from "react";
+import React, { useState, useContext, useEffect,} from "react";
 import Modal from 'react-native-modal';
+
 
 import { Ionicons } from "@expo/vector-icons";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 // <----- DATA -----> //
-import { strings, tuvaDataArr } from "../data/data";
-const unchecked = require( '../assets/unchecked_button.png' )
-const checked = require( '../assets/checked_button.png' )
+import { STRINGS, TUVA_DATA, ICONS } from "../data/data";
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/Functions";
 // <----- UTILS -----> //
 import { handleSetTrophies } from '../utils/HeaderStateFunctions'
 import { AppHeaderContext } from '../utils/AppHeaderContext'
+import {getDataFromStorage, saveDataToStorage} from '../utils/GeneralFunctions/'
 
-export default function TuvaView() {
+const STORAGE_KEY = '@tuva_Key';
+
+export default function TuvaView({navigation, route}) {
   //global-state from App.js 
   const {trophies, setTrophies} = useContext(AppHeaderContext);
 
   
   // <---state variables---> //
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisibleIntro, setIsModalVisibleIntro] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   const [modalWeeks, setModalWeeks] = useState(0);
   const [showModalDetailFromFirst, setShowModalDetailFromFirst] = useState(false);
@@ -32,7 +35,15 @@ export default function TuvaView() {
   const [showModalDetailFromFifth, setShowModalDetailFromFifth] = useState(false);
   const [showModalDetailFromSixth, setShowModalDetailFromSixth] = useState(false);
   const [showModalDetailFromSeventh, setShowModalDetailFromSeventh] = useState(false);
-  
+ 
+  //save modalweeks to phone memory and retrieve value
+  useEffect(() => {
+    if(modalWeeks !== null || modalWeeks !== undefined) {
+       saveDataToStorage(STORAGE_KEY, modalWeeks);
+      }
+    getDataFromStorage(STORAGE_KEY);
+  }, [modalWeeks])
+
   const handleModalOpen = (index) => {
    //changed index to match data's id because id from data starts from 1
     const newIndex = index + 1;
@@ -40,11 +51,11 @@ export default function TuvaView() {
     setClickedIndex(newIndex);
     setIsModalVisible(!isModalVisible);
   }
-
+//this should be obvious
   const handleModalClose = () => {
     setIsModalVisible(!isModalVisible);
   }
-//handle toggle course done or not
+//handle toggle course done or not and add to trophies if course done
   const handleModalButtonPress = ( index, itemId ) => {
        switch(itemId) {
         
@@ -108,34 +119,34 @@ export default function TuvaView() {
   const ModalDetailsCheckbox = ( { index } ) => {
     const itemId = clickedIndex;
       let imgSource = null;
-//console.log(clickedIndex)
+
     if(itemId === 1) {
-      imgSource = showModalDetailFromFirst[index] ? checked : unchecked;
+      imgSource = showModalDetailFromFirst[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
    else if(itemId === 2) {
-      imgSource = showModalDetailFromSecond[index] ? checked : unchecked;
+      imgSource = showModalDetailFromSecond[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
     else if(itemId === 3) {
-      imgSource = showModalDetailFromThird[index] ? checked : unchecked;
+      imgSource = showModalDetailFromThird[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
     else if(itemId === 4) {
-      imgSource = showModalDetailFromFourth[index] ? checked : unchecked;
+      imgSource = showModalDetailFromFourth[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
     else if(itemId === 5) {
-      imgSource = showModalDetailFromFifth[index] ? checked : unchecked;
+      imgSource = showModalDetailFromFifth[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
     else if(itemId === 6) {
-      imgSource = showModalDetailFromSixth[index] ? checked : unchecked;
+      imgSource = showModalDetailFromSixth[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
     else if(itemId === 7) {
-      imgSource = showModalDetailFromSeventh[index] ? checked : unchecked;
+      imgSource = showModalDetailFromSeventh[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
     }
    
     return (
       <TouchableOpacity 
       style={styles.checkTaskButton}
         onPress={ () => handleModalButtonPress(  index, itemId )}>
-        <Image style={ styles.checkTaskImg } source={ imgSource } />
+        <Image style={ styles.checkTaskImg } source={ imgSource } resizeMode='contain'/>
       </TouchableOpacity>
     )
   
@@ -145,15 +156,33 @@ export default function TuvaView() {
       <SafeAreaView>
       <ScrollView>
       
-      {strings.map((item, index) => (
+      {STRINGS.map((item, index) => (
         <Text key={index} style={styles.heading}>{item.tuvaHeading}</Text>
       ))}
+      <TouchableOpacity style={styles.iconInfo}
+                onPress={() =>{ setIsModalVisibleIntro(!isModalVisibleIntro) }}>
+                  <Ionicons name="ios-information-circle-outline" size={28} color="black" />
+                  </TouchableOpacity>
+                  
+      <Modal style={styles.modalContainerInfo}
+      //Modal for general info
+        animationType="fade"
+        visible={isModalVisibleIntro}
+      >
+      {STRINGS.map((item, index) => (
+            
+            <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
+            
+          ))}       
+          <Button title="Sulje" onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)} /> 
+      </Modal>
+      
       
         <View
           style={styles.viewContainer}
         >
           
-          {tuvaDataArr.map((item, index) => (
+          {TUVA_DATA.map((item, index) => (
             <View style={styles.itemContainer} key={item.id}>
               <TouchableOpacity
                 onPress={() => onPressOpenLink(item.url)}
@@ -179,12 +208,11 @@ export default function TuvaView() {
         animationType="fade"
         visible={isModalVisible}
       >
-      {strings.map((item, index) => (
+      {STRINGS.map((item, index) => (
             
-            <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
+            <Text key={index} style={styles.instructions}>{item.tuvaInstructionsForCourseComplete}</Text>
             
           ))} 
-          <Text>{modalWeeks}</Text>
           <View style={styles.checkTaskContainer}>
           {
           Array(modalWeeks).fill(<ModalDetailsCheckbox />).map((_,index)=>(
@@ -276,6 +304,18 @@ const styles = StyleSheet.create({
       right: 0,
       
   },
+  iconInfo: {
+    alignItems:'center',
+      backgroundColor: '#F5F5F5',
+      width: 40,
+      height: 40,
+      justifyContent: 'center',
+      alignSelf: 'flex-end',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      
+  },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -294,6 +334,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#000000',
     borderWidth: 1,
+  },
+  modalContainerInfo: {
+    backgroundColor: '#8ED1FC',
+    maxWidth: '55%',
+    maxHeight: "35%",
+    padding: 40,
+    borderRadius: 15,
+    borderColor: '#000000',
+    borderWidth: 1,
+    alignItems: 'center',
+    fontSize: 18,
   },
   checkTaskContainer: {
     flexDirection: 'row',
