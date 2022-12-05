@@ -1,44 +1,57 @@
-import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native'
-import React, {useContext, useReducer, useEffect,} from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native'
+import React, {useContext, useReducer, useEffect, useState} from 'react'
+
 
 // <----- UTILS -----> //
 import { handleSetStudyWeeksAdd, handleSetStudyWeeksSubstrack } from '../utils/HeaderStateFunctions'
 import { AppHeaderContext } from '../utils/AppHeaderContext'
+import {saveDataToStorage, getDataFromStorage} from '../utils/GeneralFunctions'
 
+const STORAGE_KEY ="@counter_Key"
 
 export default function Counter({initValue, maxValue, itemId, setModalWeeks, clickedIndex}) {
     
   //global-state from App.js 
   const {studyWeeks, setStudyWeeks} = useContext(AppHeaderContext);
   
+  //if asyncstorage is loading 
+  const [isLoading, setIsLoading] = useState(true);
     
   //usereducer init-state and reducer function.
   const initialState = [
     {
     id: itemId,
     count :initValue}];
- //this is for passing state to modalweeks
+ //this is for passing counter state to modalweeks
     useEffect(() => {
-  const handleModalOpen = (clickedIndex) => { 
+  const handleModalWeeksCount = (clickedIndex) => { 
+    
     //console.log(state.count)
     //console.log(clickedIndex)
     if (state.id === clickedIndex && clickedIndex !== undefined && clickedIndex !== null ) {
     console.log(state);
-      let newCount=state.count
-    
+    let newCount=state.count 
     setModalWeeks(newCount);
-    
-    
   }
+ 
 }
-  handleModalOpen(clickedIndex);
- 
-   
+  handleModalWeeksCount(clickedIndex); 
  }, [clickedIndex])
- 
+
+ useEffect(() => {
+   const fetchState = () => {
+    const getState = getDataFromStorage(STORAGE_KEY);
+    dispatch({type: 'INIT_REDUCER', getState}); 
+}
+if(state){
   
-  
-        
+saveDataToStorage(STORAGE_KEY,state)
+}
+fetchState();
+setIsLoading(false);
+ }, [state])
+
+    //reducer function for usereducer    
 const  reducer = (state, action) => {
      
   switch (action.type) {
@@ -73,26 +86,44 @@ const  reducer = (state, action) => {
          count: state.count
       }
     }
+    case 'INIT_REDUCER':
+      console.log(action['getState'])
+      if(action['getState']={}) {
+        return initialState[0]
+      }
+      else {
+      return {...action['getState'],
+        id: action['getState'].id, 
+        count: action['getState'].count
+      }
+    }
+    
     default:
       throw new Error();
   }
 }
+//usereducer declaration
+const [state, dispatch] = useReducer(reducer, {});
 
 
 
-const [state, dispatch] = useReducer(reducer, initialState[0]);
-
+if(isLoading){
+  <ActivityIndicator size="large" animating={true}/>
+}
+else {
     return (
       <>
       <View style={styles.counterContainer}>
-      <TouchableOpacity  
+      <TouchableOpacity 
+      //if minus is pressed substract totalweeks and also counter 
       onPress={() =>{ dispatch({type: 'substract', id: itemId}); 
       state.count > initValue ? handleSetStudyWeeksSubstrack(setStudyWeeks, studyWeeks) : null; 
       }}
        ><Text style={styles.counterLabelSubstract}>-</Text>
        </TouchableOpacity>
        <Text style={styles.counterLabel}>{state.count}</Text>
-      <TouchableOpacity 
+      <TouchableOpacity
+      //if plus is pressed add totalweeks and also counter 
       onPress={() =>{ studyWeeks < 38 ? dispatch({type: 'add', id: itemId}) : null; 
       state.count < maxValue ? handleSetStudyWeeksAdd(setStudyWeeks, studyWeeks) : null; 
       }}>
@@ -102,7 +133,7 @@ const [state, dispatch] = useReducer(reducer, initialState[0]);
       
       </>
     );
-}
+}}
 const styles = StyleSheet.create({
     counterContainer: {
         flexDirection: 'row',
