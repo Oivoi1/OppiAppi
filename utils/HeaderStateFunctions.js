@@ -9,6 +9,9 @@ export const handleSetStudyWeeksSubstrack = (setStudyWeeks, studyWeeks) => {
 };
 
 // Function for trophies state updating
-export const handleSetTrophies = (setTrophies, trophies) => {
+export const handleSetTrophiesAdd = (setTrophies, trophies) => {
   setTrophies(trophies + 1);
+};
+export const handleSetTrophiesSubstract = (setTrophies, trophies) => {
+  setTrophies(trophies - 1);
 };
