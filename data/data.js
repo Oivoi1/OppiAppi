@@ -235,13 +235,13 @@ export const COMPETENCE_DATA = [
       "Opiskelija osaa hankkia tietoa sekä jäsentää, arvioida ja soveltaa sitä. Hän osaa ottaa vastuuta opinnoistaan ja suunnitella niitä tavoitteellisesti. Hän tunnistaa ja osaa käyttää tarkoituksenmukaisia ja monipuolisia oppimistapoja ja -strategioita ja ymmärtää vertaisryhmän ja muun lähipiirin merkityksen oppimisen ja opiskelun tukena. Opiskelija kehittää opiskelukielen taitoaan tavoitteellisesti siten, että pystyy käyttämään puhuttua ja kirjoittua kieltä erilaisissa oppimisympäristöissä.",
     tasks: [
       {
-        title: "Tunnistat omia vahvuuksiasi.",
+        title: "Tunnistan omia vahvuuksiani.",
       },
       {
-        title: "Tunnistat, mihin tarvitset apua ja ohjausta.",
+        title: "Tunnistan, mihin tarvitsen apua ja ohjausta.",
       },
       {
-        title: "Suunnittelet omia tavoitteitasi ja opintojasi.",
+        title: "Suunnittelen omia tavoitteitani ja opintojani.",
       },
       {
         title: "Etsin aktiivisesti tietoa.",
