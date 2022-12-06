@@ -8,7 +8,7 @@ import { useFonts } from "expo-font";
 // <----- VIEWS -----> //
 import CompetenceGoalsView from "./views/CompetenceGoalsView";
 import MainView from "./views/MainView";
-import TuvaScreen from "./views/TuvaScreen";
+import TuvaView from "./views/TuvaView";
 import AdditionalContentView from "./views/AdditionalContentView";
 
 // <----- UTILS -----> //
@@ -20,7 +20,7 @@ import { THEME } from "./data/data";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
-  const [trophies, setTrophies] = useState(1);
+  const [trophies, setTrophies] = useState(0);
 
   const Tab = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ export default function App() {
 
               if (route.name == "MainView") {
                 iconName = focused ? "home" : "home-outline";
-              } else if (route.name === "TuvaScreen") {
+              } else if (route.name === "TuvaView") {
                 iconName = focused ? "bulb" : "bulb-outline";
               } else if (route.name === "CompetenceGoalsView") {
                 iconName = focused
@@ -124,12 +124,12 @@ export default function App() {
             initialParams={fontsLoaded}
           />
           <Tab.Screen
-            name="TuvaScreen"
-            component={TuvaScreen}
+            name="TuvaView"
+            component={TuvaView}
             options={{
               title: "TUVA",
             }}
-            // initialParams={fontsLoaded}
+             initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="CompetenceGoalsView"

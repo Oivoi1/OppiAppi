@@ -265,7 +265,7 @@ export const COMPETENCE_DATA = [
   },
 ];
 
-export const tuvaDataArr = [
+export const TUVA_DATA = [
   {
     id: 1,
     title: "Opiskelu- ja urasuunnittelutaidot",
@@ -330,11 +330,12 @@ export const tuvaDataArr = [
     checked: false,
   },
 ];
-export const strings = [
+export const STRINGS = [
   {
     tuvaHeading: "TUVA-koulutuksen osat",
     tuvaInstructions:
       "Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
+      tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa palloa."
   },
 ];
 
