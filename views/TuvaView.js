@@ -10,11 +10,10 @@ import Counter from "../components/Counter";
 import { STRINGS, TUVA_DATA, ICONS } from "../data/data";
 
 // <----- FUNCTIONS -----> //
-import { onPressOpenLink } from "../utils/Functions";
+import { onPressOpenLink } from "../utils/GeneralFunctions";
 // <----- UTILS -----> //
 import { handleSetTrophies } from '../utils/HeaderStateFunctions'
-import { AppHeaderContext } from '../utils/AppHeaderContext'
-import {getDataFromStorage, saveDataToStorage} from '../utils/GeneralFunctions/'
+import {getDataFromStorage, saveDataToStorage, AppHeaderContext} from '../utils/GeneralFunctions/'
 
 const STORAGE_KEY = '@tuva_Key';
 

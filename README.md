@@ -115,6 +115,16 @@ Use this space to show useful examples of how a project can be used. Additional 
 |<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/mainView.png" alt="Main View" width="270" height="570">|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/tuva.png" alt="Tuva View" width="270" height="570">|
 |<p align="center">App's starting page</p>|<p align="center">Study weeks selector</p>|
 
+| Minä Osaan 01  | Minä Osaan 02 |
+| ------------- | ------------- |
+|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/osaan-01.png" alt="Minä Osaan 01" width="270" height="570">|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/osaan-02.png" alt="Minä Osaan 02" width="270" height="570">|
+|<p align="center">Minä Osaan Courses </p>|<p align="center">Minä Osaan Themes</p>|
+
+| Muuta  |
+| ------------- | 
+|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/muuta.png" alt="Minä Osaan 01" width="270" height="570">|
+|<p align="center">Muuta </p>|
+
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -125,10 +135,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 HUOMIO!!! roadmap is where you can learn about what features we're working on, what stage they're in, and when we expect to bring them to you
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Feature 1 </br>
+  Choosing study weeks to accomplish in TUVA View
+- [ ] Feature 2 </br>
+  Complete themes in Minä Osaan View
+- [ ] Feature 3 </br>
+  Using Local Storage
 
 See the [open issues](https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/issues) for a full list of proposed features (and known issues).
 
@@ -157,9 +169,10 @@ Project Link: [https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp](ht
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Antti Haverinen](https://github.com/Amppu)
+* [Tomi Niemelä](https://github.com/Gittomi)
+* [Esa Salminen](https://github.com/esalminen)
+* [Viktor Tapdygov](https://github.com/ViktorTap)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

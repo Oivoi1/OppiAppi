@@ -1,25 +1,22 @@
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native'
-import React, { useState } from 'react'
-import { COMPETENCE_DATA, ICONS, THEME, NUMERIC } from '../data/data'
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
+import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
 
 const SCREEN_PADDING = 10
-const INDICATOR_SIZE = 110
+const INDICATOR_SIZE = 120
 
 /**
- * Back button
+ * Go back to previous page from details view
  */
-const CustomButton = ( { onPress, imgSource } ) => {
+const BackButton = ( { onPress } ) => {
   return (
     <TouchableOpacity
       style={ styles.customButton }
       activeOpacity={ NUMERIC.opacityTouchFade }
       onPress={ onPress }
     >
-      <Image
-        style={ styles.customButtonImg }
-        source={ imgSource }
-        resizeMode='contain'
-      />
+      <ICONS_SVG.backArrowSvg />
     </TouchableOpacity>
   )
 }
@@ -27,29 +24,36 @@ const CustomButton = ( { onPress, imgSource } ) => {
 /**
  * Candy like buttons CompetenceGoalsView
  */
-const CompetenceIndicator = ( { top, left, item, allCompleted, onPress } ) => {
-  const imgSource = allCompleted ? ICONS[ 'candyGreen' ] : ICONS[ 'candyBlue' ];
+const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
+  const allCompleted =  tasks.every( task => task === true )
+  const completedTasks = tasks.filter(task => task === true).length
+  const totalTasks = tasks.length
+
   return (
     <TouchableOpacity
       style={ [ styles.button, { top: top, left: left } ] }
       activeOpacity={ NUMERIC.opacityTouchFade }
       onPress={ onPress }
     >
-      <Image
-        style={ styles.buttonImage }
-        source={ imgSource }
-        resizeMode='contain'
-      />
+      { allCompleted ?
+        <ICONS_SVG.candyGreenSvg
+          width={ INDICATOR_SIZE }
+          height={ INDICATOR_SIZE }
+        /> :
+        <ICONS_SVG.candyBlueSvg
+          width={ INDICATOR_SIZE }
+          height={ INDICATOR_SIZE }
+        /> }
+      <Text style={ styles.buttonTaskText }>{`${completedTasks}/${totalTasks}`}</Text>
       <Text style={ styles.buttonText }>{ item.buttonText }</Text>
     </TouchableOpacity>
   )
 }
 
 /**
- * 
+ * Checkbox for tasks in competencedetails window
  */
 const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted } ) => {
-  const imgSource = checked ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
 
   const handleButtonPress = ( index ) => {
     handleCompleted( index )
@@ -61,14 +65,14 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
       style={ styles.checkTaskContainer }
       activeOpacity={ NUMERIC.opacityTouchFade }
     >
-      <Image style={ styles.checkTaskImg } source={ imgSource } />
+      { checked ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } /> : <ICONS_SVG.uncheckedSvg style={ styles.checkTaskImg } /> }
       <Text style={ styles.checkTaskText }>{ taskName }</Text>
     </TouchableOpacity>
   )
 }
 
 /**
- * 
+ * Detailed description and a checklist with checkable/uncheckable markers.
  */
 const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) => {
 
@@ -160,10 +164,27 @@ const CompetenceGoalsView = () => {
   const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
 
+  // Use-effect gets data from storage if it exists
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataFromStorage = await getDataFromStorage(COMPETENCE_STORAGE_KEY)
+      return dataFromStorage
+    }
+
+    const data = fetchData()
+    console.log(data)
+    // const tasksCompletedData = getDataFromStorage(COMPETENCE_STORAGE_KEY) === null ? competenceUserData : dataFromStorage
+    // setTasksCompleted(tasksCompletedData)
+    return () => {
+      // saveDataToStorage(COMPETENCE_STORAGE_KEY, tasksCompleted)
+    }
+  }, [])
+  
+
   // Calc competence indicator locations
   const elementPositions = calcElementPositions(
     8,
-    INDICATOR_SIZE * 1.2,
+    INDICATOR_SIZE * 1.15,
     270,
     Dimensions.get( 'window' ).width / 2 - SCREEN_PADDING,
     Dimensions.get( 'window' ).height / 2 - INDICATOR_SIZE,
@@ -182,6 +203,12 @@ const CompetenceGoalsView = () => {
     setTasksCompleted( newTasksCompleted )
   }
 
+  if(!tasksCompleted) {
+    return(
+      <View><Text>Loading...</Text></View>
+    )
+  }
+
   // Show general view when showDetailsFrom is null
   if ( showDetailsFrom === null ) {
     return (
@@ -193,7 +220,7 @@ const CompetenceGoalsView = () => {
             top={ elementPositions[ index ].top }
             left={ elementPositions[ index ].left }
             item={ item }
-            allCompleted={ tasksCompleted[ index ].taskCompleted.every(task => task === true) }
+            tasks={ tasksCompleted[ index ].taskCompleted }
             onPress={ () => handleButtonPress( index ) } /> ) }
         </View>
       </View>
@@ -204,9 +231,8 @@ const CompetenceGoalsView = () => {
     return (
       <ScrollView style={ styles.scrollView }>
         <View style={ styles.detailsContainer }>
-          <CustomButton
+          <BackButton
             onPress={ () => setShowDetailsFrom( null ) }
-            imgSource={ ICONS[ 'backArrow' ] }
           />
           <CompetenceDetails
             item={ COMPETENCE_DATA[ showDetailsFrom ] }
@@ -219,6 +245,12 @@ const CompetenceGoalsView = () => {
   }
 }
 
+/*
+    Bold: require("./assets/fonts/FiraSans-Bold.ttf"),
+    SemiBold: require("./assets/fonts/FiraSans-SemiBold.ttf"),
+    Regular: require("./assets/fonts/FiraSans-Regular.ttf"),
+    Light: require("./assets/fonts/FiraSans-Light.ttf"),
+*/
 const styles = StyleSheet.create( {
   viewContainer: {
     backgroundColor: THEME.lightBackground,
@@ -227,20 +259,16 @@ const styles = StyleSheet.create( {
     padding: SCREEN_PADDING,
   },
   scrollView: {
-    // flex: 1,
-    // height: '100%',
+    backgroundColor: THEME.lightBackground,
   },
   detailsContainer: {
-    borderWidth: 1,
-    backgroundColor: THEME.lightBackground,
-    // justifyContent: 'flex-start',
-    // flexGrow: 1,
+    flexGrow: 1,
     padding: 10,
-    // height: '100%'
+    height: '100%'
   },
   title: {
     fontSize: 25,
-    fontWeight: 'bold',
+    fontFamily: 'SemiBold',
     textAlign: 'center',
     marginBottom: 15,
   },
@@ -263,12 +291,20 @@ const styles = StyleSheet.create( {
     height: '100%',
   },
   buttonText: {
+    fontFamily: 'SemiBold',
     position: 'absolute',
-    fontWeight: 'bold',
     textAlign: 'center',
   },
+  buttonTaskText: {
+    fontFamily: 'Regular',
+    position: 'absolute',
+    textAlign: 'center',
+    transform: [
+      {translateY: 30}
+    ]
+  },
   checkTaskContainer: {
-    backgroundColor: THEME.lightGray,
+    backgroundColor: THEME.lightBlue,
     borderRadius: 20,
     flexDirection: 'row',
     height: 'auto',
@@ -284,6 +320,7 @@ const styles = StyleSheet.create( {
     marginRight: 10,
   },
   checkTaskText: {
+    fontFamily: 'Regular',
     width: '85%',
   },
   customButton: {
@@ -299,6 +336,7 @@ const styles = StyleSheet.create( {
     height: '100%',
   },
   detailsDescription: {
+    fontFamily: 'Regular',
     marginBottom: 10,
   }
 } )

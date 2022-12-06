@@ -4,7 +4,7 @@ import React, {useContext, useReducer, useEffect, useState} from 'react'
 
 // <----- UTILS -----> //
 import { handleSetStudyWeeksAdd, handleSetStudyWeeksSubstrack } from '../utils/HeaderStateFunctions'
-import { AppHeaderContext } from '../utils/AppHeaderContext'
+import { AppHeaderContext } from '../utils/GeneralFunctions'
 import {saveDataToStorage, getDataFromStorage} from '../utils/GeneralFunctions'
 
 const STORAGE_KEY ="@counter_Key"

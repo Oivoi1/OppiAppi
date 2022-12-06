@@ -12,7 +12,7 @@ import TuvaView from "./views/TuvaView";
 import AdditionalContentView from "./views/AdditionalContentView";
 
 // <----- UTILS -----> //
-import { AppHeaderContext } from "./utils/AppHeaderContext";
+import { AppHeaderContext } from "./utils/GeneralFunctions";
 import { StatusBar } from "expo-status-bar";
 
 // <----- DATA -----> //
