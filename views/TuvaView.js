@@ -18,7 +18,7 @@ import {getDataFromStorage, saveDataToStorage} from '../utils/GeneralFunctions/'
 
 const STORAGE_KEY = '@tuva_Key';
 
-export default function TuvaView({navigation, route}) {
+export default function TuvaView() {
   //global-state from App.js 
   const {trophies, setTrophies} = useContext(AppHeaderContext);
 
@@ -66,6 +66,7 @@ export default function TuvaView({navigation, route}) {
             [index]: !prevState[index]
           }));
           !showModalDetailFromFirst[index] ? handleSetTrophies(setTrophies,trophies) : null
+          break;
        case 2:
         
           setShowModalDetailFromSecond(prevState => ({
@@ -73,6 +74,7 @@ export default function TuvaView({navigation, route}) {
             [index]: !prevState[index]
           }));
           !showModalDetailFromSecond[index] ? handleSetTrophies(setTrophies,trophies) : null
+          break;
        case 3:
         
             setShowModalDetailFromThird(prevState => ({
@@ -80,6 +82,7 @@ export default function TuvaView({navigation, route}) {
               [index]: !prevState[index]
             }));
             !showModalDetailFromThird[index] ? handleSetTrophies(setTrophies,trophies) : null
+            break;
        case 4:
         
        setShowModalDetailFromFourth(prevState => ({
@@ -87,6 +90,7 @@ export default function TuvaView({navigation, route}) {
         [index]: !prevState[index]
       }));
       !showModalDetailFromFourth[index] ? handleSetTrophies(setTrophies,trophies) : null
+      break;
       case 5:
         
         setShowModalDetailFromFifth(prevState => ({
@@ -94,6 +98,7 @@ export default function TuvaView({navigation, route}) {
           [index]: !prevState[index]
         }));
         !showModalDetailFromFifth[index] ? handleSetTrophies(setTrophies,trophies) : null
+        break;
         case 6: 
         
         setShowModalDetailFromSixth(prevState => ({
@@ -101,6 +106,7 @@ export default function TuvaView({navigation, route}) {
           [index]: !prevState[index]
         }));
         !showModalDetailFromSixth[index] ? handleSetTrophies(setTrophies,trophies) : null
+        break;
         case 7: 
         
         setShowModalDetailFromSeventh(prevState => ({
@@ -108,6 +114,7 @@ export default function TuvaView({navigation, route}) {
           [index]: !prevState[index]
         }));
         !showModalDetailFromSeventh[index] ? handleSetTrophies(setTrophies,trophies) : null
+        break;
        
         default: 
         if(itemId === null || itemId === undefined) {
