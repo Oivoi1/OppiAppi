@@ -164,21 +164,25 @@ const CompetenceGoalsView = () => {
   const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
 
-  // Use-effect gets data from storage if it exists
   useEffect(() => {
-    const fetchData = async () => {
-      const dataFromStorage = await getDataFromStorage(COMPETENCE_STORAGE_KEY)
-      return dataFromStorage
-    }
+    (async ()=>{
+      // Load task list from async storage
+      let dataFromStorage = await getDataFromStorage(COMPETENCE_STORAGE_KEY)
 
-    const data = fetchData()
-    console.log(data)
-    // const tasksCompletedData = getDataFromStorage(COMPETENCE_STORAGE_KEY) === null ? competenceUserData : dataFromStorage
-    // setTasksCompleted(tasksCompletedData)
-    return () => {
-      // saveDataToStorage(COMPETENCE_STORAGE_KEY, tasksCompleted)
-    }
+      // If there is no defined datastructure in async storage, we create and save it. Should only be triggered once.
+      if (dataFromStorage.length <= 0) {
+        dataFromStorage = competenceUserData
+        await saveDataToStorage(COMPETENCE_STORAGE_KEY, dataFromStorage)
+        setTasksCompleted(dataFromStorage)
+      } 
+      // If there is datastructure, just put it in the state variable
+      else {
+        setTasksCompleted(dataFromStorage)
+      }
+    }  
+    )()
   }, [])
+  
   
 
   // Calc competence indicator locations
@@ -201,6 +205,7 @@ const CompetenceGoalsView = () => {
     let newTasksCompleted = [ ...tasksCompleted ]
     newTasksCompleted[ showDetailsFrom ].taskCompleted = taskArray
     setTasksCompleted( newTasksCompleted )
+    saveDataToStorage(COMPETENCE_STORAGE_KEY, newTasksCompleted)
   }
 
   if(!tasksCompleted) {
