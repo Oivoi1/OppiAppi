@@ -36,7 +36,7 @@ export default function Counter({initValue, maxValue, itemId, setModalWeeks, cli
  
 }
   handleModalWeeksCount(clickedIndex); 
- }, [clickedIndex])
+ }, [clickedIndex, studyWeeks])
 
  useEffect(() => {
    const fetchState = () => {

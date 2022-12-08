@@ -7,17 +7,18 @@ import { Ionicons } from "@expo/vector-icons";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 // <----- DATA -----> //
-import { STRINGS, TUVA_DATA, ICONS } from "../data/data";
+import { STRINGS, TUVA_DATA, ICONS_SVG } from "../data/data";
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/GeneralFunctions";
 // <----- UTILS -----> //
-import { handleSetTrophies } from '../utils/HeaderStateFunctions'
-import {getDataFromStorage, saveDataToStorage, AppHeaderContext} from '../utils/GeneralFunctions/'
+import { handleSetTrophiesAdd, handleSetTrophiesSubstract } from '../utils/HeaderStateFunctions'
+import { AppHeaderContext } from '../utils/GeneralFunctions'
+import {getDataFromStorage, saveDataToStorage} from '../utils/GeneralFunctions/'
 
 const STORAGE_KEY = '@tuva_Key';
 
-export default function TuvaView({navigation, route}) {
+export default function TuvaView() {
   //global-state from App.js 
   const {trophies, setTrophies} = useContext(AppHeaderContext);
 
@@ -64,49 +65,63 @@ export default function TuvaView({navigation, route}) {
             ...showModalDetailFromFirst,
             [index]: !prevState[index]
           }));
-          !showModalDetailFromFirst[index] ? handleSetTrophies(setTrophies,trophies) : null
+          !showModalDetailFromFirst[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+          showModalDetailFromFirst[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+          break;
        case 2:
         
           setShowModalDetailFromSecond(prevState => ({
             ...showModalDetailFromSecond,
             [index]: !prevState[index]
           }));
-          !showModalDetailFromSecond[index] ? handleSetTrophies(setTrophies,trophies) : null
+          !showModalDetailFromSecond[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+          showModalDetailFromSecond[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+          break;
        case 3:
         
             setShowModalDetailFromThird(prevState => ({
               ...showModalDetailFromThird,
               [index]: !prevState[index]
             }));
-            !showModalDetailFromThird[index] ? handleSetTrophies(setTrophies,trophies) : null
+            !showModalDetailFromThird[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+            showModalDetailFromThird[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+            break;
        case 4:
         
        setShowModalDetailFromFourth(prevState => ({
         ...showModalDetailFromFourth,
         [index]: !prevState[index]
       }));
-      !showModalDetailFromFourth[index] ? handleSetTrophies(setTrophies,trophies) : null
+      !showModalDetailFromFourth[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+      showModalDetailFromFourth[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+      break;
       case 5:
         
         setShowModalDetailFromFifth(prevState => ({
           ...showModalDetailFromFifth,
           [index]: !prevState[index]
         }));
-        !showModalDetailFromFifth[index] ? handleSetTrophies(setTrophies,trophies) : null
+        !showModalDetailFromFifth[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+        showModalDetailFromFifth[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+        break;
         case 6: 
         
         setShowModalDetailFromSixth(prevState => ({
           ...showModalDetailFromSixth,
           [index]: !prevState[index]
         }));
-        !showModalDetailFromSixth[index] ? handleSetTrophies(setTrophies,trophies) : null
+        !showModalDetailFromSixth[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+        showModalDetailFromSixth[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+        break;
         case 7: 
         
         setShowModalDetailFromSeventh(prevState => ({
           ...showModalDetailFromSeventh,
           [index]: !prevState[index]
         }));
-        !showModalDetailFromSeventh[index] ? handleSetTrophies(setTrophies,trophies) : null
+        !showModalDetailFromSeventh[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
+        showModalDetailFromSeventh[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+        break;
        
         default: 
         if(itemId === null || itemId === undefined) {
@@ -120,32 +135,32 @@ export default function TuvaView({navigation, route}) {
       let imgSource = null;
 
     if(itemId === 1) {
-      imgSource = showModalDetailFromFirst[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromFirst[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } /> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg } /> 
     }
    else if(itemId === 2) {
-      imgSource = showModalDetailFromSecond[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromSecond[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } /> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg } />
     }
     else if(itemId === 3) {
-      imgSource = showModalDetailFromThird[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromThird[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } /> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg }/>
     }
     else if(itemId === 4) {
-      imgSource = showModalDetailFromFourth[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromFourth[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg }/> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg } />
     }
     else if(itemId === 5) {
-      imgSource = showModalDetailFromFifth[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromFifth[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg }/> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg } />
     }
     else if(itemId === 6) {
-      imgSource = showModalDetailFromSixth[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromSixth[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg }/> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg } />
     }
     else if(itemId === 7) {
-      imgSource = showModalDetailFromSeventh[index] ? ICONS[ 'checked' ] : ICONS[ 'unchecked' ];
+      imgSource = showModalDetailFromSeventh[index] ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg }/> : <ICONS_SVG.uncheckedTuvaSvg style={ styles.checkTaskImg } />
     }
    
     return (
       <TouchableOpacity 
       style={styles.checkTaskButton}
         onPress={ () => handleModalButtonPress(  index, itemId )}>
-        <Image style={ styles.checkTaskImg } source={ imgSource } resizeMode='contain'/>
+        {imgSource}
       </TouchableOpacity>
     )
   
@@ -163,12 +178,13 @@ export default function TuvaView({navigation, route}) {
                   <Ionicons name="ios-information-circle-outline" size={28} color="black" />
                   </TouchableOpacity>
                   
-      <Modal style={styles.modalContainerInfo}
+      <Modal 
+      style={styles.modalContainerInfo}
       //Modal for general info
         animationType="fade"
         visible={isModalVisibleIntro}
       >
-      {STRINGS.map((item, index) => (
+        {STRINGS.map((item, index) => (
             
             <Text key={index} style={styles.instructions}>{item.tuvaInstructions}</Text>
             
@@ -344,6 +360,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     fontSize: 18,
+   
   },
   checkTaskContainer: {
     flexDirection: 'row',
@@ -357,7 +374,7 @@ const styles = StyleSheet.create({
   checkTaskButton: {
     alignItems: 'center',
     padding: 5,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#FFFFFF",
     borderRadius: 50,
     margin: 5,
   },
