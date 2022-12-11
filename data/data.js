@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 
 // Storage keys
 export const COMPETENCE_STORAGE_KEY = "@competence_data";
+export const COUNTER_STORAGE_KEY ='@counter_data'
 
 // Vibration patterns. Time unit is ms. Odd cells are pause and even cells are vibration duration.
 

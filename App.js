@@ -35,7 +35,7 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   } else {
-    console.log("Fonts OK.");
+   // console.log("Fonts OK.");
   }
 
   return (
