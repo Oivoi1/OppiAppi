@@ -28,6 +28,8 @@ export default function TuvaView() {
   const [isModalVisibleIntro, setIsModalVisibleIntro] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   const [modalWeeks, setModalWeeks] = useState(0);
+  //this is array from counter's states and ids
+  const [stateToStorage, setStateToStorage] = useState([]);
   const [showModalDetailFromFirst, setShowModalDetailFromFirst] = useState(false);
   const [showModalDetailFromSecond, setShowModalDetailFromSecond] = useState(false);
   const [showModalDetailFromThird, setShowModalDetailFromThird] = useState(false);
@@ -55,7 +57,7 @@ export default function TuvaView() {
   const handleModalClose = () => {
     setIsModalVisible(!isModalVisible);
   }
-//handle toggle course done or not and add to trophies if course done
+//handle toggle course done or not and add to trophies if course done or substract from trophies
   const handleModalButtonPress = ( index, itemId ) => {
        switch(itemId) {
         
@@ -212,6 +214,8 @@ export default function TuvaView() {
                   itemId={item.id}
                   setModalWeeks={setModalWeeks}
                   clickedIndex={clickedIndex}
+                  stateToStorage={stateToStorage}
+                  setStateToStorage={setStateToStorage}
                   
                 />
                 <TouchableOpacity style={styles.iconHelp}

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ToastAndroid, Vibration } from 'react-native';
+import { ToastAndroid, Vibration, Linking } from 'react-native';
 import { SHORT_VIBRATE, LONG_VIBRATE, NOTIFY_VIBRATE } from "../data/data";
 import { createContext } from "react";
 
@@ -35,6 +35,7 @@ export const getDataFromStorage = async ( storageKey ) => {
  */
 export const saveDataToStorage = async ( storageKey, data ) => {
   try {
+    
     const jsonValue = JSON.stringify( data );
     await AsyncStorage.setItem( storageKey, jsonValue );
   } catch ( e ) {
