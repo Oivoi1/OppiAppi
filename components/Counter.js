@@ -8,7 +8,7 @@ import { AppHeaderContext } from '../utils/GeneralFunctions'
 import {saveDataToStorage, getDataFromStorage} from '../utils/GeneralFunctions'
 
 // <----- DATA -----> //
-import {TUVA_DATA,COUNTER_STORAGE_KEY } from "../data/data";
+import {TUVA_DATA,COUNTER_STORAGE_KEY, APP_WEEKS_STORAGE_KEY, THEME } from "../data/data";
 
 
 
@@ -48,7 +48,7 @@ export default function Counter({initValue, maxValue, itemId, setModalWeeks, cli
   const fetchState = async() => {
     //AsyncStorage.clear() //don't use this!
     let data = await getDataFromStorage(COUNTER_STORAGE_KEY);
-    console.log( data)
+    //console.log( data)
     //save init values to storage from TUVA_DATA this is done only once
     if(data.length <= 0){
       dispatch({type: 'INIT_REDUCER'})
@@ -147,7 +147,7 @@ if(findStateById === -1) {
     newState[findStateById].count = state.count + 1
   }
   setStateToStorage(newState);
-  console.log(newState);
+  //console.log(newState);
 saveDataToStorage(COUNTER_STORAGE_KEY, newState);
 }}
 
@@ -164,7 +164,7 @@ if(findStateById === -1) {
     newState[findStateById].count = state.count - 1
   }
   setStateToStorage(newState);
-  console.log(newState);
+  //console.log(newState);
 saveDataToStorage(COUNTER_STORAGE_KEY, newState);
 }}
 
@@ -203,18 +203,18 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 2,
         borderRadius: 10,
-        backgroundColor: '#0693E3',
+        backgroundColor: THEME.blue,
         
          },
 
       counterLabelAdd: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         padding: 10,
-        backgroundColor: '#023B5D',
+        backgroundColor: THEME.darkBlue,
         borderBottomRightRadius:10,
         borderTopRightRadius: 10,
-        color: '#FFFFFF',
+        color: THEME.white,
         paddingLeft: 15,
         paddingRight: 15,
          },
@@ -222,11 +222,11 @@ const styles = StyleSheet.create({
       counterLabelSubstract: {
         fontSize: 18,
         padding:10,
-        fontWeight: 'bold',
-        backgroundColor: '#D3232E',
+        fontFamily: 'Bold',
+        backgroundColor: THEME.brightRed,
         borderBottomLeftRadius:10,
         borderTopLeftRadius: 10, 
-        color: '#FFFFFF',
+        color: THEME.white,
         paddingLeft: 15,
         paddingRight: 15,
       },
@@ -236,8 +236,8 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingRight:20,
         paddingLeft: 20,
-        fontWeight: 'bold',
-        color: '#FFFFFF',
+        fontFamily: 'Bold',
+        color: THEME.white,
       },
       
 })

@@ -1,13 +1,14 @@
 import {StyleSheet,Text,View,TouchableOpacity,ScrollView, SafeAreaView, Button, Image} from "react-native";
 import React, { useState, useContext, useEffect,} from "react";
 import Modal from 'react-native-modal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 import { Ionicons } from "@expo/vector-icons";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 // <----- DATA -----> //
-import { STRINGS, TUVA_DATA, ICONS_SVG } from "../data/data";
+import { STRINGS, TUVA_DATA, ICONS_SVG, TUVA_STORAGE_KEY, APP_TROPHIES_STORAGE_KEY, THEME } from "../data/data";
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/GeneralFunctions";
@@ -16,7 +17,6 @@ import { handleSetTrophiesAdd, handleSetTrophiesSubstract } from '../utils/Heade
 import { AppHeaderContext } from '../utils/GeneralFunctions'
 import {getDataFromStorage, saveDataToStorage} from '../utils/GeneralFunctions/'
 
-const STORAGE_KEY = '@tuva_Key';
 
 export default function TuvaView() {
   //global-state from App.js 
@@ -28,7 +28,7 @@ export default function TuvaView() {
   const [isModalVisibleIntro, setIsModalVisibleIntro] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   const [modalWeeks, setModalWeeks] = useState(0);
-  //this is array from counter's states and ids
+  //this is array from counter's states and ids and is used to hold and load data from storage.
   const [stateToStorage, setStateToStorage] = useState([]);
   const [showModalDetailFromFirst, setShowModalDetailFromFirst] = useState(false);
   const [showModalDetailFromSecond, setShowModalDetailFromSecond] = useState(false);
@@ -38,13 +38,38 @@ export default function TuvaView() {
   const [showModalDetailFromSixth, setShowModalDetailFromSixth] = useState(false);
   const [showModalDetailFromSeventh, setShowModalDetailFromSeventh] = useState(false);
  
-  //save modalweeks to phone memory and retrieve value
+  //load showmodaldetailsfrom variables from phone memory 
   useEffect(() => {
-    if(modalWeeks !== null || modalWeeks !== undefined) {
-       saveDataToStorage(STORAGE_KEY, modalWeeks);
+    const fetchData = async() => {
+      //AsyncStorage.clear() //don't use this!
+      let data = await getDataFromStorage(TUVA_STORAGE_KEY);
+      //console.log( data)
+
+      //init asyncstorage for first time
+      if(data.length <= 0){
+        let tempModalDetailArray = [];
+        tempModalDetailArray.push({...showModalDetailFromFirst},
+          {...showModalDetailFromSecond},
+          {...showModalDetailFromThird}, 
+          {...showModalDetailFromFourth}, 
+          {...showModalDetailFromFifth}, 
+          {...showModalDetailFromSixth}, 
+          {...showModalDetailFromSeventh})
+     saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray) 
+    }
+  //otherwise there should be data => set data
+      else {
+        setShowModalDetailFromFirst(data[0])
+        setShowModalDetailFromSecond(data[1])
+        setShowModalDetailFromThird(data[2])
+        setShowModalDetailFromFourth(data[3])
+        setShowModalDetailFromFifth(data[4])
+        setShowModalDetailFromSixth(data[5])
+        setShowModalDetailFromSeventh(data[6])
       }
-    getDataFromStorage(STORAGE_KEY);
-  }, [modalWeeks])
+  }
+    fetchData();
+  }, [])
 
   const handleModalOpen = (index) => {
    //changed index to match data's id because id from data starts from 1
@@ -57,8 +82,19 @@ export default function TuvaView() {
   const handleModalClose = () => {
     setIsModalVisible(!isModalVisible);
   }
-//handle toggle course done or not and add to trophies if course done or substract from trophies
+/*handle toggle course done or not and add to trophies 
+if course done or substract from trophies
+handle asyncstorage state saving also */
   const handleModalButtonPress = ( index, itemId ) => {
+    let tempModalDetailArray = [];
+        tempModalDetailArray.push({...showModalDetailFromFirst},
+          {...showModalDetailFromSecond},
+          {...showModalDetailFromThird}, 
+          {...showModalDetailFromFourth}, 
+          {...showModalDetailFromFifth}, 
+          {...showModalDetailFromSixth}, 
+          {...showModalDetailFromSeventh}) 
+//switch-case for different elements
        switch(itemId) {
         
         case 1:
@@ -69,6 +105,8 @@ export default function TuvaView() {
           }));
           !showModalDetailFromFirst[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
           showModalDetailFromFirst[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+         tempModalDetailArray[0] = {...showModalDetailFromFirst, [index]: !showModalDetailFromFirst[index] }
+          
           break;
        case 2:
         
@@ -78,6 +116,8 @@ export default function TuvaView() {
           }));
           !showModalDetailFromSecond[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
           showModalDetailFromSecond[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+          tempModalDetailArray[1] = {...showModalDetailFromSecond , [index]: !showModalDetailFromSecond[index]}
+         
           break;
        case 3:
         
@@ -87,6 +127,8 @@ export default function TuvaView() {
             }));
             !showModalDetailFromThird[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
             showModalDetailFromThird[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+            tempModalDetailArray[2] = {...showModalDetailFromThird, [index]: !showModalDetailFromThird[index]}
+          
             break;
        case 4:
         
@@ -96,6 +138,8 @@ export default function TuvaView() {
       }));
       !showModalDetailFromFourth[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
       showModalDetailFromFourth[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+      tempModalDetailArray[3] = {...showModalDetailFromFourth, [index]: !showModalDetailFromFourth[index]}
+          
       break;
       case 5:
         
@@ -105,6 +149,8 @@ export default function TuvaView() {
         }));
         !showModalDetailFromFifth[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
         showModalDetailFromFifth[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+        tempModalDetailArray[4] = {...showModalDetailFromFifth, [index]: !showModalDetailFromFifth[index]}
+          
         break;
         case 6: 
         
@@ -114,6 +160,8 @@ export default function TuvaView() {
         }));
         !showModalDetailFromSixth[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
         showModalDetailFromSixth[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+        tempModalDetailArray[5] = {...showModalDetailFromSixth, [index]: !showModalDetailFromSixth[index]}
+       
         break;
         case 7: 
         
@@ -123,13 +171,16 @@ export default function TuvaView() {
         }));
         !showModalDetailFromSeventh[index] ? handleSetTrophiesAdd(setTrophies,trophies) : null
         showModalDetailFromSeventh[index] ? handleSetTrophiesSubstract(setTrophies,trophies) : null
+        tempModalDetailArray[6] = {...showModalDetailFromSeventh, [index]: !showModalDetailFromSeventh[index]}
+         
         break;
        
         default: 
         if(itemId === null || itemId === undefined) {
           throw new Error();
         }
-      }  
+      }
+      saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray)
   }
   //Renders modals buttons for course complition
   const ModalDetailsCheckbox = ( { index } ) => {
@@ -169,9 +220,12 @@ export default function TuvaView() {
   }
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView >
       <ScrollView>
       
+      <View
+          style={styles.viewContainer}
+        >
       {STRINGS.map((item, index) => (
         <Text key={index} style={styles.heading}>{item.tuvaHeading}</Text>
       ))}
@@ -179,7 +233,7 @@ export default function TuvaView() {
                 onPress={() =>{ setIsModalVisibleIntro(!isModalVisibleIntro) }}>
                   <Ionicons name="ios-information-circle-outline" size={28} color="black" />
                   </TouchableOpacity>
-                  
+     
       <Modal 
       style={styles.modalContainerInfo}
       //Modal for general info
@@ -193,11 +247,10 @@ export default function TuvaView() {
           ))}       
           <Button title="Sulje" onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)} /> 
       </Modal>
+       
       
       
-        <View
-          style={styles.viewContainer}
-        >
+        
           
           {TUVA_DATA.map((item, index) => (
             <View style={styles.itemContainer} key={item.id}>
@@ -257,19 +310,20 @@ export default function TuvaView() {
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-      backgroundColor: "#F5F5F5",
+      backgroundColor: THEME.lightBackground,
       alignItems: "center",
       justifyContent: "center",
   },
+
   heading: {
     marginTop: 2,
     marginBottom: 2,
-    fontWeight: "bold",
+    fontFamily: 'Bold',
     fontSize: 24,
     textAlign: "center",
   },
   viewContainer: {
-    width: "95%",
+    width: "100%",
     height: "85%",
     alignItems: "center",
     justifyContent: "space-between",
@@ -279,18 +333,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: "90%",
     flexDirection: "column",
-    borderColor: "black",
+    borderColor: THEME.black,
     borderWidth: 1,
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 15,
     elevation: 8,
-    backgroundColor: '#8ED1FC',
+    backgroundColor: THEME.lightBlue,
   },
 
   itemTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: 'Bold',
     paddingLeft: 5,
     paddigRight: 5,
     paddingBottom: 5,
@@ -298,6 +352,7 @@ const styles = StyleSheet.create({
   },
   itemScope: {
     fontSize: 16,
+    fontFamily: 'Regular',
     paddingLeft: 10,
     paddigRight: 10,
     paddingBottom: 5,
@@ -307,11 +362,12 @@ const styles = StyleSheet.create({
   instructions: {
     marginTop: 10,
     marginBottom: 10,
-    fontSize: 14,
+    fontSize: 16,
+    fontFamily: 'Regular',
   },
   iconHelp: {
     alignItems:'center',
-      backgroundColor: '#F5F5F5',
+      backgroundColor: THEME.lightBackground,
       borderRadius: 40,
       borderWidth: 0.5,
       width: 40,
@@ -325,14 +381,14 @@ const styles = StyleSheet.create({
   },
   iconInfo: {
     alignItems:'center',
-      backgroundColor: '#F5F5F5',
+      backgroundColor: THEME.lightBackground,
       width: 40,
       height: 40,
       justifyContent: 'center',
       alignSelf: 'flex-end',
       position: 'absolute',
       top: 0,
-      right: 0,
+      right: -8,
       
   },
   buttonContainer: {
@@ -345,25 +401,28 @@ const styles = StyleSheet.create({
     
     
   },
+  
   modalContainer: {
-    backgroundColor: '#8ED1FC',
+    backgroundColor: THEME.lightBlue,
     maxWidth: '70%',
     maxHeight: "70%",
     padding: 40,
     borderRadius: 15,
-    borderColor: '#000000',
+    borderColor: THEME.black,
     borderWidth: 1,
+    fontFamily: 'Regular',
   },
   modalContainerInfo: {
-    backgroundColor: '#8ED1FC',
-    maxWidth: '55%',
-    maxHeight: "35%",
+    backgroundColor: THEME.lightBlue,
+    maxWidth: '60%',
+    maxHeight: "45%",
     padding: 40,
     borderRadius: 15,
-    borderColor: '#000000',
+    borderColor: THEME.black,
     borderWidth: 1,
     alignItems: 'center',
     fontSize: 18,
+    fontFamily: 'Regular',
    
   },
   checkTaskContainer: {
@@ -378,7 +437,7 @@ const styles = StyleSheet.create({
   checkTaskButton: {
     alignItems: 'center',
     padding: 5,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: THEME.lightBackground,
     borderRadius: 50,
     margin: 5,
   },
@@ -386,5 +445,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
   },
+  
+
   
 });

@@ -4,7 +4,10 @@ import { useFonts } from "expo-font";
 
 // Storage keys
 export const COMPETENCE_STORAGE_KEY = "@competence_data";
-export const COUNTER_STORAGE_KEY ='@counter_data'
+export const COUNTER_STORAGE_KEY ='@counter_data';
+export const TUVA_STORAGE_KEY ='@tuva_data';
+export const APP_TROPHIES_STORAGE_KEY ='@main_trophies_data';
+export const APP_WEEKS_STORAGE_KEY ='@main_weeks_data';
 
 // Vibration patterns. Time unit is ms. Odd cells are pause and even cells are vibration duration.
 
@@ -44,6 +47,7 @@ export const THEME = {
   brightRed: "#D3232E",
   gray: "#ABB8C3",
   lightGray: "#d9d9d9",
+  white: "#FFFFFF",
 };
 
 export const COMPETENCE_DATA = [
