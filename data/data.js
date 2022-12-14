@@ -21,13 +21,6 @@ import uncheckedSvg from '../assets/unchecked_button.svg'
 import checkedSvg from '../assets/checked_button.svg'
 import uncheckedTuvaSvg from '../assets/unchecked_tuvabutton.svg'
 
-import candyBlueSvg from '../assets/candy_blue.svg'
-import candyGreenSvg from '../assets/candy_green.svg'
-import backArrowSvg from '../assets/back_arrow.svg'
-import uncheckedSvg from '../assets/unchecked_button.svg'
-import checkedSvg from '../assets/checked_button.svg'
-import uncheckedTuvaSvg from '../assets/unchecked_tuvabutton.svg'
-
 // Icon resources
 export const ICONS_SVG = {
   candyBlueSvg: candyBlueSvg,

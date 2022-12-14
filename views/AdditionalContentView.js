@@ -1,55 +1,47 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Linking, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import Position from "../components/Position";
 import { dataPublicTransport, THEME, dataLinks } from "../data/data";
-
+import { onPressOpenLink } from "../utils/GeneralFunctions";
+import CustomModalButton from "../components/CustomModalButton";
 
 export default function AdditionalContentView() {
+
+  //state variables for showing/not showing Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
-  const onPress = async (url) => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Sivua ei löytynyt. Tarkista verkkotunnus ${url}`);
-    }
-  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.title}>Muuta hyödyllistä sisältöä</Text>
-        <TouchableOpacity style={styles.button} onPress={handleModal}>
-          <Text style={styles.buttonText}>Joukkoliikenteen aikataulut</Text>
-          <Modal isVisible={isModalVisible}>
-            <ScrollView style={styles.scrollView}>
-              {dataPublicTransport.map((item) => (
-                <TouchableOpacity
+          <TouchableOpacity style={styles.button} onPress={handleModal}>
+            <Text style={styles.buttonText}>Joukkoliikenteen aikataulut</Text>
+              <Modal isVisible={isModalVisible}>
+                <ScrollView style={styles.scrollView}>
+                  {dataPublicTransport.map((item) => (
+                  <TouchableOpacity
                   key={item.id}
-                  onPress={() => onPress(item.url)}
+                  onPress={() => onPressOpenLink(item.url)}
                   style={styles.button}
-                >
-                  <Text style={styles.buttonText}>{item.city}</Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-            <TouchableOpacity style={styles.buttonClose} onPress={handleModal}>
-              <Text style={styles.buttonText}>Sulje</Text>
-            </TouchableOpacity>
-          </Modal>
-        </TouchableOpacity>
-        {dataLinks.map((item) => (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() => onPress(item.url)}
-                  style={styles.button}
-                >
-                  <Text style={styles.buttonText}>{item.title}</Text>
-                </TouchableOpacity>
-              ))}
+                  >
+                    <Text style={styles.buttonText}>{item.city}</Text>
+                  </TouchableOpacity>
+                  ))}
+              </ScrollView>  
+                <CustomModalButton onPress={() => handleModal()} />
+            </Modal>
+          </TouchableOpacity>
+            {dataLinks.map((item) => (
+            <TouchableOpacity
+            key={item.id}
+            onPress={() => onPressOpenLink(item.url)}
+            style={styles.button}
+            >
+            <Text style={styles.buttonText}>{item.title}</Text>
+          </TouchableOpacity>
+           ))}
         <Position />
       </ScrollView>
     </SafeAreaView>
@@ -61,9 +53,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: THEME.lightBackground,
     alignItems: "center",
+    justifyContent: "center",
   },
   scrollView: {
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   title: {
     fontSize: 25,
@@ -77,22 +70,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     elevation: 10,
-    width: "95%",
-    marginBottom: 20,
+    width: "100%",
+    marginBottom: 15,
     alignSelf: "center",
   },
   buttonText: {
     color: "black",
     fontSize: 15,
     textAlign: "center",
-    fontFamily: "Regular"
-  },
-  buttonClose: {
-    backgroundColor: THEME.darkBlue,
-    padding: 10,
-    borderRadius: 10,
-    width: "85%",
-    marginBottom: 20,
-    alignSelf: "center",
+    fontFamily: "SemiBold"
   },
 });

@@ -13,7 +13,7 @@ export default function Weather(props) {
     const [icon, setIcon] = useState('')
 
     useEffect (() => {
-        
+        //Gets weather information from OpenWeather. Weather component is displayed in Position.js, which gets user's current coordinates
         const url = API_URL +
         'lat=' + props.latitude +
         '&lon=' + props.longitude +
@@ -36,7 +36,7 @@ export default function Weather(props) {
 return (
     <>
       <View>
-        <Text style={styles.label}>Sää</Text>
+        <Text style={styles.label}>Ulkoilman lämpötila</Text>
         <Text style={styles.info}>{temp} °C</Text>
         <Text style={styles.smallLabel}>Tuntuu kuin</Text>
         <Text style={styles.info}>{feelsLike} °C</Text>
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         alignSelf: 'center',
-        backgroundColor: '#ffff',
         borderRadius: 10,
         elevation: 20
     }
