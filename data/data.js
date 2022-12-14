@@ -3,6 +3,10 @@
 import { useFonts } from "expo-font";
 // Storage keys
 export const COMPETENCE_STORAGE_KEY = '@competence_data'
+export const COUNTER_STORAGE_KEY ='@counter_data';
+export const TUVA_STORAGE_KEY ='@tuva_data';
+export const APP_TROPHIES_STORAGE_KEY ='@main_trophies_data';
+export const APP_WEEKS_STORAGE_KEY ='@main_weeks_data';
 
 // Vibration patterns. Time unit is ms. Odd cells are pause and even cells are vibration duration.
 
@@ -10,14 +14,29 @@ export const NOTIFY_VIBRATE = [ 0, 200 ]; // 0 ms pause, 200 ms vibration
 export const SHORT_VIBRATE = [ 0, 100 ]; // 0 ms pause, 100 ms vibration
 export const LONG_VIBRATE = [ 0, 500 ]; // 0 ms pause, 500 ms vibration
 
+import candyBlueSvg from '../assets/candy_blue.svg'
+import candyGreenSvg from '../assets/candy_green.svg'
+import backArrowSvg from '../assets/back_arrow.svg'
+import uncheckedSvg from '../assets/unchecked_button.svg'
+import checkedSvg from '../assets/checked_button.svg'
+import uncheckedTuvaSvg from '../assets/unchecked_tuvabutton.svg'
+
+import candyBlueSvg from '../assets/candy_blue.svg'
+import candyGreenSvg from '../assets/candy_green.svg'
+import backArrowSvg from '../assets/back_arrow.svg'
+import uncheckedSvg from '../assets/unchecked_button.svg'
+import checkedSvg from '../assets/checked_button.svg'
+import uncheckedTuvaSvg from '../assets/unchecked_tuvabutton.svg'
+
 // Icon resources
-export const ICONS = {
-  candyBlue: require( '../assets/candy_blue.png' ),
-  candyGreen: require( '../assets/candy_green.png' ),
-  backArrow: require( '../assets/back_arrow.png' ),
-  unchecked: require( '../assets/unchecked_button.png' ),
-  checked: require( '../assets/checked_button.png' )
-}
+export const ICONS_SVG = {
+  candyBlueSvg: candyBlueSvg,
+  candyGreenSvg: candyGreenSvg,
+  backArrowSvg: backArrowSvg,
+  uncheckedSvg: uncheckedSvg,
+  checkedSvg: checkedSvg,
+  uncheckedTuvaSvg: uncheckedTuvaSvg,
+};
 
 // Numeric constants
 export const NUMERIC = {
@@ -26,15 +45,16 @@ export const NUMERIC = {
 
 // Theme colors
 export const THEME = {
-  black: '#000',
-  lightBackground: '#F3F2EC',
-  darkBlue: '#023B5D',
-  blue: '#0693E3',
-  lightBlue: '#8ED1FC',
-  brightRed: '#D3232E',
-  gray: '#ABB8C3',
-  lightGray: '#d9d9d9'
-}
+  black: "#000",
+  lightBackground: "#F3F2EC",
+  darkBlue: "#023B5D",
+  blue: "#0693E3",
+  lightBlue: "#8ED1FC",
+  brightRed: "#D3232E",
+  gray: "#ABB8C3",
+  lightGray: "#d9d9d9",
+  white: "#FFFFFF",
+};
 
 export const COMPETENCE_DATA = [
   {
@@ -211,13 +231,13 @@ export const COMPETENCE_DATA = [
     description: 'Opiskelija osaa hankkia tietoa sekä jäsentää, arvioida ja soveltaa sitä. Hän osaa ottaa vastuuta opinnoistaan ja suunnitella niitä tavoitteellisesti. Hän tunnistaa ja osaa käyttää tarkoituksenmukaisia ja monipuolisia oppimistapoja ja -strategioita ja ymmärtää vertaisryhmän ja muun lähipiirin merkityksen oppimisen ja opiskelun tukena. Opiskelija kehittää opiskelukielen taitoaan tavoitteellisesti siten, että pystyy käyttämään puhuttua ja kirjoittua kieltä erilaisissa oppimisympäristöissä.',
     tasks: [
       {
-        title: 'Tunnistat omia vahvuuksiasi.',
+        title: "Tunnistan omia vahvuuksiani.",
       },
       {
-        title: 'Tunnistat, mihin tarvitset apua ja ohjausta.',
+        title: "Tunnistan, mihin tarvitsen apua ja ohjausta.",
       },
       {
-        title: 'Suunnittelet omia tavoitteitasi ja opintojasi.',
+        title: "Suunnittelen omia tavoitteitani ja opintojani.",
       },
       {
         title: 'Etsin aktiivisesti tietoa.',
@@ -241,76 +261,78 @@ export const COMPETENCE_DATA = [
   }
 ]
 
-export const tuvaDataArr = [
-    {
-      id: 1,
-      title: "Opiskelu- ja urasuunnittelutaidot",
-      scope: "2-10 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
-      initValue: 2,
-      maxValue: 10,
-      checked: false,
-    },
-    {
-      id: 2,
-      title: "Perustaitojen vahvistaminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
-      initValue: 1,
-      maxValue: 30,
-      checked: false,
-    },
-    {
-      id: 3,
-      title: "Lukiokoulutuksen opinnot ja niihin valmentautuminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
-      initValue: 1,
-      maxValue: 30,
-      checked: false,
-    },
-    {
-      id: 4,
-      title: "Ammatillisen koulutuksen opinnot ja niihin valmentautuminen",
-      scope: "1-30 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
-      initValue: 1,
-      maxValue: 30,
-      checked: false,
-    },
-    {
-      id: 5,
-      title: "Työelämätaidot ja työelämässä tapahtuva oppiminen",
-      scope: "1-20 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
-      initValue: 1,
-      maxValue: 20,
-      checked: false,
-    },
-    {
-      id: 6,
-      title: "Arjen taidot ja yhteiskunnallinen osallisuus",
-      scope: "1-20 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
-      initValue: 1,
-      maxValue: 20,
-      checked: false,
-    },
-    {
-      id: 7,
-      title: "Valinnaiset opinnot",
-      scope: "1-10 viikkoa",
-      url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
-      initValue: 1,
-      maxValue: 10,
-      checked: false,
-    },
-  ];
-export const strings = [
+export const TUVA_DATA = [
+  {
+    id: 1,
+    title: "Opiskelu- ja urasuunnittelutaidot",
+    scope: "2-10 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
+    initValue: 2,
+    maxValue: 10,
+    checked: false,
+  },
+  {
+    id: 2,
+    title: "Perustaitojen vahvistaminen",
+    scope: "1-30 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
+    initValue: 1,
+    maxValue: 30,
+    checked: false,
+  },
+  {
+    id: 3,
+    title: "Lukiokoulutuksen opinnot ja niihin valmentautuminen",
+    scope: "1-30 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
+    initValue: 1,
+    maxValue: 30,
+    checked: false,
+  },
+  {
+    id: 4,
+    title: "Ammatillisen koulutuksen opinnot ja niihin valmentautuminen",
+    scope: "1-30 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
+    initValue: 1,
+    maxValue: 30,
+    checked: false,
+  },
+  {
+    id: 5,
+    title: "Työelämätaidot ja työelämässä tapahtuva oppiminen",
+    scope: "1-20 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
+    initValue: 1,
+    maxValue: 20,
+    checked: false,
+  },
+  {
+    id: 6,
+    title: "Arjen taidot ja yhteiskunnallinen osallisuus",
+    scope: "1-20 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
+    initValue: 1,
+    maxValue: 20,
+    checked: false,
+  },
+  {
+    id: 7,
+    title: "Valinnaiset opinnot",
+    scope: "1-10 viikkoa",
+    url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
+    initValue: 1,
+    maxValue: 10,
+    checked: false,
+  },
+];
+export const STRINGS = [
   {
     tuvaHeading: "TUVA-koulutuksen osat",
-tuvaInstructions: "Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
-  }
+    tuvaInstructions:
+      "Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
+      tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa palloa."
+  },
 ];
 
 export const dataPublicTransport = [

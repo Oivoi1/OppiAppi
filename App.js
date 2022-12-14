@@ -4,23 +4,49 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // <----- VIEWS -----> //
 import CompetenceGoalsView from "./views/CompetenceGoalsView";
 import MainView from "./views/MainView";
-import TuvaScreen from "./views/TuvaScreen";
+import TuvaView from "./views/TuvaView";
 import AdditionalContentView from "./views/AdditionalContentView";
 
 // <----- UTILS -----> //
-import { AppHeaderContext } from "./utils/AppHeaderContext";
+import { AppHeaderContext, saveDataToStorage, getDataFromStorage } from "./utils/GeneralFunctions";
 import { StatusBar } from "expo-status-bar";
 
 // <----- DATA -----> //
-import { THEME } from "./data/data";
+import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY } from "./data/data";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
-  const [trophies, setTrophies] = useState(1);
+  const [trophies, setTrophies] = useState(0);
+
+//load studyweeks and trophies from phone memory 
+useEffect(() => {
+  const fetchData = async() => {
+    //AsyncStorage.clear() //don't use this!
+    let dataWeeks = await getDataFromStorage(APP_WEEKS_STORAGE_KEY);
+    let dataTrophies = await getDataFromStorage(APP_TROPHIES_STORAGE_KEY);
+    //console.log( data)
+
+    //init asyncstorage for first time
+    if(dataWeeks.length <= 0){
+   saveDataToStorage(APP_WEEKS_STORAGE_KEY, studyWeeks) 
+  }
+  if(dataTrophies.length <= 0){
+    saveDataToStorage(APP_TROPHIES_STORAGE_KEY, trophies)
+  }
+//otherwise there should be data => set data
+    else {
+      setStudyWeeks(dataWeeks)
+        setTrophies(dataTrophies)
+    }
+}
+  fetchData();
+}, [])
+  
 
   const Tab = createBottomTabNavigator();
 
@@ -35,7 +61,7 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   } else {
-    console.log("Fonts OK.");
+   // console.log("Fonts OK.");
   }
 
   return (
@@ -51,7 +77,7 @@ export default function App() {
 
               if (route.name == "MainView") {
                 iconName = focused ? "home" : "home-outline";
-              } else if (route.name === "TuvaScreen") {
+              } else if (route.name === "TuvaView") {
                 iconName = focused ? "bulb" : "bulb-outline";
               } else if (route.name === "CompetenceGoalsView") {
                 iconName = focused
@@ -124,12 +150,12 @@ export default function App() {
             initialParams={fontsLoaded}
           />
           <Tab.Screen
-            name="TuvaScreen"
-            component={TuvaScreen}
+            name="TuvaView"
+            component={TuvaView}
             options={{
               title: "TUVA",
             }}
-            initialParams={fontsLoaded}
+             initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="CompetenceGoalsView"
