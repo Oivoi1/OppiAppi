@@ -218,7 +218,7 @@ const CompetenceGoalsView = () => {
   if ( showDetailsFrom === null ) {
     return (
       <View style={ styles.viewContainer }>
-        <Text style={ styles.title }>Oppiäppi: Minä osaan</Text>
+        <Text style={ styles.title }>Minä osaan</Text>
         <View style={ styles.buttonContainer }>
           { COMPETENCE_DATA.map( ( item, index ) => <CompetenceIndicator
             key={ index }
