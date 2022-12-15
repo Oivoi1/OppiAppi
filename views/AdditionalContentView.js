@@ -1,83 +1,47 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  Linking,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import Position from "../components/Position";
-import { dataPublicTransport } from "../data/data";
+import { dataPublicTransport, THEME, dataLinks } from "../data/data";
+import { onPressOpenLink } from "../utils/GeneralFunctions";
+import CustomModalButton from "../components/CustomModalButton";
 
 export default function AdditionalContentView() {
+
+  //state variables for showing/not showing Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
-  const onPress = async (url) => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Sivua ei löytynyt. Tarkista verkkotunnus ${url}`);
-    }
-  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.title}>Muuta hyödyllistä sisältöä</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            onPress("https://luovi.fi/opiskelen-luovissa/ruokalistat/")
-          }
-        >
-          <Text style={styles.buttonText}>Luovin ruokalistat</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleModal}>
-          <Text style={styles.buttonText}>Joukkoliikenteen aikataulut</Text>
-          <Modal isVisible={isModalVisible}>
-            <ScrollView style={styles.scrollView}>
-              {dataPublicTransport.map((item) => (
-                <TouchableOpacity
+          <TouchableOpacity style={styles.button} onPress={handleModal}>
+            <Text style={styles.buttonText}>Joukkoliikenteen aikataulut</Text>
+              <Modal isVisible={isModalVisible}>
+                <ScrollView style={styles.scrollView}>
+                  {dataPublicTransport.map((item) => (
+                  <TouchableOpacity
                   key={item.id}
-                  onPress={() => onPress(item.url)}
+                  onPress={() => onPressOpenLink(item.url)}
                   style={styles.button}
-                >
-                  <Text style={styles.buttonText}>{item.city}</Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-            <TouchableOpacity style={styles.buttonClose} onPress={handleModal}>
-              <Text style={styles.buttonText}>Sulje</Text>
-            </TouchableOpacity>
-          </Modal>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onPress("http://masto.luovi.fi/")}
-        >
-          <Text style={styles.buttonText}>Opiskelijaintra Masto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onPress("https://luovi.inschool.fi/")}
-        >
-          <Text style={styles.buttonText}>Wilma</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            Linking.openURL(
-              "https://luovi.fi/tutustu-ja-hae-luoviin/tapahtumakalenteri/"
-            )
-          }
-        >
-          <Text style={styles.buttonText}>Tapahtumakalenteri</Text>
-        </TouchableOpacity>
+                  >
+                    <Text style={styles.buttonText}>{item.city}</Text>
+                  </TouchableOpacity>
+                  ))}
+              </ScrollView>  
+                <CustomModalButton onPress={() => handleModal()} />
+            </Modal>
+          </TouchableOpacity>
+            {dataLinks.map((item) => (
+            <TouchableOpacity
+            key={item.id}
+            onPress={() => onPressOpenLink(item.url)}
+            style={styles.button}
+            >
+            <Text style={styles.buttonText}>{item.title}</Text>
+          </TouchableOpacity>
+           ))}
         <Position />
       </ScrollView>
     </SafeAreaView>
@@ -87,40 +51,33 @@ export default function AdditionalContentView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F3F2EC",
-    paddingTop: StatusBar.currentHeight,
+    backgroundColor: THEME.lightBackground,
     alignItems: "center",
+    justifyContent: "center",
   },
   scrollView: {
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   title: {
     fontSize: 25,
     padding: 10,
     margin: 5,
-    fontWeight: "bold",
+    fontFamily: "Bold",
   },
   button: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: THEME.lightBlue,
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
-    elevation: 15,
-    width: "95%",
-    marginBottom: 20,
+    elevation: 10,
+    width: "100%",
+    marginBottom: 15,
     alignSelf: "center",
   },
   buttonText: {
     color: "black",
     fontSize: 15,
     textAlign: "center",
-  },
-  buttonClose: {
-    backgroundColor: "#023B5D",
-    padding: 10,
-    borderRadius: 10,
-    width: "85%",
-    marginBottom: 20,
-    alignSelf: "center",
+    fontFamily: "SemiBold"
   },
 });

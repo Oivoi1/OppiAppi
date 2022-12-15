@@ -163,7 +163,7 @@ useEffect(() => {
             options={{
               title: "MINÄ OSAAN",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
           <Tab.Screen
             name="AdditionalContentView"
@@ -171,7 +171,7 @@ useEffect(() => {
             options={{
               title: "MUUTA",
             }}
-            // initialParams={fontsLoaded}
+            initialParams={fontsLoaded}
           />
         </Tab.Navigator>
         <StatusBar style="light" />
