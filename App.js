@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -65,9 +65,12 @@ useEffect(() => {
   }
 
   return (
+    
     <AppHeaderContext.Provider
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
+      <Image style= {{flex:0.05 , width:'auto', resizeMode: 'center',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
+
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Main"
@@ -105,11 +108,14 @@ useEffect(() => {
                   )
                 }
               >
-                <Ionicons name="calendar" size={28} color={THEME.lightBlue} />
+                      
 
+                <Ionicons name="calendar" size={28} color={THEME.lightBlue} />
+                  
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
               </TouchableOpacity>
             ),
+            
             headerRight: () => (
               <TouchableOpacity
                 style={[styles.headerViews, styles.headerRightView]}
@@ -141,6 +147,7 @@ useEffect(() => {
             tabBarHideOnKeyboard: "true",
           })}
         >
+
           <Tab.Screen
             name="MainView"
             component={MainView}
