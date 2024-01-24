@@ -96,7 +96,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp.git
+   git clone https://github.com/Oivoi1/OppiAppi.git
    ```
 2. Install NPM packages
    ```sh
