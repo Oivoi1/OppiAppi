@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginHorizontal: 10,
+    
   },
   title: {
     fontSize: 25,
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
-    elevation: 10,
     width: "100%",
     marginBottom: 15,
     alignSelf: "center",

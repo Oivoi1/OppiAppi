@@ -419,7 +419,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 15,
-    elevation: 8,
     backgroundColor: THEME.lightBlue,
   },
 
@@ -479,9 +478,9 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    backgroundColor: THEME.lightBlue,
+    backgroundColor: THEME.gray,
     width: "70%",
-    height: "92%",
+    height: "auto",
     padding: 40,
     borderRadius: 15,
     borderColor: THEME.black,
@@ -489,7 +488,6 @@ const styles = StyleSheet.create({
     fontFamily: "Regular",
     alignSelf: "center",
     position: "absolute",
-    top: "5%",
   },
   modalContainerInfo: {
     backgroundColor: THEME.lightBlue,
