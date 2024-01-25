@@ -32,7 +32,7 @@ export default function Weather(props) {
             }
         )
     },[])
-   
+  
 return (
     <>
       <View>
@@ -40,7 +40,7 @@ return (
         <Text style={styles.info}>{temp.toFixed(0)} °C</Text>
         <Text style={styles.smallLabel}>Tuntuu kuin</Text>
         <Text style={styles.info}>{feelsLike.toFixed(0)} °C</Text>
-        <Image source={{uri: icon}} style={styles.image}/>
+        {icon && <Image source={{uri: icon}} style={styles.image} />}
       </View>  
     </>
     )
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     info: {
-        margintop: 10,
+        marginTop: 10,
         textAlign: 'center',
         fontSize: 24
     },
