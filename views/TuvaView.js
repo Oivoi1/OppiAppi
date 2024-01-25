@@ -393,8 +393,8 @@ const styles = StyleSheet.create({
   },
 
   heading: {
-    marginTop: 2,
-    marginBottom: 2,
+    marginTop: 15,
+    marginBottom: 15,
     fontFamily: "Bold",
     fontSize: 24,
     textAlign: "center",
@@ -413,13 +413,14 @@ const styles = StyleSheet.create({
   itemContainer: {
     width: "90%",
     alignSelf: "center",
-    marginBottom: 10,
+    marginBottom: 15,
     borderColor: THEME.black,
     borderWidth: 1,
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 15,
-    backgroundColor: THEME.lightBlue,
+    elevation: 8,
+    backgroundColor: THEME.white,
   },
 
   itemTitle: {
@@ -468,6 +469,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     right: -8,
+    marginTop: 15,
   },
   buttonContainer: {
     flex: 1,
