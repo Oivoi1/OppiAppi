@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { THEME } from "../data/data";
 
+
 const MainView = ({ route, navigation }) => {
   // Bringing fonts into MainView by getting params
   const { fontsLoaded } = route.params;
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
     color: THEME.black,
     fontSize: 28,
     textAlign: "center",
-    fontFamily: "Regular",
+    fontFamily:'Bold'
   },
   link__container__paragraph: {
     color: THEME.black,
     fontSize: 20,
     textAlign: "center",
-    fontFamily: "Light",
+    fontFamily: "Regular",
   },
 });

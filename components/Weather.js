@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image }  from 'react-native';
+import { THEME } from '../data/data';
 
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather?'
 const API_KEY = '77db940120d589d54e3e8c679039244e'
@@ -35,14 +36,19 @@ export default function Weather(props) {
   
 return (
     <>
-      <View>
-        <Text style={styles.label}>Ulkoilman lämpötila</Text>
-        <Text style={styles.info}>{temp.toFixed(0)} °C</Text>
-        <Text style={styles.smallLabel}>Tuntuu kuin</Text>
-        <Text style={styles.info}>{feelsLike.toFixed(0)} °C</Text>
-        {icon && <Image source={{uri: icon}} style={styles.image} />}
-      </View>  
-    </>
+  <Text style={styles.label}>Päivän sää</Text>
+  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: 'center' }}>
+    <View style={{ marginRight: 10 }}>
+      <Text style={styles.smallLabel}>Lämpötila</Text>
+      <Text style={styles.info}>{temp.toFixed(0)} °C</Text>
+      <Text style={styles.smallLabel}>Tuntuu kuin</Text>
+      <Text style={styles.info}>{feelsLike.toFixed(0)} °C</Text>
+    </View>
+    <View>
+      {icon && <Image source={{ uri: icon }} style={styles.image} />}
+    </View>
+  </View>
+</>
     )
 }
 
@@ -54,7 +60,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     smallLabel: {
-        fontWeight: 'Regular',
+        fontFamily: 'Regular',
         marginTop: 10,
         fontSize: 18,
         alignSelf: 'center'
@@ -62,14 +68,18 @@ const styles = StyleSheet.create({
     info: {
         marginTop: 10,
         textAlign: 'center',
-        fontSize: 24
+        fontSize: 24,
+        
     },
     image: {
         width: 120,
         height: 120,
         alignSelf: 'center',
-        borderRadius: 10,
-        elevation: 20
+        borderRadius: 30,
+        backgroundColor:THEME.lightBlue,
+        borderWidth:2,
+        borderColor:'black',
+      
     }
 
 })

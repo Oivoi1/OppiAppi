@@ -70,7 +70,7 @@ useEffect(() => {
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
     
-      <Image style= {{ flex:0.056 , width:'auto', resizeMode: 'center',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
+      <Image style= {{ flex:0.056 , width:'auto', resizeMode: 'contain',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
 
       <NavigationContainer>
         <Tab.Navigator
@@ -100,6 +100,7 @@ useEffect(() => {
             },
             headerTitleAlign: "center",
             headerLeft: () => (
+              
               <TouchableOpacity
                 style={[styles.headerViews, styles.headerLeftView]}
                 onPress={() =>
@@ -115,6 +116,7 @@ useEffect(() => {
                   
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
               </TouchableOpacity>
+              
             ),
             
             headerRight: () => (
