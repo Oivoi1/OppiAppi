@@ -69,7 +69,8 @@ useEffect(() => {
     <AppHeaderContext.Provider
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
-      <Image style= {{flex:0.05 , width:'auto', resizeMode: 'center',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
+    
+      <Image style= {{ flex:0.056 , width:'auto', resizeMode: 'center',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
 
       <NavigationContainer>
         <Tab.Navigator
@@ -95,7 +96,7 @@ useEffect(() => {
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             headerStyle: {
-              backgroundColor: THEME.darkBlue,
+              backgroundColor: THEME.darkBlue
             },
             headerTitleAlign: "center",
             headerLeft: () => (
