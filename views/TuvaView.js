@@ -309,7 +309,7 @@ handle asyncstorage state saving also */
               }}
             >
               <Ionicons
-                name="ios-information-circle-outline"
+                name="information-circle-outline"
                 size={28}
                 color="black"
               />
