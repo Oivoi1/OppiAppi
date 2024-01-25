@@ -35,7 +35,8 @@ export default function Weather(props) {
     },[])
   
 return (
-    <>
+    <><View style={{ borderWidth:2,
+        borderColor:'black',borderRadius:15, padding:7}}>
   <Text style={styles.label}>Päivän sää</Text>
   <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: 'center' }}>
     <View style={{ marginRight: 10 }}>
@@ -47,6 +48,7 @@ return (
     <View>
       {icon && <Image source={{ uri: icon }} style={styles.image} />}
     </View>
+  </View>
   </View>
 </>
     )
