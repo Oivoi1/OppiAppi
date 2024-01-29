@@ -112,10 +112,7 @@ useEffect(() => {
                   )
                 }
               >
-                <ICONS_SVG.candyGreenSvg
-                  width={ 28 }
-                  height={ 28 }
-                /> 
+                <Ionicons name="calendar" size={28} color="white" />
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
               </TouchableOpacity>
               
