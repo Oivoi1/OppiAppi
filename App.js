@@ -17,7 +17,8 @@ import { AppHeaderContext, saveDataToStorage, getDataFromStorage } from "./utils
 import { StatusBar } from "expo-status-bar";
 
 // <----- DATA -----> //
-import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY } from "./data/data";
+import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY, ICONS_SVG } from "./data/data";
+import Header from "./components/Header";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
@@ -65,13 +66,13 @@ useEffect(() => {
   }
 
   return (
-    
+    <>
     <AppHeaderContext.Provider
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
-    
-      <Image style= {{ flex:0.056 , width:'auto', resizeMode: 'contain',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
-
+     
+     
+      <Header />
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Main"
@@ -99,6 +100,7 @@ useEffect(() => {
               backgroundColor: THEME.darkBlue
             },
             headerTitleAlign: "center",
+            
             headerLeft: () => (
               
               <TouchableOpacity
@@ -110,10 +112,10 @@ useEffect(() => {
                   )
                 }
               >
-                      
-
-                <Ionicons name="calendar" size={28} color={THEME.lightBlue} />
-                  
+                <ICONS_SVG.candyGreenSvg
+                  width={ 28 }
+                  height={ 28 }
+                /> 
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
               </TouchableOpacity>
               
@@ -134,7 +136,7 @@ useEffect(() => {
               </TouchableOpacity>
             ),
 
-            headerTintColor: THEME.lightBlue,
+            headerTintColor: THEME.white,
             tabBarItemStyle: {
               backgroundColor: THEME.darkBlue,
             },
@@ -184,9 +186,10 @@ useEffect(() => {
             initialParams={fontsLoaded}
           />
         </Tab.Navigator>
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
       </NavigationContainer>
     </AppHeaderContext.Provider>
+    </>
   );
 }
 
