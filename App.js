@@ -83,7 +83,7 @@ useEffect(() => {
               if (route.name == "MainView") {
                 iconName = focused ? "home" : "home-outline";
               } else if (route.name === "TuvaView") {
-                iconName = focused ? "bulb" : "bulb-outline";
+                iconName = focused ? "school" : "school-outline";
               } else if (route.name === "CompetenceGoalsView") {
                 iconName = focused
                   ? "checkmark-circle"
