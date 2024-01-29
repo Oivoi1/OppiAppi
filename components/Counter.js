@@ -1,6 +1,8 @@
 import { View,Text,TouchableOpacity,StyleSheet,ActivityIndicator } from "react-native";
 import React, { useContext, useReducer, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons } from "@expo/vector-icons";
+
 
 // <----- UTILS -----> //
 import { handleSetStudyWeeksAdd,handleSetStudyWeeksSubstrack } from "../utils/HeaderStateFunctions";
@@ -164,7 +166,11 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
                 : null;
             }}
           >
-            <Text style={styles.counterLabelSubstract}>-</Text>
+            <Text style={styles.counterLabelSubstract}><Ionicons
+                name="remove-sharp"
+                size={25}
+                color="white"
+              /></Text>
           </TouchableOpacity>
           <Text style={styles.counterLabel}>{state.count}</Text>
           <TouchableOpacity
@@ -177,7 +183,11 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
               state.count < maxValue ? handleSaveToStorageAdd(itemId) : null;
             }}
           >
-            <Text style={styles.counterLabelAdd}>+</Text>
+            <Text style={styles.counterLabelAdd}><Ionicons
+                name="add-sharp"
+                size={25}
+                color="white"
+              /></Text>
           </TouchableOpacity>
         </View>
       </>
@@ -196,31 +206,32 @@ const styles = StyleSheet.create({
   },
 
   counterLabelAdd: {
-    fontSize: 20,
-    fontFamily: "Bold",
-    padding: 10,
+    height: "100%",
+    padding: "5%",
     backgroundColor: THEME.darkBlue,
-    borderBottomRightRadius: 25,
-    borderTopRightRadius: 25,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
     color: THEME.white,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+    display: 'flex', // Set display to flex
+    alignItems: 'center', // Align items in the center vertically
   },
 
   counterLabelSubstract: {
-    fontSize: 20,
-    padding: 10,
-    fontFamily: "Bold",
+    height: "100%",
+    padding: "5%",
     backgroundColor: THEME.brightRed,
-    borderBottomLeftRadius: 25,
-    borderTopLeftRadius: 25,
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
     color: THEME.white,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+    
   },
 
   counterLabel: {
-    fontSize: 20,
+    fontSize: 22,
     paddingTop: 10,
     paddingRight: 20,
     paddingLeft: 20,

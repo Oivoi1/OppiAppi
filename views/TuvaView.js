@@ -310,8 +310,8 @@ handle asyncstorage state saving also */
             >
               <Ionicons
                 name="information-circle-outline"
-                size={28}
-                color="black"
+                size={40}
+                color="#023B5D"
               />
             </TouchableOpacity>
 
@@ -353,7 +353,7 @@ handle asyncstorage state saving also */
                       handleModalOpen(index);
                     }}
                   >
-                    <Ionicons name="help" size={28} color="black" />
+                    <Ionicons name="checkmark-sharp" size={28} color="#023B5D" />
                   </TouchableOpacity>
                 </View>
                 <Modal
@@ -398,6 +398,7 @@ const styles = StyleSheet.create({
     fontFamily: "Bold",
     fontSize: 24,
     textAlign: "center",
+    color: THEME.darkBlue,
   },
   viewContainer: {
     width: "100%",
@@ -414,9 +415,9 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     marginBottom: 15,
-    borderColor: THEME.black,
-    borderWidth: 1,
-    paddingVertical: 5,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
+    paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 15,
     elevation: 8,
@@ -448,16 +449,16 @@ const styles = StyleSheet.create({
   },
   iconHelp: {
     alignItems: "center",
-    backgroundColor: THEME.lightBackground,
     borderRadius: 40,
-    borderWidth: 0.5,
+    borderWidth: 2.5,
     width: 40,
     height: 40,
     justifyContent: "center",
     alignSelf: "flex-end",
     position: "absolute",
-    top: 5,
+    top: "20%",
     right: 0,
+    borderColor: THEME.darkBlue,
   },
   iconInfo: {
     alignItems: "center",
