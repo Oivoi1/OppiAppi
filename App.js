@@ -17,7 +17,7 @@ import { AppHeaderContext, saveDataToStorage, getDataFromStorage } from "./utils
 import { StatusBar } from "expo-status-bar";
 
 // <----- DATA -----> //
-import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY } from "./data/data";
+import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY, ICONS_SVG } from "./data/data";
 import Header from "./components/Header";
 
 export default function App() {
@@ -112,10 +112,10 @@ useEffect(() => {
                   )
                 }
               >
-                      
-
-                <Ionicons name="calendar" size={28} color={THEME.lightBlue} />
-                  
+                <ICONS_SVG.candyGreenSvg
+                  width={ 28 }
+                  height={ 28 }
+                /> 
                 <Text style={styles.headerSidesText}>{studyWeeks} / 38</Text>
               </TouchableOpacity>
               
