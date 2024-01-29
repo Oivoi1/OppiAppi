@@ -18,6 +18,7 @@ import { StatusBar } from "expo-status-bar";
 
 // <----- DATA -----> //
 import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY } from "./data/data";
+import Header from "./components/Header";
 
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
@@ -65,13 +66,13 @@ useEffect(() => {
   }
 
   return (
-    
+    <>
     <AppHeaderContext.Provider
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
-    
-      <Image style= {{ flex:0.056 , width:'auto', resizeMode: 'contain',backgroundColor:THEME.darkBlue}} source={require('./assets/adaptive-icon-smaller.png')}/>
-
+     
+     
+      <Header />
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Main"
@@ -99,6 +100,7 @@ useEffect(() => {
               backgroundColor: THEME.darkBlue
             },
             headerTitleAlign: "center",
+            
             headerLeft: () => (
               
               <TouchableOpacity
@@ -184,9 +186,10 @@ useEffect(() => {
             initialParams={fontsLoaded}
           />
         </Tab.Navigator>
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
       </NavigationContainer>
     </AppHeaderContext.Provider>
+    </>
   );
 }
 
