@@ -310,7 +310,7 @@ handle asyncstorage state saving also */
             >
               <Ionicons
                 name="information-circle-outline"
-                size={40}
+                size={32}
                 color="#023B5D"
               />
             </TouchableOpacity>
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    borderRadius: 15,
+    borderRadius: 20,
     elevation: 8,
     backgroundColor: THEME.white,
   },
@@ -493,16 +493,16 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   modalContainerInfo: {
-    backgroundColor: THEME.lightBlue,
-    width: "70%",
-    height: "45%",
+    backgroundColor: THEME.white,
+    width: "90%",
+    height: "40%",
     padding: 40,
-    borderRadius: 15,
-    borderColor: THEME.black,
-    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
     alignSelf: "center",
     fontSize: 18,
-    fontFamily: "Regular",
+    fontFamily: "normal",
     position: "absolute",
     top: "10%",
   },
