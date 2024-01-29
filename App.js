@@ -86,15 +86,15 @@ useEffect(() => {
                 iconName = focused ? "bulb" : "bulb-outline";
               } else if (route.name === "CompetenceGoalsView") {
                 iconName = focused
-                  ? "checkmark-done"
-                  : "checkmark-done-outline";
+                  ? "checkmark-circle"
+                  : "checkmark-circle-outline";
               } else if (route.name === "AdditionalContentView") {
                 iconName = focused
                   ? "ellipsis-horizontal-circle-sharp"
                   : "ellipsis-horizontal-circle-outline";
               }
 
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <Ionicons  name={iconName} size={size} color={color} />;
             },
             headerStyle: {
               backgroundColor: THEME.darkBlue
@@ -135,7 +135,8 @@ useEffect(() => {
 
             headerTintColor: THEME.white,
             tabBarItemStyle: {
-              backgroundColor: THEME.darkBlue,
+              backgroundColor: '#FFF',
+              margin:4
             },
             tabBarLabelStyle: {
               fontFamily: "Regular",
@@ -144,8 +145,8 @@ useEffect(() => {
               fontFamily: "SemiBold",
               letterSpacing: 1.75,
             },
-            tabBarActiveTintColor: "#FFF",
-            tabBarInactiveTintColor: THEME.lightBlue,
+            tabBarActiveTintColor: "red",
+            tabBarInactiveTintColor: THEME.darkBlue,
             tabBarHideOnKeyboard: "true",
           })}
         >
