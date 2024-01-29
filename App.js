@@ -136,7 +136,7 @@ useEffect(() => {
               </TouchableOpacity>
             ),
 
-            headerTintColor: THEME.lightBlue,
+            headerTintColor: THEME.white,
             tabBarItemStyle: {
               backgroundColor: THEME.darkBlue,
             },

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     fontFamily: "Bold",
   },
   button: {
-    backgroundColor: THEME.lightBlue,
+    backgroundColor: THEME.white,
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
