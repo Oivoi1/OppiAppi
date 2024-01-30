@@ -434,6 +434,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingBottom: 5,
     textAlign: "center",
+    textDecorationLine: "underline"
   },
   itemScope: {
     fontSize: 16,
