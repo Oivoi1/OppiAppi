@@ -1,7 +1,8 @@
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Animated } from 'react-native'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
 import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
+import { Ionicons } from '@expo/vector-icons'
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 120
@@ -75,6 +76,8 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
  * Detailed description and a checklist with checkable/uncheckable markers.
  */
 const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) => {
+  const [showDetails, setShowDetails] = useState(false);
+  const fadeAnim = new Animated.Value(0);
 
   const handleCompleted = ( index ) => {
     let newArray = [ ...tasksCompleted ]
@@ -82,10 +85,50 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
     handleTaskStatusChange( newArray )
   }
 
+  const toggleDetailsDropdown = () => {
+    Animated.timing(fadeAnim, {
+      toValue: showDetails ? 0 : 1,
+      duration: 150,
+      useNativeDriver: false, // Set to true if using native driver
+    }).start();
+      setShowDetails(!showDetails);
+  }
+
+  useLayoutEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: showDetails ? 1 : 0,
+      duration: 0, // No duration for immediate update
+      useNativeDriver: false,
+    }).start();
+  }, [showDetails]);
+
   return (
     <View>
       <Text style={ styles.title }>{ item.detailsTitle }</Text>
-      <Text style={ styles.detailsDescription }>{ item.description }</Text>
+      <View style={styles.accordion}>
+        <TouchableOpacity onPress={toggleDetailsDropdown} >
+          <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+          <Text style={{color:THEME.darkBlue,fontFamily:'Bold',marginHorizontal:5,fontSize:16.5}}>Lisätietoa osaamisen tavoitteista  </Text>
+          <Ionicons name="chevron-down" size={28} color={THEME.gray} />
+          </View>
+        </TouchableOpacity>
+        {showDetails && (
+          <Animated.View
+          style={[
+            styles.content,
+            {
+              opacity: fadeAnim,
+              flex: fadeAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 1],
+              }),
+            },
+          ]}
+          >
+            <Text style={ styles.detailsDescription }>{ item.description }</Text>
+          </Animated.View>
+        )}
+      </View>
       { item.tasks.map( ( task, index ) => <CompetenceDetailsCheckbox
         key={ index }
         index={ index }
@@ -342,7 +385,17 @@ const styles = StyleSheet.create( {
   },
   detailsDescription: {
     fontFamily: 'Regular',
-    marginBottom: 10,
+    margin: 10,
+    fontSize:18,
+    height: 'auto'
+  },
+  accordion:{
+    color:THEME.blue,
+    borderTopWidth:1.5,
+    borderTopColor: THEME.darkBlue,
+    borderBottomWidth:1.5,
+    borderBottomColor: THEME.darkBlue,
+
   }
 } )
 

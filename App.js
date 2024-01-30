@@ -83,7 +83,7 @@ useEffect(() => {
               if (route.name == "MainView") {
                 iconName = focused ? "home" : "home-outline";
               } else if (route.name === "TuvaView") {
-                iconName = focused ? "school" : "school-outline";
+                iconName = focused ? "create" : "create-outline";
               } else if (route.name === "CompetenceGoalsView") {
                 iconName = focused
                   ? "checkmark-circle"
@@ -112,7 +112,7 @@ useEffect(() => {
                   )
                 }
               >
-                <Ionicons name="calendar" size={28} color="white" />
+                <Ionicons name="today" size={28} color="white" />
                 <Text style={styles.headerSidesText}>{studyWeeks}/38</Text>
               </TouchableOpacity>
               
