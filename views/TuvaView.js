@@ -485,15 +485,16 @@ const styles = StyleSheet.create({
 
   modalContainer: {
     backgroundColor: THEME.white,
-    width: "70%",
+    width: "90%",
     height: "auto",
     padding: 40,
-    borderRadius: 15,
-    borderColor: THEME.black,
-    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
     fontFamily: "Regular",
     alignSelf: "center",
     position: "absolute",
+    top: "15%",
   },
   modalContainerInfo: {
     backgroundColor: THEME.white,
@@ -504,10 +505,9 @@ const styles = StyleSheet.create({
     borderColor: THEME.darkBlue,
     borderWidth: 3,
     alignSelf: "center",
-    fontSize: 18,
-    fontFamily: "normal",
+    fontFamily: "Regular",
     position: "absolute",
-    top: "10%",
+    top: "15%",
   },
 
   checkTaskContainer: {
