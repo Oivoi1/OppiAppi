@@ -294,6 +294,7 @@ handle asyncstorage state saving also */
   };
   return (
     <View style={styles.container}>
+      {(isModalVisible || isModalVisibleIntro) && <View style={styles.overlay} />}
       <SafeAreaView>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={styles.viewContainer}>
@@ -332,7 +333,7 @@ handle asyncstorage state saving also */
             </Modal>
 
             {TUVA_DATA.map((item, index) => (
-              <View style={styles.itemContainer} key={item.id}>
+              <View style={ styles.itemContainer } key={item.id}>
                 <TouchableOpacity onPress={() => onPressOpenLink(item.url)}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
                   <Text style={styles.itemScope}>{item.scope}</Text>
@@ -356,27 +357,29 @@ handle asyncstorage state saving also */
                     <Ionicons name="checkmark-sharp" size={28} color="#023B5D" />
                   </TouchableOpacity>
                 </View>
-                <Modal
-                  style={styles.modalContainer}
-                  animationType="fade"
-                  visible={isModalVisible}
-                >
-                  {STRINGS.map((item, index) => (
-                    <Text key={index} style={styles.instructions}>
-                      {item.tuvaInstructionsForCourseComplete}
-                    </Text>
-                  ))}
-                  <View style={styles.checkTaskContainer}>
-                    {Array(modalWeeks)
-                      .fill(<ModalDetailsCheckbox />)
-                      .map((_, index) => (
-                        <ModalDetailsCheckbox key={index} index={index} />
-                      ))}
-                  </View>
-                  <CustomModalButton onPress={() => handleModalClose()} />
-                </Modal>
+                
               </View>
             ))}
+
+            <Modal
+              style={styles.modalContainer}
+              animationType="fade"
+              visible={isModalVisible}
+            >
+              {STRINGS.map((item, index) => (
+                <Text key={index} style={styles.instructions}>
+                  {item.tuvaInstructionsForCourseComplete}
+                </Text>
+              ))}
+              <View style={styles.checkTaskContainer}>
+                {Array(modalWeeks)
+                  .fill(<ModalDetailsCheckbox />)
+                  .map((_, index) => (
+                    <ModalDetailsCheckbox key={index} index={index} />
+                  ))}
+              </View>
+              <CustomModalButton onPress={() => handleModalClose()} />
+            </Modal>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -481,16 +484,17 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    backgroundColor: THEME.gray,
-    width: "70%",
+    backgroundColor: THEME.white,
+    width: "90%",
     height: "auto",
     padding: 40,
-    borderRadius: 15,
-    borderColor: THEME.black,
-    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
     fontFamily: "Regular",
     alignSelf: "center",
     position: "absolute",
+    top: "15%",
   },
   modalContainerInfo: {
     backgroundColor: THEME.white,
@@ -501,10 +505,9 @@ const styles = StyleSheet.create({
     borderColor: THEME.darkBlue,
     borderWidth: 3,
     alignSelf: "center",
-    fontSize: 18,
-    fontFamily: "normal",
+    fontFamily: "Regular",
     position: "absolute",
-    top: "10%",
+    top: "15%",
   },
 
   checkTaskContainer: {
@@ -526,5 +529,10 @@ const styles = StyleSheet.create({
   checkTaskImg: {
     height: 30,
     width: 30,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    zIndex: 1, 
   },
 });
