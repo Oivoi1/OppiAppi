@@ -366,17 +366,22 @@ handle asyncstorage state saving also */
               animationType="fade"
               visible={isModalVisible}
             >
-              {STRINGS.map((item, index) => (
-                <Text key={index} style={styles.instructions}>
-                  {item.tuvaInstructionsForCourseComplete}
-                </Text>
-              ))}
-              <View style={styles.checkTaskContainer}>
-                {Array(modalWeeks)
-                  .fill(<ModalDetailsCheckbox />)
-                  .map((_, index) => (
-                    <ModalDetailsCheckbox key={index} index={index} />
-                  ))}
+              <View style={{ flex: 1 }}>
+                {STRINGS.map((item, index) => (
+                  <Text key={index} style={styles.instructions}>
+                    {item.tuvaInstructionsForCourseComplete}
+                  </Text>
+                ))}
+                <ScrollView 
+                  contentContainerStyle={styles.checkTaskContainer} 
+                  showsVerticalScrollIndicator={true}
+                >
+                  {Array(modalWeeks)
+                    .fill(<ModalDetailsCheckbox />)
+                    .map((_, index) => (
+                      <ModalDetailsCheckbox key={index} index={index} />
+                    ))}
+                </ScrollView>
               </View>
               <CustomModalButton onPress={() => handleModalClose()} />
             </Modal>
@@ -434,6 +439,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingBottom: 5,
     textAlign: "center",
+    textDecorationLine: "underline"
   },
   itemScope: {
     fontSize: 16,
@@ -486,7 +492,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: THEME.white,
     width: "90%",
-    height: "auto",
+    height: "55%",
     padding: 40,
     borderRadius: 20,
     borderColor: THEME.darkBlue,
