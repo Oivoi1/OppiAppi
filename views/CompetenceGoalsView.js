@@ -97,7 +97,7 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
   useLayoutEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: showDetails ? 1 : 0,
-      duration: 0, // No duration for immediate update
+      duration: 500, // No duration for immediate update
       useNativeDriver: false,
     }).start();
   }, [showDetails]);
