@@ -17,8 +17,8 @@ export const LONG_VIBRATE = [ 0, 500 ]; // 0 ms pause, 500 ms vibration
 import candyBlueSvg from '../assets/candy_blue.svg'
 import candyGreenSvg from '../assets/candy_green.svg'
 import backArrowSvg from '../assets/back_arrow.svg'
-import uncheckedSvg from '../assets/unchecked_button.svg'
-import checkedSvg from '../assets/checked_button.svg'
+import uncheckedSvg from '../assets/candy_blue.svg'
+import checkedSvg from '../assets/candy_green.svg'
 import uncheckedTuvaSvg from '../assets/unchecked_tuvabutton.svg'
 
 // Icon resources
@@ -44,14 +44,14 @@ export const THEME = {
   blue: "#0693E3",
   lightBlue: "#8ED1FC",
   brightRed: "#D3232E",
-  gray: "#ABB8C3",
+  gray: "#231F20",
   lightGray: "#d9d9d9",
   white: "#FFFFFF",
 };
 
 export const COMPETENCE_DATA = [
   {
-    buttonText: 'Hyvinvointi -osaaminen',
+    buttonText: 'Hyvinvointi-\nosaaminen',
     detailsTitle: 'Minä osaan: Hyvinvointiosaaminen',
     description: 'Opiskelija ymmärtää terveyden ja terveellisten elämäntapojen merkityksen. Hän vaalii fyysistä, psyykkistä ja sosiaalista toimintakykyään ja hyvinvointiaan. Opiskelija omaksuu hyvinvointiaan tukevia toimintatapoja sekä tunnistaa niitä edistäviä yhteisöjä. Hän osaa suunnitella omaa ajankäyttöään siten, että opiskelu ja vapaa-aika vuorottelevat tarkoituksenmukaisesti. Opiskelija osaa hakea tietoa, apua ja tukea oman hyvinvointinsa ylläpitämiseen sekä hakeutua tarvittaessa hyvinvoinnin ja terveydenhuollon palveluiden pariin.',
     tasks: [
@@ -79,7 +79,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Monilukutaito',
+    buttonText: 'Moniluku-\ntaito',
     detailsTitle: 'Minä osaan: Monilukutaito',
     description: 'Opiskelija kehittyy viestien tulkitsijana ja tuottajana sekä harjaantuu toimimaan erilaisten tekstien kanssa. Opiskelija osaa tarkastella ja tulkita kriittisesti erilaisia tekstejä. Tekstillä tarkoitetaan laajasti sekä puhuttuja että kirjoitettuja tekstejä, jotka sisältävät erilaisia kielimuotoja arkikielestä opiskelun kieleen ja eri tiedonalojen käsitteelliseen kieleen. Luku- ja kirjoitustaidon ohella opiskelija kehittää kuvanlukutaitoaan, medialukutaitoaan ja numeerista lukutaitoaan opiskelusuunnitelmansa mukaisesti.',
     tasks: [
@@ -107,7 +107,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Digiosaaminen',
+    buttonText: 'Digi-\nosaaminen',
     detailsTitle: 'Minä osaan: Digiosaaminen',
     description: 'Opiskelija osaa käyttää digitaalisia palveluita osana oppimista ja ongelmanratkaisua. Opiskelija osaa toimia vastuullisesti sosiaalisessa mediassa sekä käyttää digitaalisia palveluita asioidessaan viranomaisten ja muiden sähköisiä asiointia edellyttävien palveluntarjoajien kanssa.',
     tasks: [
@@ -129,7 +129,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Ympäristö- osaaminen',
+    buttonText: 'Ympäristö-\nosaaminen',
     detailsTitle: 'Minä osaan: Ympäristöosaaminen',
     description: 'Opiskelija ymmärtää kestävän kehityksen merkityksen yhteiskunnalle ja maapallolle ja osaa toimia kestävän kehityksen mukaisesti. Opiskelija tunnistaa ja ymmärtää keskeisiä ympäristön muutoksia  ja ihmisen toiminnan merkityksen niihin. Hän tuntee kestävän kehityksen tavoitteet ja ymmärtää ilmiöiden vaikutuksen toisiinsa, mukaan lukien kulttuurisen, sosiaalisen ja taloudellisen näkökulman. Opiskelijaa osaa toimia kestävää elämäntapaa tukien ja ottaa vastuuta ympäristöstä yhteistyössä muiden kanssa.',
     tasks: [
@@ -148,7 +148,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Kulttuuri- osaaminen',
+    buttonText: 'Kulttuuri-\nosaaminen',
     detailsTitle: 'Minä osaan: Kulttuuriosaaminen',
     description: 'Opiskelija syventää tietojaan ja ymmärrystään omasta identiteetistään sekä opiskeluyhteisön ja yhteiskunnan moninaisuudesta, jossa erilaiset identiteetit, kielet, uskonnot ja katsomukset elävät rinnakkain ja vuorovaikutuksessa keskenään. Opiskelija saa kokemuksia kansainvälisyydestä omassa arjessaan ja opiskeluympäristössään sekä esimerkiksi vierailujen, kulttuuritapahtumien, verkostoyhteistyön tai muun yhteistön kautta. Mahdollinen kieliprofiilin laatiminen tukee osaltaan opiskelijan ymmärrystä kielellisestä identiteetistään sekä hänen kasvuaan kielenoppijana ja -käyttäjänä.',
     tasks: [
@@ -174,7 +174,7 @@ export const COMPETENCE_DATA = [
   },
 
   {
-    buttonText: 'Yhteiskunta- osaaminen',
+    buttonText: 'Yhteiskunta-\nosaaminen',
     detailsTitle: 'Minä osaan: Yhteiskuntaosaaminen',
     description: 'Opiskelija ymmärtää demokraattisen, oikeudenmukaisen sekä tasa-arvoon ja yhdenvertaisuuteen perustuvan yhteiskunnan toimintaperiaatteita ja rakenteita. Hän osaa vaikuttaa oman ryhmänsä ja oppilaitoksensa asioihin sekä ymmärtää, miten yhteiskunnallisiin kysymyksiin voi ottaa kantaa.  Opiskelija omaksuu aktiivisen kansalaisuuden ja toimijuuden taitoja. Opiskelija ymmärtää työn merkityksen yksilön elämässä ja yhteiskunnassa.',
     tasks: [
@@ -197,7 +197,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Vuorovaikutus- osaaminen',
+    buttonText: 'Vuorovaikutus-\nosaaminen',
     detailsTitle: 'Minä osaan: Vuorovaikutusosaaminen',
     description: 'Opiskelija pyrkii toimimaan tilanteen vaatimalla tavalla erilaisissa vuorovaikutustilanteissa sekä ilmaisee erilaisia näkökantoja rakentavasti. Hän oppii kuuntelemaan ja kunnioittamaan toisten näkemyksiä ja tuomaan omia näkökulmiaan esille yksilönä ja ryhmän jäsenenä sekä kehittää empatiakykyään. Opiskelija osaa käyttää viestinnässä eri kieliä asianmukaisesti ja toimivasti. Opiskelija osaa viestiä asianmukaisesti myös erilaisilla sosiaalisen median alustoilla.',
     tasks: [
@@ -219,7 +219,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Oppimaan oppiminen',
+    buttonText: 'Oppimaan-\noppiminen',
     detailsTitle: 'Minä osaan: Oppimaan oppiminen',
     description: 'Opiskelija osaa hankkia tietoa sekä jäsentää, arvioida ja soveltaa sitä. Hän osaa ottaa vastuuta opinnoistaan ja suunnitella niitä tavoitteellisesti. Hän tunnistaa ja osaa käyttää tarkoituksenmukaisia ja monipuolisia oppimistapoja ja -strategioita ja ymmärtää vertaisryhmän ja muun lähipiirin merkityksen oppimisen ja opiskelun tukena. Opiskelija kehittää opiskelukielen taitoaan tavoitteellisesti siten, että pystyy käyttämään puhuttua ja kirjoittua kieltä erilaisissa oppimisympäristöissä.',
     tasks: [

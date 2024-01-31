@@ -5,7 +5,7 @@ import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification }
 import { Ionicons } from '@expo/vector-icons'
 
 const SCREEN_PADDING = 10
-const INDICATOR_SIZE = 120
+const INDICATOR_SIZE = 110
 
 /**
  * Go back to previous page from details view
@@ -66,7 +66,11 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
       style={ styles.checkTaskContainer }
       activeOpacity={ NUMERIC.opacityTouchFade }
     >
-      { checked ? <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } /> : <ICONS_SVG.uncheckedSvg style={ styles.checkTaskImg } /> }
+      { checked ? 
+        <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } width={30} height={30}/>
+        :
+        <ICONS_SVG.uncheckedSvg style={ styles.checkTaskImg } width={30} height={30}/>
+      }
       <Text style={ styles.checkTaskText }>{ taskName }</Text>
     </TouchableOpacity>
   )
@@ -104,12 +108,11 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
 
   return (
     <View>
-      <Text style={ styles.title }>{ item.detailsTitle }</Text>
       <View style={styles.accordion}>
-        <TouchableOpacity onPress={toggleDetailsDropdown} >
-          <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-          <Text style={{color:THEME.darkBlue,fontFamily:'Bold',marginHorizontal:5,fontSize:16.5}}>Lisätietoa osaamisen tavoitteista  </Text>
-          <Ionicons name="chevron-down" size={28} color={THEME.gray} />
+        <TouchableOpacity onPress={toggleDetailsDropdown}>
+          <View style={styles.accordionContainer}>
+          <Text style={styles.accordionTitle}>Lisätietoa osaamisen tavoitteista  </Text>
+          <Ionicons name="chevron-down" size={28} color={THEME.gray}/>
           </View>
         </TouchableOpacity>
         {showDetails && (
@@ -203,7 +206,7 @@ const calcElementPositions = (
 /**
  * View for students competence checklist
  */
-const CompetenceGoalsView = () => {
+const CompetenceGoalsView = ({navigation}) => {
   const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
 
@@ -261,7 +264,12 @@ const CompetenceGoalsView = () => {
   if ( showDetailsFrom === null ) {
     return (
       <View style={ styles.viewContainer }>
-        <Text style={ styles.title }>Minä osaan</Text>
+        <View style={{flexDirection: 'row'}}>
+          <BackButton
+            onPress={ () => navigation.navigate('MainView') }
+          />
+          <Text style={ [styles.title, {flex: 1, justifyContent: 'center', marginRight: 40}] }>Minä osaan</Text>
+        </View>
         <View style={ styles.buttonContainer }>
           { COMPETENCE_DATA.map( ( item, index ) => <CompetenceIndicator
             key={ index }
@@ -277,18 +285,26 @@ const CompetenceGoalsView = () => {
   // Show details view when details are selected
   else {
     return (
-      <ScrollView style={ styles.scrollView }>
-        <View style={ styles.detailsContainer }>
+      <>
+        <View style={styles.detailsTitle}>
           <BackButton
             onPress={ () => setShowDetailsFrom( null ) }
           />
-          <CompetenceDetails
-            item={ COMPETENCE_DATA[ showDetailsFrom ] }
-            tasksCompleted={ tasksCompleted[ showDetailsFrom ].taskCompleted }
-            handleTaskStatusChange={ handleTaskStatusChange }
-          />
+          <Text style={ [styles.title, {marginLeft: 10, marginBottom: 0, flex: 1}] }
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+          >{ COMPETENCE_DATA[showDetailsFrom].detailsTitle }</Text>
         </View>
-      </ScrollView>
+        <ScrollView style={ styles.scrollView }>
+          <View style={ styles.detailsContainer }>
+            <CompetenceDetails
+              item={ COMPETENCE_DATA[ showDetailsFrom ] }
+              tasksCompleted={ tasksCompleted[ showDetailsFrom ].taskCompleted }
+              handleTaskStatusChange={ handleTaskStatusChange }
+            />
+          </View>
+        </ScrollView>
+      </>
     )
   }
 }
@@ -319,6 +335,7 @@ const styles = StyleSheet.create( {
     fontFamily: 'SemiBold',
     textAlign: 'center',
     marginBottom: 15,
+    color: THEME.darkBlue
   },
   buttonContainer: {
     position: 'relative',
@@ -332,7 +349,7 @@ const styles = StyleSheet.create( {
     fontWeight: 'bold',
     height: INDICATOR_SIZE,
     width: INDICATOR_SIZE,
-    justifyContent: 'center',
+    justifyContent: 'start',
   },
   buttonImage: {
     width: '100%',
@@ -340,8 +357,10 @@ const styles = StyleSheet.create( {
   },
   buttonText: {
     fontFamily: 'SemiBold',
+    fontSize: INDICATOR_SIZE * 0.1,
     position: 'absolute',
     textAlign: 'center',
+    marginTop: INDICATOR_SIZE * 0.25,
   },
   buttonTaskText: {
     fontFamily: 'Regular',
@@ -349,11 +368,17 @@ const styles = StyleSheet.create( {
     textAlign: 'center',
     transform: [
       {translateY: 30}
-    ]
+    ],
+    marginTop: INDICATOR_SIZE * 0.3,
+    backgroundColor: 'white',
+    borderRadius: 100,
+    paddingHorizontal: 10
   },
   checkTaskContainer: {
-    backgroundColor: THEME.lightBlue,
-    borderRadius: 20,
+    backgroundColor: 'white',
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: THEME.darkBlue,
     flexDirection: 'row',
     height: 'auto',
     width: 'auto',
@@ -363,12 +388,12 @@ const styles = StyleSheet.create( {
     padding: 5,
   },
   checkTaskImg: {
-    height: 30,
-    width: 30,
     marginRight: 10,
+    marginLeft: 5,
+    marginTop: 2
   },
   checkTaskText: {
-    fontFamily: 'Regular',
+    fontFamily: 'SemiBold',
     width: '85%',
   },
   customButton: {
@@ -385,9 +410,14 @@ const styles = StyleSheet.create( {
   },
   detailsDescription: {
     fontFamily: 'Regular',
-    margin: 10,
     fontSize:18,
     height: 'auto'
+  },
+  detailsTitle: {
+    margin: 10,
+    marginBottom: 0,
+    flexDirection: 'row',
+    backgroundColor: THEME.lightBackground,
   },
   accordion:{
     color:THEME.blue,
@@ -395,7 +425,19 @@ const styles = StyleSheet.create( {
     borderTopColor: THEME.darkBlue,
     borderBottomWidth:1.5,
     borderBottomColor: THEME.darkBlue,
-
+  },
+  accordionTitle: {
+    color:THEME.darkBlue,
+    fontFamily:'Bold',
+    marginHorizontal:5,
+    marginVertical: 4,
+    fontSize:16.5
+  },
+  accordionContainer: {
+    flexDirection:'row',
+    justifyContent:'space-between',
+    paddingRight:12,
+    alignItems: 'center'
   }
 } )
 
