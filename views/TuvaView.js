@@ -18,6 +18,7 @@ import { onPressOpenLink } from "../utils/GeneralFunctions";
 import {handleSetTrophiesAdd, handleSetTrophiesSubstract} from "../utils/HeaderStateFunctions";
 import { AppHeaderContext } from "../utils/GeneralFunctions";
 import {getDataFromStorage,saveDataToStorage} from "../utils/GeneralFunctions/";
+import { ThemeProvider } from "@react-navigation/native";
 
 export default function TuvaView() {
   //global-state from App.js
@@ -238,58 +239,71 @@ handle asyncstorage state saving also */
   const ModalDetailsCheckbox = ({ index }) => {
     const itemId = clickedIndex;
     let imgSource = null;
+    let iconBgColor = THEME.lightBackground;
+    const checked = <Ionicons name="trophy" size={32} color="gold" />;
+    const unchecked = <Ionicons name="trophy-outline" size={32} color={THEME.darkBlue} />;
 
     if (itemId === 1) {
       imgSource = showModalDetailFromFirst[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     } else if (itemId === 2) {
       imgSource = showModalDetailFromSecond[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     } else if (itemId === 3) {
       imgSource = showModalDetailFromThird[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     } else if (itemId === 4) {
       imgSource = showModalDetailFromFourth[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     } else if (itemId === 5) {
       imgSource = showModalDetailFromFifth[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     } else if (itemId === 6) {
       imgSource = showModalDetailFromSixth[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     } else if (itemId === 7) {
       imgSource = showModalDetailFromSeventh[index] ? (
-        <ICONS_SVG.checkedSvg style={styles.checkTaskImg} />
+        iconBgColor = THEME.darkBlue,
+        checked
       ) : (
-        <ICONS_SVG.uncheckedTuvaSvg style={styles.checkTaskImg} />
+        unchecked
       );
     }
 
     return (
       <TouchableOpacity
-        style={styles.checkTaskButton}
-        onPress={() => handleModalButtonPress(index, itemId)}
-      >
-        {imgSource}
-      </TouchableOpacity>
+      style={{
+        ...styles.checkTaskButton,
+        backgroundColor: iconBgColor, 
+      }}
+      onPress={() => handleModalButtonPress(index, itemId)}
+    >
+      {imgSource}
+    </TouchableOpacity>
     );
   };
   return (
@@ -354,7 +368,7 @@ handle asyncstorage state saving also */
                       handleModalOpen(index);
                     }}
                   >
-                    <Ionicons name="checkmark-sharp" size={28} color="#023B5D" />
+                    <Ionicons name="trophy-outline" size={28} color="#023B5D" />
                   </TouchableOpacity>
                 </View>
                 
@@ -366,17 +380,22 @@ handle asyncstorage state saving also */
               animationType="fade"
               visible={isModalVisible}
             >
-              {STRINGS.map((item, index) => (
-                <Text key={index} style={styles.instructions}>
-                  {item.tuvaInstructionsForCourseComplete}
-                </Text>
-              ))}
-              <View style={styles.checkTaskContainer}>
-                {Array(modalWeeks)
-                  .fill(<ModalDetailsCheckbox />)
-                  .map((_, index) => (
-                    <ModalDetailsCheckbox key={index} index={index} />
-                  ))}
+              <View style={{ flex: 1 }}>
+                {STRINGS.map((item, index) => (
+                  <Text key={index} style={styles.instructions}>
+                    {item.tuvaInstructionsForCourseComplete}
+                  </Text>
+                ))}
+                <ScrollView 
+                  contentContainerStyle={styles.checkTaskContainer} 
+                  showsVerticalScrollIndicator={true}
+                >
+                  {Array(modalWeeks)
+                    .fill(<ModalDetailsCheckbox />)
+                    .map((_, index) => (
+                      <ModalDetailsCheckbox key={index} index={index} />
+                    ))}
+                </ScrollView>
               </View>
               <CustomModalButton onPress={() => handleModalClose()} />
             </Modal>
@@ -487,7 +506,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: THEME.white,
     width: "90%",
-    height: "auto",
+    height: "55%",
     padding: 40,
     borderRadius: 20,
     borderColor: THEME.darkBlue,
@@ -525,6 +544,8 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: THEME.lightBackground,
     borderRadius: 50,
+    borderColor: THEME.darkBlue,
+    borderWidth: 2,
     margin: 5,
   },
   checkTaskImg: {

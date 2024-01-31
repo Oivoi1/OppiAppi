@@ -107,8 +107,8 @@ useEffect(() => {
                 style={[styles.headerViews, styles.headerLeftView]}
                 onPress={() =>
                   Alert.alert(
-                    "Tämä on:",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    "Opintoviikot:",
+                    "TUVA-koulutuksen opintoviikkojen määrä. Voit muokata valintojasi TUVA -osiossa."
                   )
                 }
               >
@@ -123,8 +123,8 @@ useEffect(() => {
                 style={[styles.headerViews, styles.headerRightView]}
                 onPress={() =>
                   Alert.alert(
-                    "Tämä on 2:",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    "Suoritetut opintoviikot",
+                    "Tässä näet suoritettujen opintoviikkojen määrän. Voit lisätä tai vähentää suoritettujen opintoviikkojen määrää TUVA- osiossa."
                   )
                 }
               >
