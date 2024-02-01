@@ -27,7 +27,7 @@ export default function App() {
 //load studyweeks and trophies from phone memory 
 useEffect(() => {
   const fetchData = async() => {
-    //AsyncStorage.clear() //don't use this!
+    //AsyncStorage.clear() //don't use this! // nollaa tästä async storage
     let dataWeeks = await getDataFromStorage(APP_WEEKS_STORAGE_KEY);
     let dataTrophies = await getDataFromStorage(APP_TROPHIES_STORAGE_KEY);
     //console.log( data)
