@@ -16,10 +16,11 @@ export const LONG_VIBRATE = [ 0, 500 ]; // 0 ms pause, 500 ms vibration
 
 import candyBlueSvg from '../assets/candy_blue.svg'
 import candyGreenSvg from '../assets/candy_green.svg'
-import backArrowSvg from '../assets/back_arrow.svg'
+import backArrowSvg from '../assets/ion--chevron-back-circle-outline.svg'
 import uncheckedSvg from '../assets/candy_blue.svg'
 import checkedSvg from '../assets/candy_green.svg'
 import uncheckedTuvaSvg from '../assets/unchecked_tuvabutton.svg'
+import infoSvg from '../assets/ion--information-circle-outline.svg'
 
 // Icon resources
 export const ICONS_SVG = {
@@ -29,6 +30,7 @@ export const ICONS_SVG = {
   uncheckedSvg: uncheckedSvg,
   checkedSvg: checkedSvg,
   uncheckedTuvaSvg: uncheckedTuvaSvg,
+  infoSvg: infoSvg
 };
 
 // Numeric constants

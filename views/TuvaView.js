@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Modal from "react-native-modal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
+import { NUMERIC } from "../data/data";
 
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
@@ -19,8 +20,11 @@ import {handleSetTrophiesAdd, handleSetTrophiesSubstract} from "../utils/HeaderS
 import { AppHeaderContext } from "../utils/GeneralFunctions";
 import {getDataFromStorage,saveDataToStorage} from "../utils/GeneralFunctions/";
 import { ThemeProvider } from "@react-navigation/native";
+import CompetenceGoalsView from "./CompetenceGoalsView";
 
-export default function TuvaView() {
+const SCREEN_PADDING = 10
+
+export default function TuvaView({navigation}) {
   //global-state from App.js
   const { trophies, setTrophies } = useContext(AppHeaderContext);
 
@@ -80,6 +84,18 @@ export default function TuvaView() {
     };
     fetchData();
   }, []);
+
+  const BackButton = ( { onPress } ) => {
+    return (
+      <TouchableOpacity
+        style={ styles.customButton }
+        activeOpacity={ NUMERIC.opacityTouchFade }
+        onPress={ onPress }
+      >
+        <ICONS_SVG.backArrowSvg />
+      </TouchableOpacity>
+    )
+  }
 
   const handleModalOpen = (index) => {
     //changed index to match data's id because id from data starts from 1
@@ -310,25 +326,29 @@ handle asyncstorage state saving also */
     <View style={styles.container}>
       {(isModalVisible || isModalVisibleIntro) && <View style={styles.overlay} />}
       <SafeAreaView>
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={styles.viewContainer}>
-            {STRINGS.map((item, index) => (
-              <Text key={index} style={styles.heading}>
+            <View style={styles.tuvaTitle}>
+              <BackButton
+                onPress={ () => navigation.navigate('MainView') }
+              />
+              {STRINGS.map((item, index) => (
+              <Text key={index} style={[styles.heading, {marginLeft: 10, marginBottom: 0, flex: 1}]}
+                adjustsFontSizeToFit={true}
+                numberOfLines={1}
+              >
                 {item.tuvaHeading}
               </Text>
-            ))}
-            <TouchableOpacity
-              style={styles.iconInfo}
+              ))}
+              <TouchableOpacity
+              style={ styles.customButton }
               onPress={() => {
                 setIsModalVisibleIntro(!isModalVisibleIntro);
               }}
-            >
-              <Ionicons
-                name="information-circle-outline"
-                size={32}
-                color="#023B5D"
-              />
-            </TouchableOpacity>
+              >
+                <ICONS_SVG.infoSvg/>
+              </TouchableOpacity>
+            </View>
+
 
             <Modal
               style={styles.modalContainerInfo}
@@ -346,6 +366,7 @@ handle asyncstorage state saving also */
               />
             </Modal>
 
+            <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
             {TUVA_DATA.map((item, index) => (
               <View style={ styles.itemContainer } key={item.id}>
                 <TouchableOpacity onPress={() => onPressOpenLink(item.url)}>
@@ -399,8 +420,8 @@ handle asyncstorage state saving also */
               </View>
               <CustomModalButton onPress={() => handleModalClose()} />
             </Modal>
+            </ScrollView>
           </View>
-        </ScrollView>
       </SafeAreaView>
     </View>
   );
@@ -413,20 +434,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   heading: {
-    marginTop: 15,
-    marginBottom: 15,
     fontFamily: "Bold",
     fontSize: 24,
-    textAlign: "center",
     color: THEME.darkBlue,
+    textAlign: 'center',
+    paddingHorizontal: 5,
+    textAlignVertical: 'center'
   },
   viewContainer: {
     width: "100%",
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
+    padding: SCREEN_PADDING,
+    paddingTop: 0
   },
   boxContainer: {
     width: "100%",
@@ -483,18 +505,6 @@ const styles = StyleSheet.create({
     right: 0,
     borderColor: THEME.darkBlue,
   },
-  iconInfo: {
-    alignItems: "center",
-    backgroundColor: THEME.lightBackground,
-    width: 40,
-    height: 40,
-    justifyContent: "center",
-    alignSelf: "flex-end",
-    position: "absolute",
-    top: 0,
-    right: -8,
-    marginTop: 15,
-  },
   buttonContainer: {
     flex: 1,
     flexDirection: "row",
@@ -502,7 +512,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "relative",
   },
-
   modalContainer: {
     backgroundColor: THEME.white,
     width: "90%",
@@ -529,7 +538,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "15%",
   },
-
   checkTaskContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -556,5 +564,20 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     zIndex: 1, 
+  },
+  tuvaTitle: {
+    marginTop: 10,
+    flexDirection: 'row',
+    backgroundColor: THEME.lightBackground,
+    alignItems: 'center'
+  },
+  customButton: {
+    alignItems: 'center',
+    fontWeight: 'bold',
+    height: 40,
+    justifyContent: 'center',
+    marginBottom: 10,
+    marginLeft: 5,
+    width: 40,
   },
 });
