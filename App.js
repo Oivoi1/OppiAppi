@@ -21,13 +21,13 @@ import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY } from "./data/d
 import Header from "./components/Header";
 
 export default function App() {
-  const [studyWeeks, setStudyWeeks] = useState(8);
+  const [studyWeeks, setStudyWeeks] = useState(0);
   const [trophies, setTrophies] = useState(0);
 
 //load studyweeks and trophies from phone memory 
 useEffect(() => {
   const fetchData = async() => {
-    //AsyncStorage.clear() //don't use this!
+    //AsyncStorage.clear() //don't use this! // nollaa tästä async storage
     let dataWeeks = await getDataFromStorage(APP_WEEKS_STORAGE_KEY);
     let dataTrophies = await getDataFromStorage(APP_TROPHIES_STORAGE_KEY);
     //console.log( data)
