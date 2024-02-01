@@ -260,7 +260,7 @@ export const TUVA_DATA = [
     title: "Opiskelu- ja urasuunnittelutaidot",
     scope: "2-10 viikkoa",
     url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
-    initValue: 0,
+    initValue: 2,
     maxValue: 10,
     checked: false,
   },
