@@ -35,53 +35,73 @@ export default function Weather(props) {
     },[])
   
 return (
-    <><View style={{ borderWidth:2,
-        borderColor:'black',borderRadius:15, padding:7}}>
-  <Text style={styles.label}>Päivän sää</Text>
-  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: 'center' }}>
-    <View style={{ marginRight: 10 }}>
-      <Text style={styles.smallLabel}>Lämpötila</Text>
-      <Text style={styles.info}>{temp.toFixed(0)} °C</Text>
-      <Text style={styles.smallLabel}>Tuntuu kuin</Text>
-      <Text style={styles.info}>{feelsLike.toFixed(0)} °C</Text>
+    <>
+    <Text style={styles.label}>Päivän sää</Text>
+    <View style={{flex: 1, flexDirection: 'row',justifyContent: 'center', marginBottom: 30}}>
+    <View style={styles.panel}>
+        <View style={styles.panelWhite}/>
+        <View style={styles.panelBlue}/>
+        <View style={styles.panelContent}>
+            <Text style={styles.smallLabel}>Lämpötila</Text>
+            <Text style={styles.info}>{temp.toFixed(0)} °C</Text>
+            <Text style={styles.smallLabel}>Tuntuu kuin</Text>
+            <Text style={styles.info}>{feelsLike.toFixed(0)} °C</Text>
+            {icon && <Image source={{ uri: icon }} style={styles.image} />}
+        </View>
     </View>
-    <View>
-      {icon && <Image source={{ uri: icon }} style={styles.image} />}
     </View>
-  </View>
-  </View>
-</>
-    )
-}
+    </>
+)}
 
 const styles = StyleSheet.create({
     label: {
         fontFamily: 'SemiBold',
         marginTop: 10,
         fontSize: 24,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: THEME.darkBlue
+    },
+    panel: {
+        borderRadius:15,
+        backgroundColor: 'white',
+        width: 250,
+        height: 325,
+        justifyContent: 'center',
+        marginVertical: 10,
+        display: 'flex',
+        overflow: 'hidden',
+    },
+    panelWhite: {
+        backgroundColor: 'white',
+        width: '100%',
+        height: '50%'
+    },
+    panelBlue: {
+        backgroundColor: THEME.lightBlue,
+        width: '100%',
+        height: '50%'
+    },
+    panelContent: {
+        position: 'absolute',
+        alignSelf: 'center',
+        top: 10
     },
     smallLabel: {
         fontFamily: 'Regular',
-        marginTop: 10,
-        fontSize: 18,
-        alignSelf: 'center'
+        fontSize: 16,
+        alignSelf: 'center',
+        bottom: -7,
     },
     info: {
-        marginTop: 10,
+        fontFamily: 'Bold',
         textAlign: 'center',
-        fontSize: 24,
-        
+        fontSize: 30,
     },
     image: {
-        width: 120,
-        height: 120,
+        width: 180,
+        height: 180,
         alignSelf: 'center',
-        borderRadius: 30,
-        backgroundColor:THEME.lightBlue,
-        borderWidth:2,
-        borderColor:'black',
-      
+        top: 0
     }
 
 })

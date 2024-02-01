@@ -85,13 +85,15 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     fontFamily: "Bold",
+    color: THEME.darkBlue
   },
   button: {
     backgroundColor: THEME.white,
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 100,
     borderWidth: 2,
-    width: "100%",
+    borderColor: THEME.darkBlue,
+    width: "95%",
     marginBottom: 15,
     alignSelf: "center",
   },
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
   additionalTitle: {
     flexDirection: 'row',
     backgroundColor: THEME.lightBackground,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   customButton: {
     alignItems: 'center',
