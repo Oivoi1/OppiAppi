@@ -21,7 +21,7 @@ import { THEME, APP_TROPHIES_STORAGE_KEY, APP_WEEKS_STORAGE_KEY } from "./data/d
 import Header from "./components/Header";
 
 export default function App() {
-  const [studyWeeks, setStudyWeeks] = useState(8);
+  const [studyWeeks, setStudyWeeks] = useState(0);
   const [trophies, setTrophies] = useState(0);
 
 //load studyweeks and trophies from phone memory 

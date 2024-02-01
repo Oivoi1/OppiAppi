@@ -9,8 +9,8 @@ export const handleSetStudyWeeksAdd = (setStudyWeeks, studyWeeks) => {
   studyWeeks === 38 ? null : saveDataToStorage(APP_WEEKS_STORAGE_KEY, studyWeeks + 1)
 };
 export const handleSetStudyWeeksSubstrack = (setStudyWeeks, studyWeeks) => {
-  studyWeeks === 8 ? null : setStudyWeeks(studyWeeks - 1);
-  studyWeeks === 8 ? null : saveDataToStorage(APP_WEEKS_STORAGE_KEY, studyWeeks - 1)
+  studyWeeks === 0 ? null : setStudyWeeks(studyWeeks - 1);
+  studyWeeks === 0 ? null : saveDataToStorage(APP_WEEKS_STORAGE_KEY, studyWeeks - 1)
 };
 
 // Function for trophies state updating and saving to Asyncstorage
