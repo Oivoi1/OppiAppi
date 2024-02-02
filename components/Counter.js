@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 15,
     backgroundColor: THEME.white,
-    
+
   },
 
   counterLabelAdd: {
@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     display: 'flex', // Set display to flex
     alignItems: 'center', // Align items in the center vertically
+    marginRight: 15
   },
 
   counterLabelSubstract: {
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
   counterLabel: {
     fontSize: 22,
     paddingTop: 10,
-    paddingRight: 20,
+    paddingRight: 15,
     paddingLeft: 20,
     fontFamily: "Bold",
     color: THEME.black,
