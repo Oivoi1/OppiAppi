@@ -33,7 +33,8 @@ export default function AdditionalContentView({navigation}) {
         <BackButton
           onPress={ () => navigation.navigate('MainView') }
         />
-        <Text style={styles.title}>Muuta hyödyllistä sisältöä</Text>
+        <Text style={styles.title} adjustsFontSizeToFit={true}
+                numberOfLines={1}>Muuta hyödyllistä sisältöä</Text>
       </View>
       <ScrollView style={styles.scrollView}>
           <TouchableOpacity style={styles.button} onPress={handleModal}>
@@ -85,7 +86,8 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     fontFamily: "Bold",
-    color: THEME.darkBlue
+    color: THEME.darkBlue,
+    width:'85%'
   },
   button: {
     backgroundColor: THEME.white,
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
   additionalTitle: {
     flexDirection: 'row',
     backgroundColor: THEME.lightBackground,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   customButton: {
     alignItems: 'center',

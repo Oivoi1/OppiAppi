@@ -12,6 +12,7 @@ export default function Weather(props) {
     const [temp, setTemp] = useState(0)
     const [feelsLike, setFeelsLike] = useState (0)
     const [icon, setIcon] = useState('')
+    const [name, setName] = useState('')
 
     useEffect (() => {
         //Gets weather information from OpenWeather. Weather component is displayed in Position.js, which gets user's current coordinates
@@ -26,7 +27,8 @@ export default function Weather(props) {
             (result) => {
                 setTemp(result.main.temp)
                 setFeelsLike(result.main.feels_like)
-                setIcon(ICON_URL + result.weather[0].icon + '@2x.png')   
+                setIcon(ICON_URL + result.weather[0].icon + '@2x.png')
+                setName(result.name)  
             },
             (error) => {
                 alert(error)
@@ -36,7 +38,7 @@ export default function Weather(props) {
   
 return (
     <>
-    <Text style={styles.label}>Päivän sää</Text>
+    <Text style={styles.label}>Päivän sää: {name}</Text>
     <View style={{flex: 1, flexDirection: 'row',justifyContent: 'center', marginBottom: 30}}>
     <View style={styles.panel}>
         <View style={styles.panelWhite}/>
