@@ -3,9 +3,10 @@ import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
 import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
 import { Ionicons } from '@expo/vector-icons'
+import { useRoute } from '@react-navigation/native'
 
 const SCREEN_PADDING = 10
-const INDICATOR_SIZE = 110
+const INDICATOR_SIZE = 120
 
 /**
  * Go back to previous page from details view
@@ -210,6 +211,8 @@ const CompetenceGoalsView = ({navigation}) => {
   const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
 
+  const route = useRoute();
+
   useEffect(() => {
     (async ()=>{
       // Load task list from async storage
@@ -229,12 +232,17 @@ const CompetenceGoalsView = ({navigation}) => {
     )()
   }, [])
   
+  useEffect(() => {
+    if(route.params?.detailsIndex) {
+      setShowDetailsFrom(route.params.detailsIndex - 1);
+    }
+  }, [route.params])
   
 
   // Calc competence indicator locations
   const elementPositions = calcElementPositions(
-    8,
-    INDICATOR_SIZE * 1.15,
+    7,
+    INDICATOR_SIZE * 1.05,
     270,
     Dimensions.get( 'window' ).width / 2 - SCREEN_PADDING,
     Dimensions.get( 'window' ).height / 2 - INDICATOR_SIZE,
@@ -268,7 +276,11 @@ const CompetenceGoalsView = ({navigation}) => {
           <BackButton
             onPress={ () => navigation.navigate('MainView') }
           />
-          <Text style={ [styles.title, {flex: 1, justifyContent: 'center', marginRight: 40}] }>Minä osaan</Text>
+          <Text 
+            style={ [styles.title, {flex: 1, justifyContent: 'center', marginRight: 40, marginLeft: 12}] }
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+          >Tuva-koulutuksen tavoitteet</Text>
         </View>
         <View style={ styles.buttonContainer }>
           { COMPETENCE_DATA.map( ( item, index ) => <CompetenceIndicator

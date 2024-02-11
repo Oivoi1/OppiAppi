@@ -20,10 +20,7 @@ const MainView = ({ route, navigation }) => {
           style={styles.link__container}
           onPress={() => navigation.navigate("CompetenceGoalsView")}
         >
-          <Text style={styles.link__container__header}>Minä osaan</Text>
-          <Text style={styles.link__container__paragraph}>
-            Laaja-alaiset tavoitteet
-          </Text>
+          <Text style={styles.link__container__header}>Tavoitteet</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.link__container}

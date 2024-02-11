@@ -171,7 +171,7 @@ useEffect(() => {
             name="CompetenceGoalsView"
             component={CompetenceGoalsView}
             options={{
-              title: "MINÄ OSAAN",
+              title: "TAVOITTEET",
             }}
             initialParams={fontsLoaded}
           />

@@ -53,34 +53,6 @@ export const THEME = {
 
 export const COMPETENCE_DATA = [
   {
-    buttonText: 'Hyvinvointi-\nosaaminen',
-    detailsTitle: 'Minä osaan: Hyvinvointiosaaminen',
-    description: 'Opiskelija ymmärtää terveyden ja terveellisten elämäntapojen merkityksen. Hän vaalii fyysistä, psyykkistä ja sosiaalista toimintakykyään ja hyvinvointiaan. Opiskelija omaksuu hyvinvointiaan tukevia toimintatapoja sekä tunnistaa niitä edistäviä yhteisöjä. Hän osaa suunnitella omaa ajankäyttöään siten, että opiskelu ja vapaa-aika vuorottelevat tarkoituksenmukaisesti. Opiskelija osaa hakea tietoa, apua ja tukea oman hyvinvointinsa ylläpitämiseen sekä hakeutua tarvittaessa hyvinvoinnin ja terveydenhuollon palveluiden pariin.',
-    tasks: [
-      {
-        title: 'Tunnistan terveyttä ja hyvinvointia edistäviä ja haittaavia tekijöitä.',
-      },
-      {
-        title: 'Ymmärrän omien valintojen merkityksen hyvinvoinnilleni.',
-      },
-      {
-        title: 'Pidän huolta omasta fyysisestä, psyykkisestä ja sosiaalisesta hyvinvoinnistani.',
-      },
-      {
-        title: 'Ymmärrän opiskelun, levon ja vapaa-ajan vuorottelun merkityksen hyvinvoinnille.',
-      },
-      {
-        title: 'Pidän yllä opintoja tukevaa vuorokausirytmiä.',
-      },
-      {
-        title: 'Osaan käyttää alueen sosiaali- ja terveydenhuollon palveluita.',
-      },
-      {
-        title: 'Osallistun omaa hyvinvointia edistäviin liikunta- ja kulttuurimuotoihin.',
-      },
-    ]
-  },
-  {
     buttonText: 'Moniluku-\ntaito',
     detailsTitle: 'Minä osaan: Monilukutaito',
     description: 'Opiskelija kehittyy viestien tulkitsijana ja tuottajana sekä harjaantuu toimimaan erilaisten tekstien kanssa. Opiskelija osaa tarkastella ja tulkita kriittisesti erilaisia tekstejä. Tekstillä tarkoitetaan laajasti sekä puhuttuja että kirjoitettuja tekstejä, jotka sisältävät erilaisia kielimuotoja arkikielestä opiskelun kieleen ja eri tiedonalojen käsitteelliseen kieleen. Luku- ja kirjoitustaidon ohella opiskelija kehittää kuvanlukutaitoaan, medialukutaitoaan ja numeerista lukutaitoaan opiskelusuunnitelmansa mukaisesti.',

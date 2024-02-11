@@ -392,7 +392,14 @@ handle asyncstorage state saving also */
                     <Ionicons name="trophy-outline" size={28} color="#023B5D" />
                   </TouchableOpacity>
                 </View>
-                
+                  <TouchableOpacity onPress={() => navigation.navigate('CompetenceGoalsView', {detailsIndex: index+1})}>
+                  <View style={styles.goalsButtonContainer}>
+                    <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
+                  </View>
+                  </TouchableOpacity>
+                  <View style={styles.goalsCounterContainer}>
+                    <Text style={styles.goalsCounterText}>0/0</Text>
+                  </View>
               </View>
             ))}
 
@@ -579,5 +586,39 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 5,
     width: 40,
+  },
+  goalsButtonLabel: {
+    fontFamily: "Bold",
+    color: THEME.darkBlue,
+    fontSize: 18,
+  },
+  goalsButtonContainer: {
+    padding: 5,
+    borderRadius: 100,
+    backgroundColor: 'white',
+    borderWidth: 3,
+    borderColor: THEME.darkBlue,
+    marginTop: 10,
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '60%'
+  },
+  goalsCounterText: {
+    fontFamily: "Bold",
+    color: THEME.darkBlue,
+    fontSize: 16,
+  },
+  goalsCounterContainer: {
+    padding: 2,
+    borderBottomStartRadius: 18,
+    borderBottomEndRadius: 18,
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderTopWidth: 0,
+    borderColor: THEME.darkBlue,
+    marginBottom: 5,
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '25%'
   },
 });
