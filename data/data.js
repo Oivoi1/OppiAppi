@@ -48,6 +48,7 @@ export const THEME = {
   brightRed: "#D3232E",
   gray: "#231F20",
   lightGray: "#d9d9d9",
+  green: "#6ECB56",
   white: "#FFFFFF",
 };
 
