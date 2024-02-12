@@ -1,16 +1,17 @@
 import {StyleSheet,Text,View,TouchableOpacity,ScrollView,SafeAreaView} from "react-native";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "react-native-modal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import { NUMERIC } from "../data/data";
+import { useFocusEffect } from "@react-navigation/native";
 
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 import CustomModalButton from "../components/CustomModalButton";
 
 // <----- DATA -----> //
-import {STRINGS,TUVA_DATA,ICONS_SVG,TUVA_STORAGE_KEY,THEME} from "../data/data";
+import {STRINGS,TUVA_DATA,ICONS_SVG,TUVA_STORAGE_KEY,THEME,COMPETENCE_STORAGE_KEY} from "../data/data";
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/GeneralFunctions";
@@ -49,6 +50,24 @@ export default function TuvaView({navigation}) {
     useState(false);
   const [showModalDetailFromSeventh, setShowModalDetailFromSeventh] =
     useState(false);
+
+  const [ tasksCompleted, setTasksCompleted ] = useState();
+
+  const fetchTasks = async ()=>{
+    try {
+      // Load task list from async storage
+      let dataFromStorage = await getDataFromStorage(COMPETENCE_STORAGE_KEY)
+      setTasksCompleted(dataFromStorage)
+    }catch(error) {
+      console.log('Error fetching tasks in TuvaView:', error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchTasks();
+    }, [])
+  );
 
   //load showmodaldetailsfrom variables from phone memory
   useEffect(() => {
@@ -322,6 +341,12 @@ handle asyncstorage state saving also */
     </TouchableOpacity>
     );
   };
+
+  if(!tasksCompleted || !showModalDetailFromSeventh) {
+    return(
+      <View><Text>Loading...</Text></View>
+    )
+  }
   return (
     <View style={styles.container}>
       {(isModalVisible || isModalVisibleIntro) && <View style={styles.overlay} />}
@@ -368,6 +393,10 @@ handle asyncstorage state saving also */
 
             <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
             {TUVA_DATA.map((item, index) => (
+              //const allCompleted =  tasks.every( task => task === true )
+              //const completedTasks = tasks.filter(task => task === true).length
+              //const totalTasks = tasks.length
+              //tasksCompleted[ index ].taskCompleted.filter(task => task === true).length
               <View style={ styles.itemContainer } key={item.id}>
                 <TouchableOpacity onPress={() => onPressOpenLink(item.url)}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
@@ -397,9 +426,23 @@ handle asyncstorage state saving also */
                     <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
                   </View>
                   </TouchableOpacity>
-                  <View style={styles.goalsCounterContainer}>
-                    <Text style={styles.goalsCounterText}>0/0</Text>
+                  {tasksCompleted[ index ].taskCompleted.every( task => task === true ) ?
+                  <View style={ styles.goalsCounterContainerComplete}>
+                    <Text style={[styles.goalsCounterText, {color: 'white'}]}>
+                      {tasksCompleted[ index ].taskCompleted.filter(task => task === true).length}
+                      /
+                      {tasksCompleted[ index ].taskCompleted.length}
+                    </Text>
                   </View>
+                  :
+                  <View style={ styles.goalsCounterContainer}>
+                    <Text style={styles.goalsCounterText}>
+                      {tasksCompleted[ index ].taskCompleted.filter(task => task === true).length}
+                      /
+                      {tasksCompleted[ index ].taskCompleted.length}
+                    </Text>
+                  </View>
+                  }
               </View>
             ))}
 
@@ -620,5 +663,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: 'center',
     width: '25%'
+  },
+  goalsCounterContainerComplete: {
+    padding: 2,
+    borderBottomStartRadius: 18,
+    borderBottomEndRadius: 18,
+    backgroundColor: THEME.green,
+    borderWidth: 2,
+    borderTopWidth: 0,
+    borderColor: THEME.green,
+    marginBottom: 5,
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '25%',
   },
 });
