@@ -53,176 +53,198 @@ export const THEME = {
 
 export const COMPETENCE_DATA = [
   {
-    buttonText: 'Moniluku-\ntaito',
-    detailsTitle: 'Minä osaan: Monilukutaito',
-    description: 'Opiskelija kehittyy viestien tulkitsijana ja tuottajana sekä harjaantuu toimimaan erilaisten tekstien kanssa. Opiskelija osaa tarkastella ja tulkita kriittisesti erilaisia tekstejä. Tekstillä tarkoitetaan laajasti sekä puhuttuja että kirjoitettuja tekstejä, jotka sisältävät erilaisia kielimuotoja arkikielestä opiskelun kieleen ja eri tiedonalojen käsitteelliseen kieleen. Luku- ja kirjoitustaidon ohella opiskelija kehittää kuvanlukutaitoaan, medialukutaitoaan ja numeerista lukutaitoaan opiskelusuunnitelmansa mukaisesti.',
+    buttonText: 'Opiskelu- ja urasuunnittelutaidot',
+    detailsTitle: 'Opiskelu- ja urasuunnittelutaidot',
+    description: 'Tutkintokoulutukseen valmentavassa koulutuksessa kehitetään opiskelijan opiskelu- ja urasuunnittelutaitoja, kuten kykyä työskennellä ja opiskella itsenäisesti, suunnitella omia opintoja ja ajankäyttöä sekä tehdä opintoihin liittyviä valintoja. Opiskelijaa tuetaan tiedostamaan koulutuksen ja työnteon merkitys omassa elämässään. Opiskelu- ja urasuunnittelutaitojen kehittymiseen liittyvät kiinteästi opiskelu/tutkintokielen taidon ja erityisesti urasuunnitteluun liittyvien tekstitaitojen hallinta.',
     tasks: [
       {
-        title: 'Osaan toimia erilaisissa vuorovaikutustilanteissa.',
+        title: 'Asetan ja arvioin omia elämäntavoitteitani ja -toiveitani.',
       },
       {
-        title: 'Kirjoitan eri tilanteisiin soveltuvaa tekstiä.',
+        title: 'Osaan kuvailla itseäni oppijana ja opiskelijana.',
       },
       {
-        title: 'Hankin opinnoissani tarvittavia matematiikan taitoja.',
+        title: 'Tutustun erilaisiin tapoihin oppia ja hankkia osaamista.',
       },
       {
-        title: 'Haen tietoa eri lähteistä.',
+        title: 'Käytän soveltuvia opiskelutaitoja.',
       },
       {
-        title: 'Osaan arvioida tiedon luotettavuutta.',
+        title: 'Suunnittelen omia opintojani tavoitteellisesti.',
       },
       {
-        title: 'Osaan käyttää eri viestintätapoja.',
+        title: 'Etsin tietoa itseäni kiinnostavista jatko-opinnoista sekä työelämävaihtoehdoista.',
       },
       {
-        title: 'Ymmärrän tekijänoikeudet.',
+        title: 'Tarkastelen vaihtoehtoisia uramahdollisuuksiani myös tulevaisuuden näkökulmasta.',
+      },
+      {
+        title: 'Arvioin omaa soveltuvuuttani eri aloille.',
+      },
+      {
+        title: 'Teen realistisen jatko-opintosuunnitelman ja hakeudun sen mukaisesti koulutukseen.',
+      },
+      {
+        title:'Valmistaudun opiskelemaan lukiokoulutuksessa tai ammatillisessa koulutuksessa.',
+      },
+      {
+        title: 'Ymmärrän ja osaan käyttää opiskelu- ja urasuunnitteluun liittyvää kieltä.',
       }
     ]
   },
   {
-    buttonText: 'Digi-\nosaaminen',
-    detailsTitle: 'Minä osaan: Digiosaaminen',
-    description: 'Opiskelija osaa käyttää digitaalisia palveluita osana oppimista ja ongelmanratkaisua. Opiskelija osaa toimia vastuullisesti sosiaalisessa mediassa sekä käyttää digitaalisia palveluita asioidessaan viranomaisten ja muiden sähköisiä asiointia edellyttävien palveluntarjoajien kanssa.',
+    buttonText: 'Perustaitojen vahvistaminen',
+    detailsTitle: 'Perustaitojen vahvistaminen',
+    description: 'Koulutuksen osan tavoitteena on vahvistaa opiskelijan lukutaitoon, numeerisiin taitoihin ja digitaitoihin liittyvää osaamista. Lisäksi koulutuksen osa mahdollistaa perusopetuksen oppimäärän arvosanojen korottamisen erityisessä tutkinnossa. Keskeistä opiskelussa on eri tiedonalojen tekstitaitojen sekä opiskelutaitojen vahvistaminen.',
     tasks: [
       {
-        title: 'Kehitän ja päivitän digiosaamistani.',
+        title: 'Saavutan sellaiset perustaidot (luku-, numero- ja digitaidot), joiden avulla pystyn opiskelemaan toisen asteen opinnoissa.',
       },
       {
-        title: 'Käytän sähköisiä välineitä ja sovelluksia.',
+        title: 'Saavutan sellaisen opiskelu/tutkintokielen taidon, että se mahdollistaa toisen asteen koulutukseen osallistumisen.',
       },
       {
-        title: 'Toimin sähköisissä oppimisympäristöissä asiallisesti.',
+        title: 'Kehitän eri tiedonalojen kielen osaamistani ja käytän opiskeltavaan aineeseen sopivia opiskelumenetelmiä.',
       },
       {
-        title: 'Toimin vastuullisesti sosiaalisessa mediassa.',
-      },
-      {
-        title: 'Käytän digitaalisia palveluita.',
+        title: 'Korotan perusopetuksen oppimäärän arvosanoja erityisessä tutkinnossa, mikäli se on toiselle asteelle hakeutumisen näkökulmasta tarpeellista.',
       },
     ]
   },
   {
-    buttonText: 'Ympäristö-\nosaaminen',
-    detailsTitle: 'Minä osaan: Ympäristöosaaminen',
-    description: 'Opiskelija ymmärtää kestävän kehityksen merkityksen yhteiskunnalle ja maapallolle ja osaa toimia kestävän kehityksen mukaisesti. Opiskelija tunnistaa ja ymmärtää keskeisiä ympäristön muutoksia  ja ihmisen toiminnan merkityksen niihin. Hän tuntee kestävän kehityksen tavoitteet ja ymmärtää ilmiöiden vaikutuksen toisiinsa, mukaan lukien kulttuurisen, sosiaalisen ja taloudellisen näkökulman. Opiskelijaa osaa toimia kestävää elämäntapaa tukien ja ottaa vastuuta ympäristöstä yhteistyössä muiden kanssa.',
+    buttonText: 'Lukiokoulutuksen opinnot ja niihin valmentautuminen',
+    detailsTitle: 'Lukiokoulutuksen opinnot ja niihin valmentautuminen',
+    description: 'Koulutuksen osa sisältää lukiokoulutukseen valmentavaa koulutusta ja lukio-opintoja opiskelijan valmiuksien mukaisesti. Suorittaessaan lukio-opintoja opiskelija saa tukea opiskelutaitojen ja -valmiuksien kehittämiseen osana valmentavaa koulutusta.\n\nOpiskelija vahvistaa opiskelukielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee lukiossa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot lukio-opiskeluun sekä vahvistaa erityisesti tiedonalojen kielen taitoaan eli eri oppiaineiden tekstitaitoja.\n\nOpiskelija tutustuu lukiokoulutukseen ja sen vaatimuksiin. Opiskelija voi valita omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan lukion opintojakson tai opintojaksoja, joita hän suorittaa osana valmentavaa koulutusta. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa lukiokoulutuksessa.',
     tasks: [
       {
-        title: 'Pohdin kestävän tulevaisuuden periaatteiden toteutumista omassa ja yhteisöni toiminnassa.',
+        title: 'Saavutan riittävän taidon lukion opetuskielessä ja eri tiedonalojen tekstitaidoissa (sanavarasto, luetun ymmärtämis- ja tulkintataidot sekä tuottamistaidot).',
       },
       {
-        title: 'Toimin kestävän tulevaisuuden periaatteiden mukaisesti.',
+        title: 'Osallistun opiskeltavaan oppiaineeseen sopivien opiskelumenetelmien ja tieto- ja viestintätekniikan käyttöön opiskelun apuna.',
       },
       {
-        title: 'Ymmärrän, millaisia vaikutuksia omalla ja muiden toiminnalla on.',
+        title: 'Tutustun lukiokoulutukseen ja sen käytäntöihin sekä arviointimenetelmiin.',
       },
       {
-        title: 'Kannustan muita toimimaan kestävän tulevaisuuden periaatteiden mukaan.',
+        title: 'Arvioin lukio-opintojen sopivuuden itselleni.',
+      },
+      {
+        title: 'Suoritan kiinnostusten ja tavoitteideni mukaisia lukion opintoja.',
       },
     ]
   },
   {
-    buttonText: 'Kulttuuri-\nosaaminen',
-    detailsTitle: 'Minä osaan: Kulttuuriosaaminen',
-    description: 'Opiskelija syventää tietojaan ja ymmärrystään omasta identiteetistään sekä opiskeluyhteisön ja yhteiskunnan moninaisuudesta, jossa erilaiset identiteetit, kielet, uskonnot ja katsomukset elävät rinnakkain ja vuorovaikutuksessa keskenään. Opiskelija saa kokemuksia kansainvälisyydestä omassa arjessaan ja opiskeluympäristössään sekä esimerkiksi vierailujen, kulttuuritapahtumien, verkostoyhteistyön tai muun yhteistön kautta. Mahdollinen kieliprofiilin laatiminen tukee osaltaan opiskelijan ymmärrystä kielellisestä identiteetistään sekä hänen kasvuaan kielenoppijana ja -käyttäjänä.',
+    buttonText: 'Ammatillisen koulutuksen opinnot',
+    detailsTitle: 'Ammatillisen koulutuksen opinnot ja niihin valmentautuminen',
+    description: 'Koulutuksen osa sisältää ammatillisia perustutkintojen tutkinnon osia sekä tutkinnon osia pienempiä kokonaisuuksia tai yhteisten tutkinnon osien osa-alueita opiskelijan valmiuksien mukaisesti. On tärkeää, että opiskelija saa opiskeluun riittävästi tukea sekä valmentavassa koulutuksessa että suorittaessaan ammatillisia opintoja valmentavan koulutuksen aikana. \n\nOpiskelija vahvistaa tutkintokielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee ammatillisessa koulutuksessa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot ammatilliseen opiskeluun sekä vahvistaa erityisesti ammatillisessa koulutuksessa tarvittavaa kielitaitoa.\n\nOpiskelija tutustuu ammatilliseen koulutukseen ja sen vaatimuksiin. Opiskelija voi suorittaa omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan tutkinnon osia sekä pienempiä kokonaisuuksia tai yhteisten tukinnon osien osa-alueita. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa ammatillisessa koulutuksessa.',
     tasks: [
       {
-        title: 'Tutustun itseeni.',
+        title: 'Saavutan riittävän taidon ammatillisten opintojen opetuskielessä ja eri tiedonalojen tekstitaidoissa (sanavarasto, luetun ymmärtämis- ja tulkintataidot sekä tuottamistaidot).',
       },
       {
-        title: 'Hyväksyn itseni ja yhteisöni jäsenet omana itsenään.',
+        title: 'Osallistun alakohtaiseen koulutukseen sopivien opiskelumenetelmien ja tieto- ja viestintätekniikan käyttöön opiskelun apuna.',
       },
       {
-        title: 'Ymmärrän erilaisia tapoja elää.',
+        title: 'Tutustun ammatilliseen koulutukseen, sen käytäntöihin sekä arviointimenetelmiin.',
       },
       {
-        title: 'Pohdin omaa kulttuuriani.',
+        title: 'Arvioin ammatillisen koulutuksen sopivuuden itselleni.',
       },
       {
-        title: 'Osaan toimia monikulttuurisessa maailmassa.',
+        title: 'Suoritan itselleni sopivia ammatillisen koulutuksen opintoja (ammatilliset tutkinnon osat tai yhteiset tutkinnon osat).',
       },
-      {
-        title: 'Hankin kokemuksia kansainvälisyydestä.',
-      }
     ]
   },
+  
 
+  
   {
-    buttonText: 'Yhteiskunta-\nosaaminen',
-    detailsTitle: 'Minä osaan: Yhteiskuntaosaaminen',
-    description: 'Opiskelija ymmärtää demokraattisen, oikeudenmukaisen sekä tasa-arvoon ja yhdenvertaisuuteen perustuvan yhteiskunnan toimintaperiaatteita ja rakenteita. Hän osaa vaikuttaa oman ryhmänsä ja oppilaitoksensa asioihin sekä ymmärtää, miten yhteiskunnallisiin kysymyksiin voi ottaa kantaa.  Opiskelija omaksuu aktiivisen kansalaisuuden ja toimijuuden taitoja. Opiskelija ymmärtää työn merkityksen yksilön elämässä ja yhteiskunnassa.',
+    buttonText: 'Työelämätaidot ja työelämässä tapahtuva oppiminen',
+    detailsTitle: 'Työelämätaidot ja työelämässä tapahtuva oppiminen',
+    description: 'Koulutuksen osassa keskitytään keskeisiin työelämätaitoihin ja tuetaan työelämässä tapahtuvaa oppimista. Tavoitteena on vahvistaa opiskelijan oman toiminnan ohjaamista sekä viestintä-, vuorovaikutus- ja yhteistyötaitoja. Opiskelija tutustuu työelämässä tapahtuvaan koulutukseen.',
     tasks: [
       {
-        title: 'Tähtään työelämään.',
+        title: 'Tunnen työnhaun prosessin',
       },
       {
-        title: 'Osallistun oman yhteisöni päätöksentekoon.',
+        title: 'Tutustun työpaikkoihin oppimisympäristöinä',
       },
       {
-        title: 'Toimin tasa-arvoisesti ja oikeudenmukaisesti.',
+        title: 'Tunnen työelämän ja yrittäjyyden keskeiset periaatteet',
       },
       {
-        title: 'Tunnen demokratian periaatteet.',
+        title: 'Osallistun työyhteisön jäsenenä työpaikalla',
       },
       {
-        title: 'Tutustun yhteiskunnan toimintaan ja vaikuttamisen eri tapoihin.',
+        title: 'Hallitsen ajankäytön suunnittelua ja hallintaa',
+      },
+      {
+        title: 'Tunnen omat oikeuteni ja velvollisuuteni työpaikalla',
+      },
+      {
+        title: 'Tiedostan mahdollisuuteni kansainvälisyysosaamisen kehittämiseen ja osallistun kansainväliseen toimintaan mahdollisuuksien mukaan',
+      },
+      {
+        title: 'Tutustun yleisimpiin työpaikalla käytössä oleviin tietokoneohjelmiin ja työpaikan vuorovaikutustilanteiden kieleen',
+      },
+      {
+        title: 'Tiedostan tulevaisuuden haasteet ja työelämän muutokset',
+      },
+    ]
+
+  },
+  {
+    buttonText: 'Arjen ja yhteiskunnallisen osallisuuden taidot',
+    detailsTitle: 'Arjen taidot ja yhteiskunnallinen osallisuus',
+    description: 'Koulutuksen osassa painottuvat opiskelijan arjessa toimimisen ja yhteiskunnallisen osallisuuden taitojen vahvistaminen. Arjen toimintakyvyn vahvistaminen ja osallisuuden edistäminen nähdään opiskelijan terveyttä ja hyvinvointia sekä osallisuutta edistävänä. Tavoitteena on myös vahvistaa arjen taitojen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitoja. ',
+    tasks: [
+      {
+        title: 'Arvioin ja vahvistan toimintakykyäni sekä hyvinvointiani',
+      },
+      {
+        title: 'Tunnen mielen hyvinvoinnin perusteet ja osaan vahvistaa sitä',
+      },
+      {
+        title: 'Kehitän kotitalousosaamistani',
+      },
+      {
+        title: 'Vahvistan arjen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitojani ja harjoittelen kielenkäyttäjänä niissä tilanteissa',
+      },
+      {
+        title: 'Perehdyn yhteiskunnan tarjoamiin palveluihin ja osaan hakea tarvitsemiani palveluja',
+      },
+      {
+        title: 'Tunnen yhteiskunnallisen vaikuttamisen tapoja ja toimin niiden mukaisesti',
+      },
+      {
+        title: 'Hankin tietoja ja taitoja taloudellisen päätöksentekoni tueksi',
+      },
+      {
+        title: 'Suunnittelen ja teen arkielämään liittyviä valintoja, päätöksiä ja hankintoja sekä pohdin itsenäisen asumisen mahdollisuuksia ja edellytyksiä',
+      },
+      {
+        title: 'Tunnen turvalliset, vastuulliset ja kestävät toimintatavat opiskelu- ja asuinympäristössäni',
+      },
+      {
+        title: 'Tutustun erilaisiin vapaa-ajanviettomahdollisuuksiin liikunnan, taiteen, kulttuurin tai muiden tapahtumien avulla',
       },
 
     ]
+
   },
   {
-    buttonText: 'Vuorovaikutus-\nosaaminen',
-    detailsTitle: 'Minä osaan: Vuorovaikutusosaaminen',
-    description: 'Opiskelija pyrkii toimimaan tilanteen vaatimalla tavalla erilaisissa vuorovaikutustilanteissa sekä ilmaisee erilaisia näkökantoja rakentavasti. Hän oppii kuuntelemaan ja kunnioittamaan toisten näkemyksiä ja tuomaan omia näkökulmiaan esille yksilönä ja ryhmän jäsenenä sekä kehittää empatiakykyään. Opiskelija osaa käyttää viestinnässä eri kieliä asianmukaisesti ja toimivasti. Opiskelija osaa viestiä asianmukaisesti myös erilaisilla sosiaalisen median alustoilla.',
+    buttonText: 'Valinnaiset koulutuksen osat',
+    detailsTitle: 'Valinnaiset koulutuksen osat',
+    description: 'Opiskelija voi henkilökohtaisen opiskelusuunnitelmansa mukaisesti suorittaa valinnaisia koulutuksen osia omien yksilöllisten tarpeiden, kiinnostuksen ja valmiuksien mukaan koulutuksen järjestäjän paikallisesta tarjonnasta ja/tai muusta (alueellisesta tai valtakunnallisesta) tarjonnasta. Valinnaiset koulutuksen osat voivat koostua yhdestä tai useammasta osasta. Opiskelijoille, joiden äidinkieli on muu kuin opiskelukieli, voidaan järjestää oman äidinkielen opetusta. Valinnaiset opinnot voivat sisältää myös esimerkiksi järjestöissä tehtävää vapaaehtoistyötä ja siihen liittyviä kursseja.',
     tasks: [
       {
-        title: 'Osaan kuunnella ja keskustella huomioiden toiset.',
+        title: "Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:",
       },
       {
-        title: 'Tunnistan roolit erilaisissa yhteisöissä ja vuorovaikutustilanteissa.',
+        title: "Harrastuneisuus ja vapaaehtoistyö 0-3 viikkoa:",
       },
       {
-        title: 'Osallistun turvallisen ilmapiirin rakentamiseen yhdessä muun opiskelijayhteisön kanssa.',
-      },
-      {
-        title: 'Kunnioitan eri yhteisöjen tapoja toimia.',
-      },
-      {
-        title: 'Harjoittelen tunnetaitoja.',
-      },
-    ]
-  },
-  {
-    buttonText: 'Oppimaan-\noppiminen',
-    detailsTitle: 'Minä osaan: Oppimaan oppiminen',
-    description: 'Opiskelija osaa hankkia tietoa sekä jäsentää, arvioida ja soveltaa sitä. Hän osaa ottaa vastuuta opinnoistaan ja suunnitella niitä tavoitteellisesti. Hän tunnistaa ja osaa käyttää tarkoituksenmukaisia ja monipuolisia oppimistapoja ja -strategioita ja ymmärtää vertaisryhmän ja muun lähipiirin merkityksen oppimisen ja opiskelun tukena. Opiskelija kehittää opiskelukielen taitoaan tavoitteellisesti siten, että pystyy käyttämään puhuttua ja kirjoittua kieltä erilaisissa oppimisympäristöissä.',
-    tasks: [
-      {
-        title: "Tunnistan omia vahvuuksiani.",
-      },
-      {
-        title: "Tunnistan, mihin tarvitsen apua ja ohjausta.",
-      },
-      {
-        title: "Suunnittelen omia tavoitteitani ja opintojani.",
-      },
-      {
-        title: 'Etsin aktiivisesti tietoa.',
-      },
-      {
-        title: 'Tiedän miten opin parhaiten.',
-      },
-      {
-        title: 'Osaan toimia erilaisissa oppimisympäristöissä.',
-      },
-      {
-        title: 'Vahvistan suomen kielen taitoani.',
-      },
-      {
-        title: 'Otan vastuun opinnoistani.',
-      },
-      {
-        title: 'Osaan toimia itsenäisesti ja ryhmässä.',
+        title: "Henkilökohtainen kuntoutus 0-10 viikkoa:",
       },
     ]
   }
