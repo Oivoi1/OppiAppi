@@ -24,6 +24,7 @@ import Header from "./components/Header";
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(8);
   const [trophies, setTrophies] = useState(0);
+  const [title, setTitle] = useState();
 
 //load studyweeks and trophies from phone memory 
 useEffect(() => {
@@ -50,7 +51,7 @@ useEffect(() => {
 }, [])
   
 
-  const Tab = createBottomTabNavigator();
+  const Tab = createMaterialTopTabNavigator();
 
   // Theme fonts
   const [fontsLoaded] = useFonts({
@@ -66,6 +67,19 @@ useEffect(() => {
    // console.log("Fonts OK.");
   }
 
+  const updateTitle = (routeName) => {
+    if (routeName === "MainView") {
+      setTitle("PÄÄSIVU");
+    } else if (routeName === "TuvaView") {
+      setTitle("TUVA");
+    } else if (routeName === "CompetenceGoalsView") {
+      setTitle("MINÄ OSAAN");
+    } else if (routeName === "AdditionalContentView") {
+      setTitle("MUUTA");
+    }
+  };
+
+
   return (
     <>
     <AppHeaderContext.Provider
@@ -73,10 +87,15 @@ useEffect(() => {
     >
      
      
-      <Header />
-      <NavigationContainer>
-        <Tab.Navigator
+      <NavigationContainer
+      onStateChange={(state) => {
+        // Update title when route changes
+        updateTitle(state.routes[state.index].name);
+      }}>
+      <Header title={title} studyWeeks={studyWeeks} trophies={trophies}/>
         
+        <Tab.Navigator
+          tabBarPosition='bottom'
           initialRouteName="Main"
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -95,57 +114,34 @@ useEffect(() => {
                   ? "ellipsis-horizontal-circle-sharp"
                   : "ellipsis-horizontal-circle-outline";
               }
+              const iconStyle = {
+                // Add your custom styles here
+                height: 25,
+                width: 25, // Example: Adjusting margin for the focused state
+              };
 
-              return <Ionicons  name={iconName} size={size} color={color} />;
+              return <Ionicons  name={iconName} size={25} color={color} style={iconStyle}/>;
             },
             headerStyle: {
               backgroundColor: THEME.darkBlue
             },
             headerTitleAlign: "center",
             
-            headerLeft: () => (
-              
-              <TouchableOpacity
-                style={[styles.headerViews, styles.headerLeftView]}
-                onPress={() =>
-                  Alert.alert(
-                    "Tämä on:",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                  )
-                }
-              >
-                <Ionicons name="today" size={28} color="white" />
-                <Text style={styles.headerSidesText}>{studyWeeks}/38</Text>
-              </TouchableOpacity>
-              
-            ),
             
-            headerRight: () => (
-              <TouchableOpacity
-                style={[styles.headerViews, styles.headerRightView]}
-                onPress={() =>
-                  Alert.alert(
-                    "Tämä on 2:",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                  )
-                }
-              >
-                <Text style={styles.headerSidesText}>{trophies}</Text>
-                <Ionicons name="trophy" size={28} color="gold" />
-              </TouchableOpacity>
-            ),
 
             headerTintColor: THEME.white,
             tabBarItemStyle: {
               backgroundColor: '#FFF',
-              margin:4
+
             },
             tabBarLabelStyle: {
               fontFamily: "Regular",
+              margin: -2
             },
             headerTitleStyle: {
               fontFamily: "SemiBold",
               letterSpacing: 1.75,
+              
             },
             tabBarActiveTintColor: "red",
             tabBarInactiveTintColor: THEME.darkBlue,
