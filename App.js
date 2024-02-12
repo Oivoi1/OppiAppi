@@ -1,6 +1,7 @@
 import { Alert, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
@@ -75,6 +76,7 @@ useEffect(() => {
       <Header />
       <NavigationContainer>
         <Tab.Navigator
+        
           initialRouteName="Main"
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
