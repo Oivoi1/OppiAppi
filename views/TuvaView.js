@@ -342,11 +342,6 @@ handle asyncstorage state saving also */
     );
   };
 
-  if(!tasksCompleted || !showModalDetailFromSeventh) {
-    return(
-      <View><Text>Loading...</Text></View>
-    )
-  }
   return (
     <View style={styles.container}>
       {(isModalVisible || isModalVisibleIntro) && <View style={styles.overlay} />}
@@ -390,13 +385,14 @@ handle asyncstorage state saving also */
                 onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
               />
             </Modal>
-
+            
+            
             <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
+            {!tasksCompleted || !showModalDetailFromSeventh ?
+            <Text style={styles.goalsButtonLabel}>Lataa...</Text>
+            :
+            <>
             {TUVA_DATA.map((item, index) => (
-              //const allCompleted =  tasks.every( task => task === true )
-              //const completedTasks = tasks.filter(task => task === true).length
-              //const totalTasks = tasks.length
-              //tasksCompleted[ index ].taskCompleted.filter(task => task === true).length
               <View style={ styles.itemContainer } key={item.id}>
                 <TouchableOpacity onPress={() => onPressOpenLink(item.url)}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
@@ -470,7 +466,9 @@ handle asyncstorage state saving also */
               </View>
               <CustomModalButton onPress={() => handleModalClose()} />
             </Modal>
+            </>}
             </ScrollView>
+            
           </View>
       </SafeAreaView>
     </View>
