@@ -537,10 +537,12 @@ const styles = StyleSheet.create({
   },
 
   instructions: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 30,
+    marginBottom: 30,
     fontSize: 16,
     fontFamily: "Regular",
+    fontWeight: "bold",
+    textAlign: "center"
   },
   iconHelp: {
     alignItems: "center",
@@ -596,6 +598,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     marginLeft: 10,
+    backgroundColor: THEME.lightBackground,
+    borderRadius: 20
   },
   checkTaskButton: {
     alignItems: "center",
