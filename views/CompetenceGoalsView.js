@@ -57,24 +57,46 @@ const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
  */
 const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted } ) => {
 
-  const handleButtonPress = ( index ) => {
-    handleCompleted( index )
-  }
+  const [isActive, setIsActive] = useState(true); 
+
+  const handleButtonPress = (index) => {
+    handleCompleted(index);
+  };
+
+  const handleActivate = () => {
+    setIsActive(true); 
+  };
+
+  const handleDeactivate = () => {
+    setIsActive(false); 
+  };
 
   return (
-    <TouchableOpacity
-      onPress={ () => handleButtonPress( index ) }
-      style={ styles.checkTaskContainer }
-      activeOpacity={ NUMERIC.opacityTouchFade }
-    >
-      { checked ? 
-        <ICONS_SVG.checkedSvg style={ styles.checkTaskImg } width={30} height={30}/>
-        :
-        <ICONS_SVG.uncheckedSvg style={ styles.checkTaskImg } width={30} height={30}/>
-      }
-      <Text style={ styles.checkTaskText }>{ taskName }</Text>
-    </TouchableOpacity>
-  )
+    <View style={[styles.checkTaskContainer, !isActive && styles.inactiveContainer]}>
+      <TouchableOpacity
+        onPress={() => handleButtonPress(index)}
+        style={[styles.checkTaskTextAndButton, !isActive && styles.inactiveContainer]}
+        activeOpacity={NUMERIC.opacityTouchFade}
+      >
+        {checked ? (
+          <ICONS_SVG.checkedSvg style={styles.checkTaskImg} width={30} height={30} />
+        ) : (
+          <ICONS_SVG.uncheckedSvg style={styles.checkTaskImg} width={30} height={30} />
+        )}
+        <Text style={[styles.checkTaskText, !isActive && styles.inactiveText]}>{taskName}</Text>
+      </TouchableOpacity>
+      <View style={styles.selectButtons}>
+      <TouchableOpacity onPress={() => handleDeactivate()} activeOpacity={NUMERIC.opacityTouchFade}>
+          <ICONS_SVG.uncheckedSvg width={30} height={30} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => handleActivate()} activeOpacity={NUMERIC.opacityTouchFade}>
+          <ICONS_SVG.checkedSvg width={30} height={30} />
+        </TouchableOpacity>
+
+      </View>
+    </View>
+  );
 }
 
 /**
@@ -407,6 +429,16 @@ const styles = StyleSheet.create( {
     marginTop: 10,
     padding: 5,
   },
+  checkTaskTextAndButton: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+    flexDirection: 'row',
+    height: 'auto',
+    width: 'auto',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: 5,
+  },
   checkTaskImg: {
     marginRight: 10,
     marginLeft: 5,
@@ -414,7 +446,21 @@ const styles = StyleSheet.create( {
   },
   checkTaskText: {
     fontFamily: 'SemiBold',
-    width: '85%',
+    width: '65%',
+  },
+  
+  selectButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  inactiveContainer: {
+    backgroundColor: THEME.lightGray,
+  },
+  inactiveText: {
+    textDecorationLine: 'line-through',
+  },
+  activeText: {
+    textDecorationLine: 'none',
   },
   customButton: {
     alignItems: 'center',
