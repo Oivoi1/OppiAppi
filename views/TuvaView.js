@@ -394,10 +394,10 @@ handle asyncstorage state saving also */
             <>
             {TUVA_DATA.map((item, index) => (
               <View style={ styles.itemContainer } key={item.id}>
-                <TouchableOpacity onPress={() => onPressOpenLink(item.url)}>
+                <View>
                   <Text style={styles.itemTitle}>{item.title}</Text>
                   <Text style={styles.itemScope}>{item.scope}</Text>
-                </TouchableOpacity>
+                  </View>
                 <View style={styles.buttonContainer}>
                   <Counter
                     initValue={item.initValue}
@@ -522,8 +522,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 5,
-    textAlign: "center",
-    textDecorationLine: "underline"
+    textAlign: "center"
   },
   itemScope: {
     fontSize: 16,
