@@ -3,7 +3,7 @@ import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
 import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
 import { Ionicons } from '@expo/vector-icons'
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useFocusEffect } from '@react-navigation/native'
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 120
@@ -234,10 +234,18 @@ const CompetenceGoalsView = ({navigation}) => {
   
   useEffect(() => {
     if(route.params?.detailsIndex) {
-      setShowDetailsFrom(route.params.detailsIndex - 1);
+      setShowDetailsFrom(route.params.detailsIndex - 1); //-1 so that 0 is also handled, received index should always be +1
     }
-  }, [route.params])
+  }, [route.params?.detailsIndex])
   
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        // Clean up when the screen goes out of focus
+        setShowDetailsFrom(null);
+      };
+    }, [])
+  );
 
   // Calc competence indicator locations
   const elementPositions = calcElementPositions(

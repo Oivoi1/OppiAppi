@@ -393,10 +393,6 @@ handle asyncstorage state saving also */
 
             <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
             {TUVA_DATA.map((item, index) => (
-              //const allCompleted =  tasks.every( task => task === true )
-              //const completedTasks = tasks.filter(task => task === true).length
-              //const totalTasks = tasks.length
-              //tasksCompleted[ index ].taskCompleted.filter(task => task === true).length
               <View style={ styles.itemContainer } key={item.id}>
                 <TouchableOpacity onPress={() => onPressOpenLink(item.url)}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
