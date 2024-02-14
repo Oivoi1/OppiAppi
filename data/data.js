@@ -312,7 +312,7 @@ export const TUVA_DATA = [
     maxValue: 20,
     checked: false,
   },
-  {
+  /*{
     id: 7,
     title: "Valinnaiset opinnot",
     scope: "1-10 viikkoa",
@@ -320,7 +320,7 @@ export const TUVA_DATA = [
     initValue: 0,
     maxValue: 10,
     checked: false,
-  },
+  },*/
 ];
 
 export const VALINNAISET = [
@@ -357,8 +357,8 @@ export const VALINNAISET = [
     ]
   },
   {
-    buttonText: 'Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:',
-    detailsTitle: 'Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:',
+    buttonText: 'Henkilökohtainen kuntoutus 1-10 viikkoa:',
+    detailsTitle: 'Henkilökohtainen kuntoutus 1-10 viikkoa:',
     description: 'Opiskelija edistää omaa työ- ja toimintakykyään henkilökohtaisen kuntoutuksen keinoin.',
     tasks: [
       {
