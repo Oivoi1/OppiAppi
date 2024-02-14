@@ -658,12 +658,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     height: "auto",
-    width: "auto",
+    width: "auto", // Ensure this is sufficient for 4 buttons + padding + margins
     justifyContent: "flex-start",
     alignItems: "center",
-    marginLeft: 10,
+    padding: 10, // Adjusted padding
     backgroundColor: THEME.lightBackground,
-    borderRadius: 20
+    borderRadius: 20,
   },
   checkTaskButton: {
     alignItems: "center",
@@ -672,7 +672,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: THEME.darkBlue,
     borderWidth: 2,
-    margin: 5,
+    margin: 4, // Adjusted margin to fit within the container
   },
   checkTaskImg: {
     height: 30,
