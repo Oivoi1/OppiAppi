@@ -60,15 +60,19 @@ export const COMPETENCE_DATA = [
     tasks: [
       {
         title: 'Asetan ja arvioin omia elämäntavoitteitani ja -toiveitani.',
+        status: 'active'
       },
       {
         title: 'Osaan kuvailla itseäni oppijana ja opiskelijana.',
+        status: 'deactive'
       },
       {
         title: 'Tutustun erilaisiin tapoihin oppia ja hankkia osaamista.',
+        status: 'done'
       },
       {
         title: 'Käytän soveltuvia opiskelutaitoja.',
+        status: 'none'
       },
       {
         title: 'Suunnittelen omia opintojani tavoitteellisesti.',
