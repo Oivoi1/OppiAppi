@@ -53,7 +53,7 @@ export default function Header( {title, studyWeeks, trophies} ) {
         }
       >
         <Ionicons name="today" size={28} color="white" />
-        <Text style={styles.headerSidesText}>{studyWeeks}/38</Text>
+        <Text style={styles.headerSidesText}>{trophies}/{studyWeeks}</Text>
       </TouchableOpacity>
 
       {/* Main Header Text */}
@@ -75,7 +75,8 @@ export default function Header( {title, studyWeeks, trophies} ) {
 
       {/* Custom Modal */}
       <Modal isVisible={isModalVisible} style={styles.modal}
-      animationType="fade">
+      animationType="fade"
+      >
         {renderModalContent()}
       </Modal>
         </View>
