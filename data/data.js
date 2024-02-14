@@ -60,15 +60,19 @@ export const COMPETENCE_DATA = [
     tasks: [
       {
         title: 'Asetan ja arvioin omia elämäntavoitteitani ja -toiveitani.',
+        status: 'active'
       },
       {
         title: 'Osaan kuvailla itseäni oppijana ja opiskelijana.',
+        status: 'deactive'
       },
       {
         title: 'Tutustun erilaisiin tapoihin oppia ja hankkia osaamista.',
+        status: 'done'
       },
       {
         title: 'Käytän soveltuvia opiskelutaitoja.',
+        status: 'none'
       },
       {
         title: 'Suunnittelen omia opintojani tavoitteellisesti.',
@@ -251,6 +255,8 @@ export const COMPETENCE_DATA = [
   }
 ]
 
+
+
 export const TUVA_DATA = [
   {
     id: 1,
@@ -315,6 +321,84 @@ export const TUVA_DATA = [
     maxValue: 10,
     checked: false,
   },
+];
+
+export const VALINNAISET = [
+  {
+    buttonText: 'Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:',
+    detailsTitle: 'Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:',
+    description: 'Opiskelija osaa toimia opiskelijavaikuttajana oppilaitoksessa ja/tai muissa opiskeluympäristöissä.',
+    tasks: [
+      {
+        title: "testi testi testi:",
+      },
+      {
+        title: "testi testi testi:",
+      },
+      {
+        title: "testi testi testi:",
+      },
+    ]
+  },
+  {
+    buttonText: 'Harrastuneisuus ja vapaaehtoistyö 0-3 viikkoa:',
+    detailsTitle: 'Harrastuneisuus ja vapaaehtoistyö 0-3 viikkoa:',
+    description: 'Opiskelija osaa vahvistaa osaamistaan omien yksilöllisten tarpeiden, kiinnostuksen ja valmiuksien mukaan harrastuksessa tai vapaaehtoistyössä.',
+    tasks: [
+      {
+        title: "testi testi testi:",
+      },
+      {
+        title: "testi testi testi:",
+      },
+      {
+        title: "testi testi testi:",
+      },
+    ]
+  },
+  {
+    buttonText: 'Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:',
+    detailsTitle: 'Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:',
+    description: 'Opiskelija edistää omaa työ- ja toimintakykyään henkilökohtaisen kuntoutuksen keinoin.',
+    tasks: [
+      {
+        title: "testi testi testi:",
+      },
+      {
+        title: "testi testi testi:",
+      },
+      {
+        title: "testi testi testi:",
+      },
+    ]
+  }
+]
+export const TUVA_DATA_VALINNAISET = [
+  {
+    id: 1,
+    title: "Opiskelijavaikuttaminen ja osallisuus",
+    scope: "0-3 viikkoa",
+    initValue: 0,
+    maxValue: 3,
+    checked: false,
+  },
+  {
+    id: 2,
+    title: "Harrastuneisuus ja vapaaehtoistyö",
+    scope: "0-3 viikkoa",
+    initValue: 0,
+    maxValue: 3,
+    checked: false,
+  },
+  {
+    id: 3,
+    title: "Henkilökohtainen kuntoutus",
+    scope: "1-10 viikkoa",
+    initValue: 0,
+    maxValue: 10,
+    checked: false,
+  },
+  
 ];
 export const STRINGS = [
   {

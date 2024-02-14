@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "react-native-modal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
-import { NUMERIC } from "../data/data";
+import { NUMERIC,  } from "../data/data";
 import { useFocusEffect } from "@react-navigation/native";
 
 // <----- COMPONENTS -----> //
@@ -11,7 +11,7 @@ import Counter from "../components/Counter";
 import CustomModalButton from "../components/CustomModalButton";
 
 // <----- DATA -----> //
-import {STRINGS,TUVA_DATA,ICONS_SVG,TUVA_STORAGE_KEY,THEME,COMPETENCE_STORAGE_KEY} from "../data/data";
+import {STRINGS,TUVA_DATA,ICONS_SVG,TUVA_STORAGE_KEY,THEME,COMPETENCE_STORAGE_KEY,TUVA_DATA_VALINNAISET} from "../data/data";
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/GeneralFunctions";
@@ -467,8 +467,45 @@ handle asyncstorage state saving also */
               <CustomModalButton onPress={() => handleModalClose()} />
             </Modal>
             </>}
-            </ScrollView>
+            <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
+            <>
+            {TUVA_DATA_VALINNAISET.map((item, index) => (
+              <View style={ styles.itemContainerValinnainen } key={item.id}>
+                <View>
+                  <Text style={styles.itemTitle}>{item.title}</Text>
+                  <View style={styles.valinnainenContainer}>
+                      <Text style={{margin:5,color:THEME.brightRed,fontFamily:'Bold'}}>VALINNAINEN</Text>
+                    </View>
+                  <Text style={styles.itemScope}>{item.scope}</Text>
+                    
+                  </View>
+                <View style={styles.buttonContainer}>
+                  <Counter
+                    initValue={item.initValue}
+                    maxValue={item.maxValue}
+                    itemId={item.id}
+                    setModalWeeks={setModalWeeks}
+                    clickedIndex={clickedIndex}
+                    stateToStorage={stateToStorage}
+                    setStateToStorage={setStateToStorage}
+                  />
+                  <TouchableOpacity
+                    style={styles.iconHelp}
+                    onPress={() => {
+                      handleModalOpen(index);
+                    }}
+                  >
+                    <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                  </TouchableOpacity>
+                </View>
+                  
+                  
+              </View>
+            ))}
+
             
+            </>
+            </ScrollView>
           </View>
       </SafeAreaView>
     </View>
@@ -490,6 +527,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     textAlignVertical: 'center'
   },
+  heading1: {
+    fontFamily: "Bold",
+    fontSize: 24,
+    color: THEME.darkBlue,
+    textAlign: 'center',
+    paddingHorizontal: 5,
+    textAlignVertical: 'center',
+    marginBottom:15
+  },
   viewContainer: {
     width: "100%",
     height: "100%",
@@ -502,6 +548,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  valinnainenContainer:{
+    borderWidth:2,
+    borderStyle:'dashed',
+    borderColor:THEME.brightRed,
+    alignSelf:'center',
+    borderRadius:10,
+    margin:3,
+  },
 
   itemContainer: {
     width: "90%",
@@ -509,6 +563,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderColor: THEME.darkBlue,
     borderWidth: 3,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    elevation: 8,
+    backgroundColor: THEME.white,
+  },
+  itemContainerValinnainen: {
+    width: "90%",
+    alignSelf: "center",
+    marginBottom: 15,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
+    borderStyle:'dashed',
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 20,
