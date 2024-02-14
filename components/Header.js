@@ -8,7 +8,8 @@ import Modal from 'react-native-modal';
 import { AppHeaderContext, saveDataToStorage, getDataFromStorage } from "../utils/GeneralFunctions";
 import { StatusBar } from "expo-status-bar";
 
-
+// <----- COMPONENTS -----> //
+import CustomModalButton from "../components/CustomModalButton";
 
 export default function Header( {title, studyWeeks, trophies} ) {
 
@@ -24,9 +25,7 @@ export default function Header( {title, studyWeeks, trophies} ) {
     <View style={styles.modalContent}>
       <Text style={styles.modalHeaderText}>{modalContent.title}</Text>
       <Text style={styles.modalText}>{modalContent.text}</Text>
-      <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
-        <Text style={styles.closeButtonText}>SULJE</Text>
-      </TouchableOpacity>
+      <CustomModalButton onPress={toggleModal} />
     </View>
   );
 
