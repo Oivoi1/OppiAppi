@@ -78,22 +78,33 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
         style={[styles.checkTaskTextAndButton, !isActive && styles.inactiveContainer]}
         activeOpacity={NUMERIC.opacityTouchFade}
       >
-        {checked ? (
+        {/* {checked ? (
           <ICONS_SVG.checkedSvg style={styles.checkTaskImg} width={30} height={30} />
         ) : (
           <ICONS_SVG.uncheckedSvg style={styles.checkTaskImg} width={30} height={30} />
-        )}
+        )} */}
         <Text style={[styles.checkTaskText, !isActive && styles.inactiveText]}>{taskName}</Text>
       </TouchableOpacity>
       <View style={styles.selectButtons}>
-      <TouchableOpacity onPress={() => handleDeactivate()} activeOpacity={NUMERIC.opacityTouchFade}>
-          <ICONS_SVG.uncheckedSvg width={30} height={30} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => handleActivate()} activeOpacity={NUMERIC.opacityTouchFade}>
-          <ICONS_SVG.checkedSvg width={30} height={30} />
-        </TouchableOpacity>
-
+          <TouchableOpacity onPress={() => handleDeactivate()}>
+            <View style={styles.counterLabelSubstract}><Ionicons
+                name="remove-sharp"
+                size={25}
+                color='white'
+            /></View>
+            {/* <View style={[styles.counterLabelSubstract, styles.counterLabelSecondary]}><Ionicons //secondary tyyli
+                name="remove-sharp"
+                size={25}
+                color={THEME.darkBlue}
+            /></View> */}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleActivate()}>
+            <View style={styles.counterLabelAdd}><Ionicons
+                name="add-sharp"
+                size={25}
+                color="white"
+              /></View>
+          </TouchableOpacity>
       </View>
     </View>
   );
@@ -419,6 +430,8 @@ const styles = StyleSheet.create( {
   checkTaskContainer: {
     backgroundColor: 'white',
     borderRadius: 100,
+    borderBottomRightRadius: 20,
+    borderTopRightRadius: 20,
     borderWidth: 2,
     borderColor: THEME.darkBlue,
     flexDirection: 'row',
@@ -427,7 +440,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: 10,
-    padding: 5,
   },
   checkTaskTextAndButton: {
     backgroundColor: 'white',
@@ -447,11 +459,15 @@ const styles = StyleSheet.create( {
   checkTaskText: {
     fontFamily: 'SemiBold',
     width: '65%',
+    marginLeft: 20,
   },
   
   selectButtons: {
     flexDirection: 'row',
     alignItems: 'center',
+    position: 'absolute',
+    right: -17,
+    height: '100%'
   },
   inactiveContainer: {
     backgroundColor: THEME.lightGray,
@@ -505,6 +521,39 @@ const styles = StyleSheet.create( {
     justifyContent:'space-between',
     paddingRight:12,
     alignItems: 'center'
+  },
+  counterLabelSubstract: {
+    flex: 1,
+    padding: "5%",
+    backgroundColor: THEME.brightRed,
+    borderWidth: 4,
+    borderColor: THEME.brightRed,
+    margin: -2,
+    color: THEME.white,
+    paddingLeft: 10,
+    paddingRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  counterLabelAdd: {
+    flex: 1,
+    padding: "5%",
+    backgroundColor: THEME.darkBlue,
+    borderWidth: 4,
+    borderColor: THEME.darkBlue,
+    margin: -2,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+    color: THEME.white,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginRight: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  counterLabelSecondary: {
+    backgroundColor: 'none',
+    borderColor: THEME.darkBlue
   }
 } )
 
