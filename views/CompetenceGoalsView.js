@@ -58,7 +58,9 @@ const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
 const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted, status } ) => {
 
   const [isActive, setIsActive] = useState(true); 
-  status = 'none' //temporary parameter, remove when status is forwarded. should be 'none', 'deactive', 'active' or 'done'
+  const [taskStatus, setTaskStatus] = useState(status)
+  //status = 'none' //temporary parameter, remove when status is forwarded. should be 'none', 'deactive', 'active' or 'done'
+  
 
   const handleButtonPress = (index) => {
     handleCompleted(index);
@@ -66,14 +68,16 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
 
   const handleActivate = () => {
     setIsActive(true); 
+    setTaskStatus('active');
   };
 
   const handleDeactivate = () => {
     setIsActive(false); 
+    setTaskStatus('deactive');
   };
 
   const SubstractButton = () => {
-    switch (status) {
+    switch (taskStatus) {
       case 'none':
         return (
         <TouchableOpacity onPress={() => handleDeactivate()}>
@@ -110,7 +114,7 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
   }
 
   const AddButton = () => {
-    switch (status) {
+    switch (taskStatus) {
       case 'none':
         return (
         <TouchableOpacity onPress={() => handleActivate()}>
@@ -249,6 +253,7 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
         taskName={ task.title }
         checked={ tasksCompleted[ index ] }
         handleCompleted={ handleCompleted }
+        status = { task.status }
       /> ) }
     </View>
   )
