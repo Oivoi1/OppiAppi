@@ -513,6 +513,7 @@ const styles = StyleSheet.create( {
     borderColor: THEME.darkBlue,
     flexDirection: 'row',
     height: 'auto',
+    minHeight: 50,
     width: 'auto',
     justifyContent: 'flex-start',
     alignItems: 'center',
