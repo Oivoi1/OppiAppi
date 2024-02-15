@@ -2,7 +2,7 @@ import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Anima
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
 import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, FontAwesome6 } from '@expo/vector-icons'
 import { useRoute, useFocusEffect } from '@react-navigation/native'
 
 const SCREEN_PADDING = 10
@@ -55,9 +55,10 @@ const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
 /**
  * Checkbox for tasks in competencedetails window
  */
-const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted } ) => {
+const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted, status } ) => {
 
   const [isActive, setIsActive] = useState(true); 
+  status = 'none' //temporary parameter, remove when status is forwarded. should be 'none', 'deactive', 'active' or 'done'
 
   const handleButtonPress = (index) => {
     handleCompleted(index);
@@ -71,11 +72,104 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
     setIsActive(false); 
   };
 
+  const SubstractButton = () => {
+    switch (status) {
+      case 'none':
+        return (
+        <TouchableOpacity onPress={() => handleDeactivate()}>
+          <View style={styles.counterLabelSubstract}><FontAwesome6
+              name="minus"
+              size={30}
+              color='white'
+          /></View>
+        </TouchableOpacity>
+        );
+      case 'deactive':
+        break;
+      case 'active': case 'done':
+        return (
+          <TouchableOpacity onPress={() => handleDeactivate()}>
+            <View style={[styles.counterLabelSubstract, styles.counterLabelSecondary]}><FontAwesome6
+                name="minus"
+                size={30}
+                color={THEME.darkBlue}
+            /></View>
+          </TouchableOpacity>
+        );
+      default:
+        return (
+          <TouchableOpacity>
+            <View style={[styles.counterLabelSubstract, styles.counterLabelSecondary]}><FontAwesome6
+                name="minus"
+                size={30}
+                color={THEME.darkBlue}
+            /></View>
+          </TouchableOpacity>
+        );
+    }
+  }
+
+  const AddButton = () => {
+    switch (status) {
+      case 'none':
+        return (
+        <TouchableOpacity onPress={() => handleActivate()}>
+          <View style={styles.counterLabelAdd}><FontAwesome6
+              name="plus"
+              size={30}
+              color="white"
+            /></View>
+        </TouchableOpacity>
+        );
+      case 'deactive':
+        return (
+          <TouchableOpacity onPress={() => handleActivate()}>
+            <View style={[styles.counterLabelAdd, styles.counterLabelSecondary]}><FontAwesome6
+                name="plus"
+                size={30}
+                color={THEME.darkBlue}
+              /></View>
+          </TouchableOpacity>
+        );
+      case 'active':
+        return (
+          <TouchableOpacity onPress={() => handleActivate()}>
+            <View style={styles.counterLabelAdd}><Ionicons
+                name="checkmark-circle"
+                size={40}
+                color="white"
+              /></View>
+          </TouchableOpacity>
+        );
+      case 'done':
+        return (
+          <TouchableOpacity onPress={() => handleActivate()}>
+            <View style={[styles.counterLabelAdd, {color: 'white'}]}><Ionicons
+                name="checkmark"
+                size={25}
+                color='white'
+                style={{backgroundColor: THEME.green, borderRadius: 100, padding: 4}}
+              /></View>
+          </TouchableOpacity>
+        );
+      default:
+        return (
+          <TouchableOpacity>
+            <View style={[styles.counterLabelAdd, styles.counterLabelSecondary]}><FontAwesome6
+                name="plus"
+                size={30}
+                color={THEME.darkBlue}
+              /></View>
+          </TouchableOpacity>
+        );
+    }
+  }
+
   return (
-    <View style={[styles.checkTaskContainer, !isActive && styles.inactiveContainer]}>
+    <View style={[styles.checkTaskContainer, status == 'deactive' && styles.inactiveContainer]}>
       <TouchableOpacity
         onPress={() => handleButtonPress(index)}
-        style={[styles.checkTaskTextAndButton, !isActive && styles.inactiveContainer]}
+        style={[styles.checkTaskTextAndButton, status == 'deactive' && styles.inactiveContainer]}
         activeOpacity={NUMERIC.opacityTouchFade}
       >
         {/* {checked ? (
@@ -83,28 +177,11 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted 
         ) : (
           <ICONS_SVG.uncheckedSvg style={styles.checkTaskImg} width={30} height={30} />
         )} */}
-        <Text style={[styles.checkTaskText, !isActive && styles.inactiveText]}>{taskName}</Text>
+        <Text style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}>{taskName}</Text>
       </TouchableOpacity>
       <View style={styles.selectButtons}>
-          <TouchableOpacity onPress={() => handleDeactivate()}>
-            <View style={styles.counterLabelSubstract}><Ionicons
-                name="remove-sharp"
-                size={25}
-                color='white'
-            /></View>
-            {/* <View style={[styles.counterLabelSubstract, styles.counterLabelSecondary]}><Ionicons //secondary tyyli
-                name="remove-sharp"
-                size={25}
-                color={THEME.darkBlue}
-            /></View> */}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleActivate()}>
-            <View style={styles.counterLabelAdd}><Ionicons
-                name="add-sharp"
-                size={25}
-                color="white"
-              /></View>
-          </TouchableOpacity>
+          <SubstractButton />
+          <AddButton />
       </View>
     </View>
   );
@@ -458,8 +535,8 @@ const styles = StyleSheet.create( {
   },
   checkTaskText: {
     fontFamily: 'SemiBold',
-    width: '65%',
-    marginLeft: 20,
+    width: '80%',
+    marginLeft: 15,
   },
   
   selectButtons: {
@@ -524,20 +601,18 @@ const styles = StyleSheet.create( {
   },
   counterLabelSubstract: {
     flex: 1,
-    padding: "5%",
     backgroundColor: THEME.brightRed,
     borderWidth: 4,
     borderColor: THEME.brightRed,
     margin: -2,
+    marginRight: 0,
     color: THEME.white,
-    paddingLeft: 10,
-    paddingRight: 10,
+    width: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   counterLabelAdd: {
     flex: 1,
-    padding: "5%",
     backgroundColor: THEME.darkBlue,
     borderWidth: 4,
     borderColor: THEME.darkBlue,
@@ -545,8 +620,7 @@ const styles = StyleSheet.create( {
     borderBottomRightRadius: 10,
     borderTopRightRadius: 10,
     color: THEME.white,
-    paddingLeft: 10,
-    paddingRight: 10,
+    width: 50,
     marginRight: 15,
     alignItems: 'center',
     justifyContent: 'center',
