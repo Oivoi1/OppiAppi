@@ -176,10 +176,10 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
   }
 
   return (
-    <View style={[styles.checkTaskContainer, status == 'deactive' && styles.inactiveContainer]}>
+    <View style={[styles.checkTaskContainer, (status == 'deactive' || taskStatus == 'deactive') && styles.inactiveContainer]}>
       <TouchableOpacity
         onPress={() => handleButtonPress(index)}
-        style={[styles.checkTaskTextAndButton, status == 'deactive' && styles.inactiveContainer]}
+        style={[styles.checkTaskTextAndButton, (status == 'deactive' || taskStatus == 'deactive') && styles.inactiveContainer]}
         activeOpacity={NUMERIC.opacityTouchFade}
       >
         {/* {checked ? (
@@ -187,7 +187,7 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
         ) : (
           <ICONS_SVG.uncheckedSvg style={styles.checkTaskImg} width={30} height={30} />
         )} */}
-        <Text style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}>{taskName}</Text>
+        <Text style={[styles.checkTaskText, (status == 'deactive' || taskStatus == 'deactive') && styles.inactiveText]}>{taskName}</Text>
       </TouchableOpacity>
       <View style={styles.selectButtons}>
           <SubstractButton />
