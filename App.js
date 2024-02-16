@@ -24,7 +24,7 @@ import Header from "./components/Header";
 export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(0);
   const [trophies, setTrophies] = useState(0);
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('PÄÄSIVU');
 
 //load studyweeks and trophies from phone memory 
 useEffect(() => {
