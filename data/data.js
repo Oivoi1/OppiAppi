@@ -54,7 +54,7 @@ export const THEME = {
 
 export const COMPETENCE_DATA = [
   {
-    buttonText: 'Opiskelu- ja urasuunnittelutaidot',
+    buttonText: 'Opiskelu- ja\nurasuunnittelu- taidot',
     detailsTitle: 'Opiskelu- ja urasuunnittelutaidot',
     description: 'Tutkintokoulutukseen valmentavassa koulutuksessa kehitetään opiskelijan opiskelu- ja urasuunnittelutaitoja, kuten kykyä työskennellä ja opiskella itsenäisesti, suunnitella omia opintoja ja ajankäyttöä sekä tehdä opintoihin liittyviä valintoja. Opiskelijaa tuetaan tiedostamaan koulutuksen ja työnteon merkitys omassa elämässään. Opiskelu- ja urasuunnittelutaitojen kehittymiseen liittyvät kiinteästi opiskelu/tutkintokielen taidon ja erityisesti urasuunnitteluun liittyvien tekstitaitojen hallinta.',
     tasks: [
@@ -117,7 +117,7 @@ export const COMPETENCE_DATA = [
     ]
   },
   {
-    buttonText: 'Lukiokoulutuksen opinnot ja niihin valmentautuminen',
+    buttonText: 'Lukio- koulutuksen opinnot',
     detailsTitle: 'Lukiokoulutuksen opinnot ja niihin valmentautuminen',
     description: 'Koulutuksen osa sisältää lukiokoulutukseen valmentavaa koulutusta ja lukio-opintoja opiskelijan valmiuksien mukaisesti. Suorittaessaan lukio-opintoja opiskelija saa tukea opiskelutaitojen ja -valmiuksien kehittämiseen osana valmentavaa koulutusta.\n\nOpiskelija vahvistaa opiskelukielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee lukiossa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot lukio-opiskeluun sekä vahvistaa erityisesti tiedonalojen kielen taitoaan eli eri oppiaineiden tekstitaitoja.\n\nOpiskelija tutustuu lukiokoulutukseen ja sen vaatimuksiin. Opiskelija voi valita omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan lukion opintojakson tai opintojaksoja, joita hän suorittaa osana valmentavaa koulutusta. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa lukiokoulutuksessa.',
     tasks: [
@@ -164,7 +164,7 @@ export const COMPETENCE_DATA = [
 
   
   {
-    buttonText: 'Työelämätaidot ja työelämässä tapahtuva oppiminen',
+    buttonText: 'Työelämä- taidot',
     detailsTitle: 'Työelämätaidot ja työelämässä tapahtuva oppiminen',
     description: 'Koulutuksen osassa keskitytään keskeisiin työelämätaitoihin ja tuetaan työelämässä tapahtuvaa oppimista. Tavoitteena on vahvistaa opiskelijan oman toiminnan ohjaamista sekä viestintä-, vuorovaikutus- ja yhteistyötaitoja. Opiskelija tutustuu työelämässä tapahtuvaan koulutukseen.',
     tasks: [
@@ -199,7 +199,7 @@ export const COMPETENCE_DATA = [
 
   },
   {
-    buttonText: 'Arjen ja yhteiskunnallisen osallisuuden taidot',
+    buttonText: 'Arjen taidot ja yhteiskunnallinen osallisuus',
     detailsTitle: 'Arjen taidot ja yhteiskunnallinen osallisuus',
     description: 'Koulutuksen osassa painottuvat opiskelijan arjessa toimimisen ja yhteiskunnallisen osallisuuden taitojen vahvistaminen. Arjen toimintakyvyn vahvistaminen ja osallisuuden edistäminen nähdään opiskelijan terveyttä ja hyvinvointia sekä osallisuutta edistävänä. Tavoitteena on myös vahvistaa arjen taitojen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitoja. ',
     tasks: [
