@@ -1,9 +1,9 @@
-import {StyleSheet,Text,View,TouchableOpacity,ScrollView,SafeAreaView} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "react-native-modal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
-import { NUMERIC,  } from "../data/data";
+import { NUMERIC, } from "../data/data";
 import { useFocusEffect } from "@react-navigation/native";
 
 // <----- COMPONENTS -----> //
@@ -11,21 +11,21 @@ import Counter from "../components/Counter";
 import CustomModalButton from "../components/CustomModalButton";
 
 // <----- DATA -----> //
-import {STRINGS,TUVA_DATA,ICONS_SVG,TUVA_STORAGE_KEY,THEME,COMPETENCE_STORAGE_KEY,TUVA_DATA_VALINNAISET} from "../data/data";
+import { STRINGS, TUVA_DATA, ICONS_SVG, TUVA_STORAGE_KEY, THEME, COMPETENCE_STORAGE_KEY, TUVA_DATA_VALINNAISET } from "../data/data";
 
 // <----- FUNCTIONS -----> //
 import { onPressOpenLink } from "../utils/GeneralFunctions";
 
 // <----- UTILS -----> //
-import {handleSetTrophiesAdd, handleSetTrophiesSubstract} from "../utils/HeaderStateFunctions";
+import { handleSetTrophiesAdd, handleSetTrophiesSubstract } from "../utils/HeaderStateFunctions";
 import { AppHeaderContext } from "../utils/GeneralFunctions";
-import {getDataFromStorage,saveDataToStorage} from "../utils/GeneralFunctions/";
+import { getDataFromStorage, saveDataToStorage } from "../utils/GeneralFunctions/";
 import { ThemeProvider } from "@react-navigation/native";
 import CompetenceGoalsView from "./CompetenceGoalsView";
 
 const SCREEN_PADDING = 10
 
-export default function TuvaView({navigation}) {
+export default function TuvaView({ navigation }) {
   //global-state from App.js
   const { trophies, setTrophies } = useContext(AppHeaderContext);
 
@@ -50,15 +50,20 @@ export default function TuvaView({navigation}) {
     useState(false);
   const [showModalDetailFromSeventh, setShowModalDetailFromSeventh] =
     useState(false);
+  const [showModalDetailFromEight, setShowModalDetailFromEight] =
+    useState(false);
+  const [showModalDetailFromNinth, setShowModalDetailFromNinth] =
+    useState(false);
 
-  const [ tasksCompleted, setTasksCompleted ] = useState();
 
-  const fetchTasks = async ()=>{
+  const [tasksCompleted, setTasksCompleted] = useState();
+
+  const fetchTasks = async () => {
     try {
       // Load task list from async storage
       let dataFromStorage = await getDataFromStorage(COMPETENCE_STORAGE_KEY)
       setTasksCompleted(dataFromStorage)
-    }catch(error) {
+    } catch (error) {
       console.log('Error fetching tasks in TuvaView:', error);
     }
   }
@@ -74,7 +79,7 @@ export default function TuvaView({navigation}) {
     const fetchData = async () => {
       //AsyncStorage.clear() //don't use this!
       let data = await getDataFromStorage(TUVA_STORAGE_KEY);
-      //console.log( data)
+      console.log(data)
 
       //init asyncstorage for first time
       if (data.length <= 0) {
@@ -86,7 +91,9 @@ export default function TuvaView({navigation}) {
           { ...showModalDetailFromFourth },
           { ...showModalDetailFromFifth },
           { ...showModalDetailFromSixth },
-          { ...showModalDetailFromSeventh }
+          { ...showModalDetailFromSeventh },
+          { ...showModalDetailFromEight },
+          { ...showModalDetailFromNinth }
         );
         saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
       }
@@ -99,17 +106,19 @@ export default function TuvaView({navigation}) {
         setShowModalDetailFromFifth(data[4]);
         setShowModalDetailFromSixth(data[5]);
         setShowModalDetailFromSeventh(data[6]);
+        setShowModalDetailFromEight(data[7]);
+        setShowModalDetailFromNinth(data[8]);
       }
     };
     fetchData();
   }, []);
 
-  const BackButton = ( { onPress } ) => {
+  const BackButton = ({ onPress }) => {
     return (
       <TouchableOpacity
-        style={ styles.customButton }
-        activeOpacity={ NUMERIC.opacityTouchFade }
-        onPress={ onPress }
+        style={styles.customButton}
+        activeOpacity={NUMERIC.opacityTouchFade}
+        onPress={onPress}
       >
         <ICONS_SVG.backArrowSvg />
       </TouchableOpacity>
@@ -139,7 +148,9 @@ handle asyncstorage state saving also */
       { ...showModalDetailFromFourth },
       { ...showModalDetailFromFifth },
       { ...showModalDetailFromSixth },
-      { ...showModalDetailFromSeventh }
+      { ...showModalDetailFromSeventh },
+      { ...showModalDetailFromEight },
+      { ...showModalDetailFromNinth }
     );
     //switch-case for different elements
     switch (itemId) {
@@ -263,6 +274,42 @@ handle asyncstorage state saving also */
 
         break;
 
+      case 8:
+        setShowModalDetailFromEight((prevState) => ({
+          ...showModalDetailFromEight,
+          [index]: !prevState[index],
+        }));
+        !showModalDetailFromEight[index]
+          ? handleSetTrophiesAdd(setTrophies, trophies)
+          : null;
+        showModalDetailFromEight[index]
+          ? handleSetTrophiesSubstract(setTrophies, trophies)
+          : null;
+        tempModalDetailArray[7] = {
+          ...showModalDetailFromEight,
+          [index]: !showModalDetailFromEight[index],
+        };
+
+        break;
+
+      case 9:
+        setShowModalDetailFromNinth((prevState) => ({
+          ...showModalDetailFromNinth,
+          [index]: !prevState[index],
+        }));
+        !showModalDetailFromNinth[index]
+          ? handleSetTrophiesAdd(setTrophies, trophies)
+          : null;
+        showModalDetailFromNinth[index]
+          ? handleSetTrophiesSubstract(setTrophies, trophies)
+          : null;
+        tempModalDetailArray[8] = {
+          ...showModalDetailFromNinth,
+          [index]: !showModalDetailFromNinth[index],
+        };
+
+        break;
+
       default:
         if (itemId === null || itemId === undefined) {
           throw new Error();
@@ -328,17 +375,34 @@ handle asyncstorage state saving also */
         unchecked
       );
     }
+    else if (itemId === 8) {
+      imgSource = showModalDetailFromEight[index] ? (
+        iconBgColor = THEME.darkBlue,
+        checked
+      ) : (
+        unchecked
+      );
+    }
+    else if (itemId === 9) {
+      imgSource = showModalDetailFromNinth[index] ? (
+        iconBgColor = THEME.darkBlue,
+        checked
+      ) : (
+        unchecked
+      );
+    }
+
 
     return (
       <TouchableOpacity
-      style={{
-        ...styles.checkTaskButton,
-        backgroundColor: iconBgColor, 
-      }}
-      onPress={() => handleModalButtonPress(index, itemId)}
-    >
-      {imgSource}
-    </TouchableOpacity>
+        style={{
+          ...styles.checkTaskButton,
+          backgroundColor: iconBgColor,
+        }}
+        onPress={() => handleModalButtonPress(index, itemId)}
+      >
+        {imgSource}
+      </TouchableOpacity>
     );
   };
 
@@ -346,167 +410,173 @@ handle asyncstorage state saving also */
     <View style={styles.container}>
       {(isModalVisible || isModalVisibleIntro) && <View style={styles.overlay} />}
       <SafeAreaView>
-          <View style={styles.viewContainer}>
-            <View style={styles.tuvaTitle}>
-              <BackButton
-                onPress={ () => navigation.navigate('MainView') }
-              />
-              {STRINGS.map((item, index) => (
-              <Text key={index} style={[styles.heading, {marginLeft: 10, marginBottom: 0, flex: 1}]}
+        <View style={styles.viewContainer}>
+          <View style={styles.tuvaTitle}>
+            <BackButton
+              onPress={() => navigation.navigate('MainView')}
+            />
+            {STRINGS.map((item, index) => (
+              <Text key={index} style={[styles.heading, { marginLeft: 10, marginBottom: 0, flex: 1 }]}
                 adjustsFontSizeToFit={true}
                 numberOfLines={1}
               >
                 {item.tuvaHeading}
               </Text>
-              ))}
-              <TouchableOpacity
-              style={ styles.customButton }
+            ))}
+            <TouchableOpacity
+              style={styles.customButton}
               onPress={() => {
                 setIsModalVisibleIntro(!isModalVisibleIntro);
               }}
-              >
-                <ICONS_SVG.infoSvg/>
-              </TouchableOpacity>
-            </View>
-
-
-            <Modal
-              style={styles.modalContainerInfo}
-              //Modal for general info
-              animationType="fade"
-              visible={isModalVisibleIntro}
             >
-              {STRINGS.map((item, index) => (
-                <Text key={index} style={styles.instructions}>
-                  {item.tuvaInstructions}
-                </Text>
-              ))}
-              <CustomModalButton
-                onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
-              />
-            </Modal>
-            
-            
-            <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
-            {!tasksCompleted || !showModalDetailFromSeventh ?
-            <Text style={styles.goalsButtonLabel}>Lataa...</Text>
-            :
-            <>
-            {TUVA_DATA.map((item, index) => (
-              <View style={ styles.itemContainer } key={item.id}>
-                <View>
-                  <Text style={styles.itemTitle}>{item.title}</Text>
-                  <Text style={styles.itemScope}>{item.scope}</Text>
-                  </View>
-                <View style={styles.buttonContainer}>
-                  <Counter
-                    initValue={item.initValue}
-                    maxValue={item.maxValue}
-                    itemId={item.id}
-                    setModalWeeks={setModalWeeks}
-                    clickedIndex={clickedIndex}
-                    stateToStorage={stateToStorage}
-                    setStateToStorage={setStateToStorage}
-                  />
-                  <TouchableOpacity
-                    style={styles.iconHelp}
-                    onPress={() => {
-                      handleModalOpen(index);
-                    }}
-                  >
-                    <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                  </TouchableOpacity>
-                </View>
-                  <TouchableOpacity onPress={() => navigation.navigate('CompetenceGoalsView', {detailsIndex: index+1})}>
-                  <View style={styles.goalsButtonContainer}>
-                    <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
-                  </View>
-                  </TouchableOpacity>
-                  {tasksCompleted[ index ].taskCompleted.every( task => task === true ) ?
-                  <View style={ styles.goalsCounterContainerComplete}>
-                    <Text style={[styles.goalsCounterText, {color: 'white'}]}>
-                      {tasksCompleted[ index ].taskCompleted.filter(task => task === true).length}
-                      /
-                      {tasksCompleted[ index ].taskCompleted.length}
-                    </Text>
-                  </View>
-                  :
-                  <View style={ styles.goalsCounterContainer}>
-                    <Text style={styles.goalsCounterText}>
-                      {tasksCompleted[ index ].taskCompleted.filter(task => task === true).length}
-                      /
-                      {tasksCompleted[ index ].taskCompleted.length}
-                    </Text>
-                  </View>
-                  }
-              </View>
-            ))}
-
-            <Modal
-              style={styles.modalContainer}
-              animationType="fade"
-              visible={isModalVisible}
-            >
-              <View style={{ flex: 1 }}>
-                {STRINGS.map((item, index) => (
-                  <Text key={index} style={styles.instructions}>
-                    {item.tuvaInstructionsForCourseComplete}
-                  </Text>
-                ))}
-                <ScrollView 
-                  contentContainerStyle={styles.checkTaskContainer} 
-                  showsVerticalScrollIndicator={true}
-                >
-                  {Array(modalWeeks)
-                    .fill(<ModalDetailsCheckbox />)
-                    .map((_, index) => (
-                      <ModalDetailsCheckbox key={index} index={index} />
-                    ))}
-                </ScrollView>
-              </View>
-              <CustomModalButton onPress={() => handleModalClose()} />
-            </Modal>
-            </>}
-            <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
-            <>
-            {TUVA_DATA_VALINNAISET.map((item, index) => (
-              <View style={ styles.itemContainerValinnainen } key={item.id}>
-                <View>
-                  <Text style={styles.itemTitle}>{item.title}</Text>
-                  <View style={styles.valinnainenContainer}>
-                      <Text style={{margin:5,color:THEME.brightRed,fontFamily:'Bold'}}>VALINNAINEN</Text>
-                    </View>
-                  <Text style={styles.itemScope}>{item.scope}</Text>
-                    
-                  </View>
-                <View style={styles.buttonContainer}>
-                  <Counter
-                    initValue={item.initValue}
-                    maxValue={item.maxValue}
-                    itemId={item.id}
-                    setModalWeeks={setModalWeeks}
-                    clickedIndex={clickedIndex}
-                    stateToStorage={stateToStorage}
-                    setStateToStorage={setStateToStorage}
-                  />
-                  <TouchableOpacity
-                    style={styles.iconHelp}
-                    onPress={() => {
-                      handleModalOpen(index);
-                    }}
-                  >
-                    <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                  </TouchableOpacity>
-                </View>
-                  
-                  
-              </View>
-            ))}
-
-            
-            </>
-            </ScrollView>
+              <ICONS_SVG.infoSvg />
+            </TouchableOpacity>
           </View>
+
+
+          <Modal
+            style={styles.modalContainerInfo}
+            //Modal for general info
+            animationType="fade"
+            visible={isModalVisibleIntro}
+          >
+            {STRINGS.map((item, index) => (
+              <Text key={index} style={styles.instructions}>
+                {item.tuvaInstructions}
+              </Text>
+            ))}
+            <CustomModalButton
+              onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
+            />
+          </Modal>
+
+
+          <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
+            {!tasksCompleted || !showModalDetailFromSeventh ?
+              <Text style={styles.goalsButtonLabel}>Lataa...</Text>
+              :
+              <>
+                {TUVA_DATA.map((item, index) => {
+                  // Check if we need to insert the heading for "Valinnaiset opinnot"
+                  if (index === 6) {
+                    return (
+                      <React.Fragment key={item.id}>
+                        {/* Heading for "Valinnaiset opinnot" */}
+                        <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
+                        {/* The item itself with the valinnainen style */}
+                        <View style={[styles.itemContainer, styles.itemContainerValinnainen]}>
+                          {/* The rest of the item rendering */}
+                          <View>
+                            <Text style={styles.itemTitle}>{item.title}</Text>
+                            <Text style={styles.itemScope}>{item.scope}</Text>
+                          </View>
+                          <View style={styles.buttonContainer}>
+                            <Counter
+                              initValue={item.initValue}
+                              maxValue={item.maxValue}
+                              itemId={item.id}
+                              setModalWeeks={setModalWeeks}
+                              clickedIndex={clickedIndex}
+                              stateToStorage={stateToStorage}
+                              setStateToStorage={setStateToStorage}
+                            />
+                            <TouchableOpacity
+                              style={styles.iconHelp}
+                              onPress={() => {
+                                handleModalOpen(index);
+                              }}
+                            >
+                              <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                            </TouchableOpacity>
+                          </View>
+                          <TouchableOpacity onPress={() => navigation.navigate('CompetenceGoalsView', { detailsIndex: index + 1 })}>
+                            <View style={styles.goalsButtonContainer}>
+                              <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
+                            </View>
+                          </TouchableOpacity>
+                          {/* Conditional rendering for task completion */}
+
+                        </View>
+                      </React.Fragment>
+                    );
+                  } else {
+                    // Apply the valinnainen style only for items after the "Valinnaiset opinnot"
+                    const itemStyle = index > 6 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
+
+                    return (
+                      <View style={itemStyle} key={item.id}>
+                        {/* The rest of the item rendering, similar to above */}
+                        <View>
+                          <Text style={styles.itemTitle}>{item.title}</Text>
+                          <Text style={styles.itemScope}>{item.scope}</Text>
+                        </View>
+                        <View style={styles.buttonContainer}>
+                          <Counter
+                            initValue={item.initValue}
+                            maxValue={item.maxValue}
+                            itemId={item.id}
+                            setModalWeeks={setModalWeeks}
+                            clickedIndex={clickedIndex}
+                            stateToStorage={stateToStorage}
+                            setStateToStorage={setStateToStorage}
+                          />
+                          <TouchableOpacity
+                            style={styles.iconHelp}
+                            onPress={() => {
+                              handleModalOpen(index);
+                            }}
+                          >
+                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                          </TouchableOpacity>
+                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate('CompetenceGoalsView', { detailsIndex: index + 1 })}>
+                          <View style={styles.goalsButtonContainer}>
+                            <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
+                          </View>
+                        </TouchableOpacity>
+                        {/* Conditional rendering for task completion */}
+
+                      </View>
+                    );
+                  }
+                })}
+
+                <Modal
+                  style={styles.modalContainer}
+                  animationType="fade"
+                  visible={isModalVisible}
+                >
+                  <View style={{ flex: 1 }}>
+                    {
+                      modalWeeks === 0 ? (
+                        <Text style={styles.instructions}>
+                          Valittuasi opintoviikkoja, alla olevaan näkymään tulee viikkojen määrä pokaaleita.
+                        </Text>
+                      ) : (
+                        STRINGS.map((item, index) => (
+                          <Text key={index} style={styles.instructions}>
+                            {item.tuvaInstructionsForCourseComplete} {/* This is your original instructions */}
+                          </Text>
+                        ))
+                      )
+                    }
+                    <ScrollView
+                      contentContainerStyle={modalWeeks === 0 ? styles.checkTaskContainerNoPadding : styles.checkTaskContainer}
+                      showsVerticalScrollIndicator={true}
+                    >
+                      {
+                        Array(modalWeeks).fill(null).map((_, index) => (
+                          <ModalDetailsCheckbox key={index} index={index} />
+                        ))
+                      }
+                    </ScrollView>
+                  </View>
+                  <CustomModalButton onPress={() => handleModalClose()} />
+                </Modal>
+              </>}
+
+          </ScrollView>
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -534,7 +604,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 5,
     textAlignVertical: 'center',
-    marginBottom:15
+    marginBottom: 15
   },
   viewContainer: {
     width: "100%",
@@ -548,13 +618,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  valinnainenContainer:{
-    borderWidth:2,
-    borderStyle:'dashed',
-    borderColor:THEME.brightRed,
-    alignSelf:'center',
-    borderRadius:10,
-    margin:3,
+  valinnainenContainer: {
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: THEME.brightRed,
+    alignSelf: 'center',
+    borderRadius: 10,
+    margin: 3,
   },
 
   itemContainer: {
@@ -575,7 +645,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderColor: THEME.darkBlue,
     borderWidth: 3,
-    borderStyle:'dashed',
+    borderStyle: 'dashed',
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 20,
@@ -680,8 +750,8 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-    zIndex: 1, 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 1,
   },
   tuvaTitle: {
     marginTop: 10,
