@@ -67,8 +67,14 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
   };
 
   const handleActivate = () => {
-    setIsActive(true); 
-    setTaskStatus('active');
+    setIsActive(true);
+
+    if(taskStatus == 'active' || status == 'active') {
+      setTaskStatus('done');
+    }
+    else {
+      setTaskStatus('active');
+    }
   };
 
   const handleDeactivate = () => {
