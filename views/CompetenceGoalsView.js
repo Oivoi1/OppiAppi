@@ -47,7 +47,11 @@ const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
           height={ INDICATOR_SIZE }
         /> }
       <Text style={ styles.buttonTaskText }>{`${completedTasks}/${totalTasks}`}</Text>
-      <Text style={ styles.buttonText }>{ item.buttonText }</Text>
+      <Text
+        style={ styles.buttonText }
+        adjustsFontSizeToFit={true}
+        numberOfLines={3}
+      >{ item.buttonText }</Text>
     </TouchableOpacity>
   )
 }
@@ -153,7 +157,10 @@ const CompetenceDetailsCheckbox = ( { index, taskName, handleCompleted, handleRe
   return (
     <View style={[styles.checkTaskContainer, status == 'deactive' && styles.inactiveContainer]}>
       <View style={[styles.checkTaskTextAndButton, status == 'deactive' && styles.inactiveContainer]}>
-        <Text style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}>{taskName}</Text>
+        <Text style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}
+          adjustsFontSizeToFit={true}
+          numberOfLines={4}
+        >{taskName}</Text>
       </View>
       <View style={styles.selectButtons}>
           <SubstractButton />
@@ -499,9 +506,12 @@ const styles = StyleSheet.create( {
   },
   buttonText: {
     fontFamily: 'SemiBold',
-    fontSize: INDICATOR_SIZE * 0.1,
+    fontSize: INDICATOR_SIZE * 0.085,
     position: 'absolute',
+    top: -5,
     textAlign: 'center',
+    width: '80%',
+    height: '35%',
     marginTop: INDICATOR_SIZE * 0.25,
   },
   buttonTaskText: {
