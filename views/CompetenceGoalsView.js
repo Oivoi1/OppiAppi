@@ -400,7 +400,7 @@ const CompetenceGoalsView = ({navigation}) => {
             onPress={ () => navigation.navigate('MainView') }
           />
           <Text 
-            style={ [styles.title, {flex: 1, justifyContent: 'center', marginRight: 40, marginLeft: 12}] }
+            style={ [styles.title, {flex: 1, justifyContent: 'center'}] }
             adjustsFontSizeToFit={true}
             numberOfLines={1}
           >Tuva-koulutuksen tavoitteet</Text>

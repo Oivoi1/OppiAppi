@@ -42,18 +42,7 @@ export default function Header( {title, studyWeeks, trophies} ) {
         <View style={{ flexDirection: 'row', backgroundColor: THEME.darkBlue, padding: 10, justifyContent: "space-between"}}>
 
               {/* Left Header */}
-      <TouchableOpacity
-        style={[styles.headerViews, styles.headerLeftView]}
-        onPress={() =>
-          toggleModal({
-            title: "Opintoviikot:",
-            text: "TUVA-koulutuksen opintoviikkojen määrä. Voit muokata valintojasi TUVA -osiossa.",
-          })
-        }
-      >
-        <Ionicons name="today" size={28} color="white" />
-        <Text style={styles.headerSidesText}>{trophies}/{studyWeeks}</Text>
-      </TouchableOpacity>
+      
 
       {/* Main Header Text */}
       <Text style={styles.headerText}>{title}</Text>
@@ -68,7 +57,7 @@ export default function Header( {title, studyWeeks, trophies} ) {
           })
         }
       >
-        <Text style={styles.headerSidesText}>{trophies}</Text>
+        <Text style={styles.headerSidesText}>{trophies}/{studyWeeks}</Text>
         <Ionicons name="trophy" size={28} color="gold" />
       </TouchableOpacity>
 
@@ -104,9 +93,10 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#FFF",
-    fontSize: 22,
+    fontSize: 28,
     fontWeight:"bold",
-    fontFamily:"Regular"
+    fontFamily:"Regular",
+    marginLeft:10
   },
   modal: {
     justifyContent: 'center',
