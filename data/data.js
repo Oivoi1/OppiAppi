@@ -312,15 +312,31 @@ export const TUVA_DATA = [
     maxValue: 20,
     checked: false,
   },
-  /*{
+  {
     id: 7,
-    title: "Valinnaiset opinnot",
+    title: "Opiskelijavaikuttaminen ja osallisuus",
+    scope: "0-3 viikkoa",
+    initValue: 0,
+    maxValue: 3,
+    checked: false,
+  },
+  {
+    id: 8,
+    title: "Harrastuneisuus ja vapaaehtoistyö",
+    scope: "0-3 viikkoa",
+    initValue: 0,
+    maxValue: 3,
+    checked: false,
+  },
+  {
+    id: 9,
+    title: "Henkilökohtainen kuntoutus",
     scope: "1-10 viikkoa",
-    //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698969",
     initValue: 0,
     maxValue: 10,
     checked: false,
-  },*/
+  },
+  
 ];
 
 export const VALINNAISET = [
@@ -373,33 +389,7 @@ export const VALINNAISET = [
     ]
   }
 ]
-export const TUVA_DATA_VALINNAISET = [
-  {
-    id: 1,
-    title: "Opiskelijavaikuttaminen ja osallisuus",
-    scope: "0-3 viikkoa",
-    initValue: 0,
-    maxValue: 3,
-    checked: false,
-  },
-  {
-    id: 2,
-    title: "Harrastuneisuus ja vapaaehtoistyö",
-    scope: "0-3 viikkoa",
-    initValue: 0,
-    maxValue: 3,
-    checked: false,
-  },
-  {
-    id: 3,
-    title: "Henkilökohtainen kuntoutus",
-    scope: "1-10 viikkoa",
-    initValue: 0,
-    maxValue: 10,
-    checked: false,
-  },
-  
-];
+
 export const STRINGS = [
   {
     tuvaHeading: "TUVA-koulutuksen osat",
