@@ -55,38 +55,13 @@ const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
 /**
  * Checkbox for tasks in competencedetails window
  */
-const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted, status } ) => {
-
-  const [isActive, setIsActive] = useState(true); 
-  const [taskStatus, setTaskStatus] = useState(status)
-  //status = 'none' //temporary parameter, remove when status is forwarded. should be 'none', 'deactive', 'active' or 'done'
-  
-
-  const handleButtonPress = (index) => {
-    handleCompleted(index);
-  };
-
-  const handleActivate = () => {
-    setIsActive(true);
-
-    if(taskStatus == 'active' || status == 'active') {
-      setTaskStatus('done');
-    }
-    else {
-      setTaskStatus('active');
-    }
-  };
-
-  const handleDeactivate = () => {
-    setIsActive(false); 
-    setTaskStatus('deactive');
-  };
+const CompetenceDetailsCheckbox = ( { index, taskName, handleCompleted, handleRemove, status } ) => {
 
   const SubstractButton = () => {
-    switch (taskStatus) {
+    switch (status) {
       case 'none':
         return (
-        <TouchableOpacity onPress={() => handleDeactivate()}>
+        <TouchableOpacity onPress={() => handleRemove(index, status)}>
           <View style={styles.counterLabelSubstract}><FontAwesome6
               name="minus"
               size={30}
@@ -98,7 +73,7 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
         break;
       case 'active': case 'done':
         return (
-          <TouchableOpacity onPress={() => handleDeactivate()}>
+          <TouchableOpacity onPress={() => handleRemove(index, status)}>
             <View style={[styles.counterLabelSubstract, styles.counterLabelSecondary]}><FontAwesome6
                 name="minus"
                 size={30}
@@ -120,10 +95,10 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
   }
 
   const AddButton = () => {
-    switch (taskStatus) {
+    switch (status) {
       case 'none':
         return (
-        <TouchableOpacity onPress={() => handleActivate()}>
+        <TouchableOpacity onPress={() => handleCompleted(index, status)}>
           <View style={styles.counterLabelAdd}><FontAwesome6
               name="plus"
               size={30}
@@ -133,7 +108,7 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
         );
       case 'deactive':
         return (
-          <TouchableOpacity onPress={() => handleActivate()}>
+          <TouchableOpacity onPress={() => handleCompleted(index, status)}>
             <View style={[styles.counterLabelAdd, styles.counterLabelSecondary]}><FontAwesome6
                 name="plus"
                 size={30}
@@ -143,7 +118,7 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
         );
       case 'active':
         return (
-          <TouchableOpacity onPress={() => handleActivate()}>
+          <TouchableOpacity onPress={() => handleCompleted(index, status)}>
             <View style={styles.counterLabelAdd}><Ionicons
                 name="checkmark-circle"
                 size={40}
@@ -153,7 +128,7 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
         );
       case 'done':
         return (
-          <TouchableOpacity onPress={() => handleActivate()}>
+          <TouchableOpacity onPress={() => handleCompleted(index, status)}>
             <View style={[styles.counterLabelAdd, {color: 'white'}]}><Ionicons
                 name="checkmark"
                 size={25}
@@ -176,19 +151,10 @@ const CompetenceDetailsCheckbox = ( { index, taskName, checked, handleCompleted,
   }
 
   return (
-    <View style={[styles.checkTaskContainer, (status == 'deactive' || taskStatus == 'deactive') && styles.inactiveContainer]}>
-      <TouchableOpacity
-        onPress={() => handleButtonPress(index)}
-        style={[styles.checkTaskTextAndButton, (status == 'deactive' || taskStatus == 'deactive') && styles.inactiveContainer]}
-        activeOpacity={NUMERIC.opacityTouchFade}
-      >
-        {/* {checked ? (
-          <ICONS_SVG.checkedSvg style={styles.checkTaskImg} width={30} height={30} />
-        ) : (
-          <ICONS_SVG.uncheckedSvg style={styles.checkTaskImg} width={30} height={30} />
-        )} */}
-        <Text style={[styles.checkTaskText, (status == 'deactive' || taskStatus == 'deactive') && styles.inactiveText]}>{taskName}</Text>
-      </TouchableOpacity>
+    <View style={[styles.checkTaskContainer, status == 'deactive' && styles.inactiveContainer]}>
+      <View style={[styles.checkTaskTextAndButton, status == 'deactive' && styles.inactiveContainer]}>
+        <Text style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}>{taskName}</Text>
+      </View>
       <View style={styles.selectButtons}>
           <SubstractButton />
           <AddButton />
@@ -204,10 +170,44 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
   const [showDetails, setShowDetails] = useState(false);
   const fadeAnim = new Animated.Value(0);
 
-  const handleCompleted = ( index ) => {
+  const handleCompleted = ( index, status ) => {
     let newArray = [ ...tasksCompleted ]
-    newArray[ index ] = !newArray[ index ]
-    handleTaskStatusChange( newArray )
+    let newStatus = null;
+
+    switch(status) {
+      case 'none': case 'deactive': case 'done':
+        newStatus = 'active';
+        break;
+      case 'active':
+        newStatus = 'done';
+        break;
+      default: break;
+    }
+
+    if(newStatus != null) {
+      newArray[ index ] = newStatus;
+      handleTaskStatusChange( newArray )
+    }
+  }
+
+  const handleRemove = ( index, status ) => {
+    let newArray = [ ...tasksCompleted ]
+    let newStatus = null;
+
+    switch(status) {
+      case 'none': case 'active':
+        newStatus = 'deactive';
+        break;
+      case 'done':
+        newStatus = 'active';
+        break;
+      default: break;
+    }
+
+    if(newStatus != null) {
+      newArray[ index ] = newStatus;
+      handleTaskStatusChange( newArray )
+    }
   }
 
   const toggleDetailsDropdown = () => {
@@ -257,9 +257,9 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
         key={ index }
         index={ index }
         taskName={ task.title }
-        checked={ tasksCompleted[ index ] }
         handleCompleted={ handleCompleted }
-        status = { task.status }
+        handleRemove={handleRemove}
+        status = { tasksCompleted[ index ] }
       /> ) }
     </View>
   )
@@ -270,7 +270,7 @@ const competenceUserData = COMPETENCE_DATA.map( ( item ) => {
   const tasklistLength = item.tasks.length
   let taskCompletedArray = []
   for ( let index = 0; index < tasklistLength; index++ ) {
-    taskCompletedArray.push( false )
+    taskCompletedArray.push('none')
   }
   return {
     taskCompleted: taskCompletedArray
@@ -329,8 +329,9 @@ const calcElementPositions = (
  * View for students competence checklist
  */
 const CompetenceGoalsView = ({navigation}) => {
-  const [ tasksCompleted, setTasksCompleted ] = useState( competenceUserData )
+  const [ tasksCompleted, setTasksCompleted ] = useState()
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
+  const [ loading, setLoading ] = useState( true );
 
   const route = useRoute();
 
@@ -349,6 +350,7 @@ const CompetenceGoalsView = ({navigation}) => {
       else {
         setTasksCompleted(dataFromStorage)
       }
+      setLoading(false);
     }  
     )()
   }, [])
@@ -391,14 +393,13 @@ const CompetenceGoalsView = ({navigation}) => {
     saveDataToStorage(COMPETENCE_STORAGE_KEY, newTasksCompleted)
   }
 
-  if(!tasksCompleted) {
-    return(
-      <View><Text>Loading...</Text></View>
-    )
-  }
-
   // Show general view when showDetailsFrom is null
   if ( showDetailsFrom === null ) {
+    if(loading) {
+      return(
+        <View><Text>Loading...</Text></View>
+      )
+    }
     return (
       <View style={ styles.viewContainer }>
         <View style={{flexDirection: 'row'}}>
@@ -550,7 +551,6 @@ const styles = StyleSheet.create( {
     width: '80%',
     marginLeft: 15,
   },
-  
   selectButtons: {
     flexDirection: 'row',
     alignItems: 'center',
