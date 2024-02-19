@@ -118,7 +118,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 | Minä Osaan 01  | Minä Osaan 02 |
 | ------------- | ------------- |
 |<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/osaan-01.jpg" alt="Minä Osaan 01" width="270" height="570">|<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/osaan-02.jpg" alt="Minä Osaan 02" width="270" height="570">|
-|<p align="center">Minä Osaan Courses </p>|<p align="center">Minä Osaan Themes</p>|
+|<p align="center">Tuva-koulutuksen osat </p>|<p align="center">Tavoitteet</p>|
 
 | Muuta  |
 | ------------- | 
