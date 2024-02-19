@@ -53,18 +53,18 @@ const styles = StyleSheet.create({
     width: "95%",
     height: "20%",
     backgroundColor: THEME.white,
-
-    borderWidth: 2,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 15,
+    borderRadius: 20,
     elevation:10,
     shadowColor: "#023B5D",
     alignItems: "center",
     justifyContent: "center",
   },
   link__container__header: {
-    color: THEME.black,
+    color: THEME.darkBlue,
     fontSize: 28,
     textAlign: "center",
     fontFamily:'Bold'

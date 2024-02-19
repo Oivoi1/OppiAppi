@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
   viewContainer: {
     width: "100%",
     height: "100%",
-    padding: SCREEN_PADDING,
+    paddingTop: SCREEN_PADDING,
+    paddingHorizontal: SCREEN_PADDING,
     paddingTop: 0
   },
   title: {
