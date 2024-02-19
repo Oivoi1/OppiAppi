@@ -314,7 +314,7 @@ export const TUVA_DATA = [
   },
   {
     id: 7,
-    title: "Opiskelijavaikuttaminen ja osallisuus",
+    title: "Opiskelija- vaikuttaminen ja osallisuus",
     scope: "0-3 viikkoa",
     initValue: 0,
     maxValue: 3,
