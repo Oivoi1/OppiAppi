@@ -1,9 +1,10 @@
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Animated } from 'react-native'
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Animated, Modal } from 'react-native'
 import React, { useEffect, useState, useLayoutEffect } from 'react'
-import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC } from '../data/data'
+import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC, STRINGS } from '../data/data'
 import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
 import { Ionicons, FontAwesome6 } from '@expo/vector-icons'
 import { useRoute, useFocusEffect } from '@react-navigation/native'
+import CustomModalButton from '../components/CustomModalButton'
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 120
@@ -339,6 +340,7 @@ const CompetenceGoalsView = ({navigation}) => {
   const [ tasksCompleted, setTasksCompleted ] = useState()
   const [ showDetailsFrom, setShowDetailsFrom ] = useState( null )
   const [ loading, setLoading ] = useState( true );
+  const [isModalVisibleIntro, setIsModalVisibleIntro] = useState(false);
 
   const route = useRoute();
 
@@ -441,8 +443,16 @@ const CompetenceGoalsView = ({navigation}) => {
           />
           <Text style={ [styles.title, {marginLeft: 10, marginBottom: 0, flex: 1}] }
             adjustsFontSizeToFit={true}
-            numberOfLines={1}
+            numberOfLines={2}
           >{ COMPETENCE_DATA[showDetailsFrom].detailsTitle }</Text>
+          <TouchableOpacity
+            style={styles.customButton}
+            onPress={() => {
+              setIsModalVisibleIntro(!isModalVisibleIntro);
+            }}
+          >
+            <ICONS_SVG.infoSvg />
+          </TouchableOpacity>
         </View>
         <ScrollView style={ styles.scrollView }>
           <View style={ styles.detailsContainer }>
@@ -453,6 +463,21 @@ const CompetenceGoalsView = ({navigation}) => {
             />
           </View>
         </ScrollView>
+        <Modal
+          style={styles.modalContainerInfo}
+          //Modal for general info
+          animationType="fade"
+          visible={isModalVisibleIntro}
+        >
+          {STRINGS.map((item, index) => (
+            <Text key={index} style={styles.instructions}>
+              {item.tuvaInstructions}
+            </Text>
+          ))}
+          <CustomModalButton
+            onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
+          />
+        </Modal>
       </>
     )
   }
@@ -528,9 +553,7 @@ const styles = StyleSheet.create( {
   },
   checkTaskContainer: {
     backgroundColor: 'white',
-    borderRadius: 100,
-    borderBottomRightRadius: 20,
-    borderTopRightRadius: 20,
+    borderRadius: 10,
     borderWidth: 2,
     borderColor: THEME.darkBlue,
     flexDirection: 'row',
@@ -558,8 +581,8 @@ const styles = StyleSheet.create( {
   },
   checkTaskText: {
     fontFamily: 'SemiBold',
-    width: '80%',
-    marginLeft: 15,
+    width: '85%',
+    marginLeft: 5,
   },
   selectButtons: {
     flexDirection: 'row',
@@ -650,7 +673,28 @@ const styles = StyleSheet.create( {
   counterLabelSecondary: {
     backgroundColor: 'none',
     borderColor: THEME.darkBlue
-  }
+  },
+  modalContainerInfo: {
+    backgroundColor: THEME.white,
+    width: "90%",
+    height: "40%",
+    padding: 40,
+    borderRadius: 20,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
+    alignSelf: "center",
+    fontFamily: "Regular",
+    position: "absolute",
+    top: "15%",
+  },
+  instructions: {
+    marginTop: 30,
+    marginBottom: 30,
+    fontSize: 16,
+    fontFamily: "Regular",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
 } )
 
 export default CompetenceGoalsView
