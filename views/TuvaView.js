@@ -611,7 +611,8 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    padding: SCREEN_PADDING,
+    paddingTop: SCREEN_PADDING,
+    paddingHorizontal: SCREEN_PADDING,
     paddingTop: 0
   },
   boxContainer: {
