@@ -118,7 +118,7 @@ export const COMPETENCE_DATA = [
   },
   {
     buttonText: 'Lukio- koulutuksen opinnot',
-    detailsTitle: 'Lukiokoulutuksen opinnot ja niihin valmentautuminen',
+    detailsTitle: 'Lukiokoulutuksen opinnot',
     description: 'Koulutuksen osa sisältää lukiokoulutukseen valmentavaa koulutusta ja lukio-opintoja opiskelijan valmiuksien mukaisesti. Suorittaessaan lukio-opintoja opiskelija saa tukea opiskelutaitojen ja -valmiuksien kehittämiseen osana valmentavaa koulutusta.\n\nOpiskelija vahvistaa opiskelukielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee lukiossa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot lukio-opiskeluun sekä vahvistaa erityisesti tiedonalojen kielen taitoaan eli eri oppiaineiden tekstitaitoja.\n\nOpiskelija tutustuu lukiokoulutukseen ja sen vaatimuksiin. Opiskelija voi valita omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan lukion opintojakson tai opintojaksoja, joita hän suorittaa osana valmentavaa koulutusta. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa lukiokoulutuksessa.',
     tasks: [
       {
@@ -140,7 +140,7 @@ export const COMPETENCE_DATA = [
   },
   {
     buttonText: 'Ammatillisen koulutuksen opinnot',
-    detailsTitle: 'Ammatillisen koulutuksen opinnot ja niihin valmentautuminen',
+    detailsTitle: 'Ammatillisen koulutuksen opinnot',
     description: 'Koulutuksen osa sisältää ammatillisia perustutkintojen tutkinnon osia sekä tutkinnon osia pienempiä kokonaisuuksia tai yhteisten tutkinnon osien osa-alueita opiskelijan valmiuksien mukaisesti. On tärkeää, että opiskelija saa opiskeluun riittävästi tukea sekä valmentavassa koulutuksessa että suorittaessaan ammatillisia opintoja valmentavan koulutuksen aikana. \n\nOpiskelija vahvistaa tutkintokielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee ammatillisessa koulutuksessa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot ammatilliseen opiskeluun sekä vahvistaa erityisesti ammatillisessa koulutuksessa tarvittavaa kielitaitoa.\n\nOpiskelija tutustuu ammatilliseen koulutukseen ja sen vaatimuksiin. Opiskelija voi suorittaa omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan tutkinnon osia sekä pienempiä kokonaisuuksia tai yhteisten tukinnon osien osa-alueita. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa ammatillisessa koulutuksessa.',
     tasks: [
       {
@@ -165,7 +165,7 @@ export const COMPETENCE_DATA = [
   
   {
     buttonText: 'Työelämä- taidot',
-    detailsTitle: 'Työelämätaidot ja työelämässä tapahtuva oppiminen',
+    detailsTitle: 'Työelämä- taidot',
     description: 'Koulutuksen osassa keskitytään keskeisiin työelämätaitoihin ja tuetaan työelämässä tapahtuvaa oppimista. Tavoitteena on vahvistaa opiskelijan oman toiminnan ohjaamista sekä viestintä-, vuorovaikutus- ja yhteistyötaitoja. Opiskelija tutustuu työelämässä tapahtuvaan koulutukseen.',
     tasks: [
       {
@@ -199,8 +199,8 @@ export const COMPETENCE_DATA = [
 
   },
   {
-    buttonText: 'Arjen taidot ja yhteiskunnallinen osallisuus',
-    detailsTitle: 'Arjen taidot ja yhteiskunnallinen osallisuus',
+    buttonText: 'Arki ja yhteiskunta',
+    detailsTitle: 'Arki ja yhteiskunta',
     description: 'Koulutuksen osassa painottuvat opiskelijan arjessa toimimisen ja yhteiskunnallisen osallisuuden taitojen vahvistaminen. Arjen toimintakyvyn vahvistaminen ja osallisuuden edistäminen nähdään opiskelijan terveyttä ja hyvinvointia sekä osallisuutta edistävänä. Tavoitteena on myös vahvistaa arjen taitojen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitoja. ',
     tasks: [
       {

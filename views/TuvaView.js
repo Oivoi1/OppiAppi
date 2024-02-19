@@ -457,58 +457,23 @@ handle asyncstorage state saving also */
               :
               <>
                 {TUVA_DATA.map((item, index) => {
-                  // Check if we need to insert the heading for "Valinnaiset opinnot"
-                  if (index === 6) {
-                    return (
-                      <React.Fragment key={item.id}>
-                        {/* Heading for "Valinnaiset opinnot" */}
-                        <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
-                        {/* The item itself with the valinnainen style */}
-                        <View style={[styles.itemContainer, styles.itemContainerValinnainen]}>
-                          {/* The rest of the item rendering */}
-                          <View>
-                            <Text style={styles.itemTitle}>{item.title}</Text>
-                            <Text style={styles.itemScope}>{item.scope}</Text>
-                          </View>
-                          <View style={styles.buttonContainer}>
-                            <Counter
-                              initValue={item.initValue}
-                              maxValue={item.maxValue}
-                              itemId={item.id}
-                              setModalWeeks={setModalWeeks}
-                              clickedIndex={clickedIndex}
-                              stateToStorage={stateToStorage}
-                              setStateToStorage={setStateToStorage}
-                            />
-                            <TouchableOpacity
-                              style={styles.iconHelp}
-                              onPress={() => {
-                                handleModalOpen(index);
-                              }}
-                            >
-                              <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                            </TouchableOpacity>
-                          </View>
-                          <TouchableOpacity onPress={() => navigation.navigate('CompetenceGoalsView', { detailsIndex: index + 1 })}>
-                            <View style={styles.goalsButtonContainer}>
-                              <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
-                            </View>
-                          </TouchableOpacity>
-                          {/* Conditional rendering for task completion */}
-
-                        </View>
-                      </React.Fragment>
-                    );
-                  } else {
+                  
                     // Apply the valinnainen style only for items after the "Valinnaiset opinnot"
                     const itemStyle = index > 6 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
+                    const valinnainenText = <View style={styles.valinnainenContainer}>
+                    <Text style={styles.valinnainen}>VALINNAINEN</Text>
+                    </View>
+                    const valinnaisetopinnotText = <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
+                  
 
                     return (
-                      <View style={itemStyle} key={item.id}>
-                        {/* The rest of the item rendering, similar to above */}
+                      <View  key={item.id}>
+                      {index === 6 && valinnaisetopinnotText}
+                      <View style={itemStyle}>                        
                         <View>
                           <Text style={styles.itemTitle}>{item.title}</Text>
                           <Text style={styles.itemScope}>{item.scope}</Text>
+                          {index >= 6 && valinnainenText}
                         </View>
                         <View style={styles.buttonContainer}>
                           <Counter
@@ -529,7 +494,10 @@ handle asyncstorage state saving also */
                             <Ionicons name="trophy-outline" size={28} color="#023B5D" />
                           </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('CompetenceGoalsView', { detailsIndex: index + 1 })}>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate('CompetenceGoalsView', 
+                          { detailsIndex: index < 6 ? index + 1 : 7 })}
+                        >
                           <View style={styles.goalsButtonContainer}>
                             <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
                           </View>
@@ -537,9 +505,10 @@ handle asyncstorage state saving also */
                         {/* Conditional rendering for task completion */}
 
                       </View>
+                      </View>
                     );
                   }
-                })}
+                )}
 
                 <Modal
                   style={styles.modalContainer}
@@ -619,12 +588,18 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   valinnainenContainer: {
-    borderWidth: 2,
+    borderWidth: 2.5,
     borderStyle: 'dashed',
     borderColor: THEME.brightRed,
     alignSelf: 'center',
     borderRadius: 10,
     margin: 3,
+    padding:5,
+  },
+  valinnainen:{
+    color:THEME.brightRed,
+    fontSize:15,
+    fontFamily:'Bold'
   },
 
   itemContainer: {
