@@ -473,6 +473,14 @@ handle asyncstorage state saving also */
                       <View style={itemStyle}>                        
                         <View>
                           <Text style={styles.itemTitle}>{item.title}</Text>
+                          <TouchableOpacity
+                            style={styles.iconHelp}
+                            onPress={() => {
+                              handleModalOpen(index);
+                            }}
+                          >
+                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                          </TouchableOpacity>
                           <Text style={styles.itemScope}>{item.scope}</Text>
                           {index >= 6 && valinnainenText}
                         </View>
@@ -486,14 +494,6 @@ handle asyncstorage state saving also */
                             stateToStorage={stateToStorage}
                             setStateToStorage={setStateToStorage}
                           />
-                          <TouchableOpacity
-                            style={styles.iconHelp}
-                            onPress={() => {
-                              handleModalOpen(index);
-                            }}
-                          >
-                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                          </TouchableOpacity>
                         </View>
                         <TouchableOpacity
                           onPress={() => navigation.navigate('CompetenceGoalsView', 
@@ -636,7 +636,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 5,
-    textAlign: "center"
+    textAlign: "center",
+    alignSelf: 'center',
+    maxWidth: '70%'
   },
   itemScope: {
     fontSize: 16,
@@ -663,7 +665,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "flex-end",
     position: "absolute",
-    top: "20%",
+    top: "5%",
     right: 0,
     borderColor: THEME.darkBlue,
   },
