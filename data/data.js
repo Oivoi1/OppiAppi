@@ -395,7 +395,9 @@ export const STRINGS = [
     tuvaHeading: "TUVA-koulutuksen osat",
     tuvaInstructions:
       "Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
-      tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa pokaalia."
+    tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa pokaalia.",
+    goalInstructions:
+      "Valitse itsellesi sopivat tavoitteet yhdessä opettajan kanssa keskustellen. Kun näet opettajan kanssa keskustellen että valittu tavoite on suoritettu voit merkitä sen suoritetuksi."
   },
 ];
 
