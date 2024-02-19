@@ -162,21 +162,22 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp](https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp)
+Project Link: [https://github.com/Oivoi1/OppiAppi](https://github.com/Oivoi1/OppiAppi)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Antti Haverinen](https://github.com/Amppu)
-* [Tomi Niemelä](https://github.com/Gittomi)
-* [Esa Salminen](https://github.com/esalminen)
-* [Viktor Tapdygov](https://github.com/ViktorTap)
+
 * [Pauli Haarnio](https://github.com/paulihaarnio)
 * [Veeti Oivo](https://github.com/Oivoi1)
 * [Pinja Åman](https://github.com/pinjaa)
 * [Enna-Liina Böök](https://github.com/booennm)
+* [Antti Haverinen](https://github.com/Amppu)
+* [Tomi Niemelä](https://github.com/Gittomi)
+* [Esa Salminen](https://github.com/esalminen)
+* [Viktor Tapdygov](https://github.com/ViktorTap)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
