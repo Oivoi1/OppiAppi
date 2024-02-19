@@ -587,7 +587,7 @@ const styles = StyleSheet.create( {
   },
   checkTaskText: {
     fontFamily: 'SemiBold',
-    width: '85%',
+    width: '82%',
     marginLeft: 5,
   },
   selectButtons: {
