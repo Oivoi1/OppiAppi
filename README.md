@@ -173,6 +173,10 @@ Project Link: [https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp](ht
 * [Tomi Niemelä](https://github.com/Gittomi)
 * [Esa Salminen](https://github.com/esalminen)
 * [Viktor Tapdygov](https://github.com/ViktorTap)
+* [Pauli Haarnio](https://github.com/paulihaarnio)
+* [Veeti Oivo](https://github.com/Oivoi1)
+* [Pinja Åman](https://github.com/pinjaa)
+* [Enna-Liina Böök](https://github.com/booennm)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
