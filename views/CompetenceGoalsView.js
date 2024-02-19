@@ -1,10 +1,11 @@
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Animated, Modal } from 'react-native'
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, Animated, SafeAreaView } from 'react-native'
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { COMPETENCE_DATA, COMPETENCE_STORAGE_KEY, ICONS_SVG, THEME, NUMERIC, STRINGS } from '../data/data'
 import { getDataFromStorage, saveDataToStorage, vibrateShort, showNotification } from '../utils/GeneralFunctions'
 import { Ionicons, FontAwesome6 } from '@expo/vector-icons'
 import { useRoute, useFocusEffect } from '@react-navigation/native'
 import CustomModalButton from '../components/CustomModalButton'
+import Modal from "react-native-modal";
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 120
@@ -364,19 +365,18 @@ const CompetenceGoalsView = ({navigation}) => {
     )()
   }, [])
   
-  useEffect(() => {
-    if(route.params?.detailsIndex) {
-      setShowDetailsFrom(route.params.detailsIndex - 1); //-1 so that 0 is also handled, received index should always be +1
-    }
-  }, [route.params?.detailsIndex])
-  
   useFocusEffect(
     React.useCallback(() => {
+      
+      if(route.params?.detailsIndex) {
+        setShowDetailsFrom(route.params.detailsIndex - 1); //-1 so that 0 is also handled, received index should always be +1
+      }
+
       return () => {
         // Clean up when the screen goes out of focus
         setShowDetailsFrom(null);
       };
-    }, [])
+    }, [route.params])
   );
 
   // Calc competence indicator locations
@@ -437,6 +437,7 @@ const CompetenceGoalsView = ({navigation}) => {
   else {
     return (
       <>
+      {isModalVisibleIntro && <View style={styles.overlay} />}
         <View style={styles.detailsTitle}>
           <BackButton
             onPress={ () => setShowDetailsFrom( null ) }
@@ -471,7 +472,7 @@ const CompetenceGoalsView = ({navigation}) => {
         >
           {STRINGS.map((item, index) => (
             <Text key={index} style={styles.instructions}>
-              {item.tuvaInstructions}
+              {item.goalInstructions}
             </Text>
           ))}
           <CustomModalButton
@@ -495,6 +496,8 @@ const styles = StyleSheet.create( {
     position: 'relative',
     flexGrow: 1,
     padding: SCREEN_PADDING,
+    width: "100%",
+    height: "100%",
   },
   scrollView: {
     backgroundColor: THEME.lightBackground,
@@ -581,7 +584,7 @@ const styles = StyleSheet.create( {
   },
   checkTaskText: {
     fontFamily: 'SemiBold',
-    width: '85%',
+    width: '82%',
     marginLeft: 5,
   },
   selectButtons: {
@@ -694,6 +697,11 @@ const styles = StyleSheet.create( {
     fontFamily: "Regular",
     fontWeight: "bold",
     textAlign: "center"
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 1,
   },
 } )
 
