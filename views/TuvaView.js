@@ -9,6 +9,7 @@ import { useFocusEffect } from "@react-navigation/native";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 import CustomModalButton from "../components/CustomModalButton";
+import CustomText from "../components/CustomText";
 
 // <----- DATA -----> //
 import { STRINGS, TUVA_DATA, ICONS_SVG, TUVA_STORAGE_KEY, THEME, COMPETENCE_STORAGE_KEY, TUVA_DATA_VALINNAISET } from "../data/data";
@@ -441,9 +442,9 @@ handle asyncstorage state saving also */
             visible={isModalVisibleIntro}
           >
             {STRINGS.map((item, index) => (
-              <Text key={index} style={styles.instructions}>
+              <CustomText key={index} style={styles.instructions}>
                 {item.tuvaInstructions}
-              </Text>
+              </CustomText>
             ))}
             <CustomModalButton
               onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
@@ -518,14 +519,14 @@ handle asyncstorage state saving also */
                   <View style={{ flex: 1 }}>
                     {
                       modalWeeks === 0 ? (
-                        <Text style={styles.instructions}>
+                        <CustomText style={styles.instructions}>
                           Valittuasi opintoviikkoja, alla olevaan näkymään tulee viikkojen määrä pokaaleita.
-                        </Text>
+                        </CustomText>
                       ) : (
                         STRINGS.map((item, index) => (
-                          <Text key={index} style={styles.instructions}>
+                          <CustomText key={index} style={styles.instructions}>
                             {item.tuvaInstructionsForCourseComplete} {/* This is your original instructions */}
-                          </Text>
+                          </CustomText>
                         ))
                       )
                     }
@@ -651,7 +652,6 @@ const styles = StyleSheet.create({
   instructions: {
     marginTop: 30,
     marginBottom: 30,
-    fontSize: 16,
     fontFamily: "Regular",
     fontWeight: "bold",
     textAlign: "center"
