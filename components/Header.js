@@ -34,9 +34,9 @@ export default function Header( {title, studyWeeks, trophies} ) {
     
     <View style={{ flexDirection: 'row', backgroundColor: THEME.darkBlue, padding: 10,marginLeft:-380,paddingTop:20 }}>
         
-            <Image style={{ resizeMode: 'contain', height: 30}} source={require('../assets/adaptive-icon-smaller.png')} />
+            <Image style={{ resizeMode: 'contain', height: 33}} source={require('../assets/adaptive-icon-smaller.png')} />
         
-          <Text style={{ color:'white', marginLeft: -390, fontSize: 17, fontFamily: 'SemiBold' }}>OppiÄppi</Text>
+          <Text style={{ color:'white', marginLeft: -390, fontSize: 15, fontFamily: 'SemiBold', alignSelf:'flex-end' }}>OppiÄppi</Text>
           
         </View>
         <View style={{ flexDirection: 'row', backgroundColor: THEME.darkBlue, padding: 10, justifyContent: "space-between"}}>
@@ -76,8 +76,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderColor: "#FFF",
     borderWidth: 1,
-    padding: 5,
+    padding: 6,
+    paddingRight: 8,
     borderRadius: 15,
+    alignItems: 'center'
   },
   headerLeftView: {
     marginLeft: 5,
@@ -85,8 +87,9 @@ const styles = StyleSheet.create({
   headerSidesText: {
     color: "#FFF",
     fontSize: 20,
-    marginHorizontal: 5,
-    fontFamily: "Regular",
+    marginHorizontal: 9,
+    fontFamily: "Bold",
+    letterSpacing: 4
   },
   headerRightView: {
     marginRight: 5,
@@ -96,7 +99,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight:"bold",
     fontFamily:"Regular",
-    marginLeft:10
+    marginLeft:10,
+    alignSelf: 'flex-end'
   },
   modal: {
     justifyContent: 'center',
