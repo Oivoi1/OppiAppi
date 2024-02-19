@@ -31,7 +31,7 @@ const SettingsModal = ({ isVisible, onClose }) => {
           ))}
           {/* Close button to exit the modal */}
           <TouchableOpacity style={styles.button} onPress={onClose}>
-            <Text style={styles.buttonText}>Close</Text>
+            <Text style={styles.buttonText}>Sulje</Text>
           </TouchableOpacity>
         </View>
       </View>
