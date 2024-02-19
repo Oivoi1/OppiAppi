@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   link__container: {
     width: "95%",
-    height: "20%",
+    height: "24%",
     backgroundColor: THEME.white,
     borderColor: THEME.darkBlue,
     borderWidth: 3,
