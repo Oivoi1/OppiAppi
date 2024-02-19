@@ -365,19 +365,18 @@ const CompetenceGoalsView = ({navigation}) => {
     )()
   }, [])
   
-  useEffect(() => {
-    if(route.params?.detailsIndex) {
-      setShowDetailsFrom(route.params.detailsIndex - 1); //-1 so that 0 is also handled, received index should always be +1
-    }
-  }, [route.params?.detailsIndex])
-  
   useFocusEffect(
     React.useCallback(() => {
+      
+      if(route.params?.detailsIndex) {
+        setShowDetailsFrom(route.params.detailsIndex - 1); //-1 so that 0 is also handled, received index should always be +1
+      }
+
       return () => {
         // Clean up when the screen goes out of focus
         setShowDetailsFrom(null);
       };
-    }, [])
+    }, [route.params])
   );
 
   // Calc competence indicator locations
@@ -439,7 +438,6 @@ const CompetenceGoalsView = ({navigation}) => {
     return (
       <>
       {isModalVisibleIntro && <View style={styles.overlay} />}
-      <SafeAreaView>
         <View style={styles.detailsTitle}>
           <BackButton
             onPress={ () => setShowDetailsFrom( null ) }
@@ -481,7 +479,6 @@ const CompetenceGoalsView = ({navigation}) => {
             onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
           />
         </Modal>
-        </SafeAreaView>
       </>
     )
   }

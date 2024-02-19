@@ -112,17 +112,17 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 | Main View  | Tuva View |
 | ------------- | ------------- |
-|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/mainView.png" alt="Main View" width="270" height="570">|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/tuva.png" alt="Tuva View" width="270" height="570">|
+|<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/mainView.jpg" alt="Main View" width="270" height="570">|<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/tuva.jpg" alt="Tuva View" width="270" height="570">|
 |<p align="center">App's starting page</p>|<p align="center">Study weeks selector</p>|
 
 | Minä Osaan 01  | Minä Osaan 02 |
 | ------------- | ------------- |
-|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/osaan-01.png" alt="Minä Osaan 01" width="270" height="570">|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/osaan-02.png" alt="Minä Osaan 02" width="270" height="570">|
-|<p align="center">Minä Osaan Courses </p>|<p align="center">Minä Osaan Themes</p>|
+|<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/osaan-01.jpg" alt="Minä Osaan 01" width="270" height="570">|<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/osaan-02.jpg" alt="Minä Osaan 02" width="270" height="570">|
+|<p align="center">Tuva-koulutuksen osat </p>|<p align="center">Tavoitteet</p>|
 
 | Muuta  |
 | ------------- | 
-|<img src="https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp/blob/main/assets/README/muuta.png" alt="Minä Osaan 01" width="270" height="570">|
+|<img src="https://github.com/Oivoi1/OppiAppi/blob/main/assets/README/muuta.jpg" alt="Minä Osaan 01" width="270" height="570">|
 |<p align="center">Muuta </p>|
 
 
@@ -162,13 +162,18 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp](https://github.com/TVT21KMO-R2-Mobiilikehitysprojekti/oppiapp)
+Project Link: [https://github.com/Oivoi1/OppiAppi](https://github.com/Oivoi1/OppiAppi)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
+
+* [Pauli Haarnio](https://github.com/paulihaarnio)
+* [Veeti Oivo](https://github.com/Oivoi1)
+* [Pinja Åman](https://github.com/pinjaa)
+* [Enna-Liina Böök](https://github.com/booennm)
 * [Antti Haverinen](https://github.com/Amppu)
 * [Tomi Niemelä](https://github.com/Gittomi)
 * [Esa Salminen](https://github.com/esalminen)
