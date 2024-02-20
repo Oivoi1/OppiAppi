@@ -45,14 +45,15 @@ export default function Header({ title, studyWeeks, trophies }) {
 
         <Text style={{ color: 'white', marginLeft: -390, fontSize: 15, fontFamily: 'SemiBold', alignSelf: 'flex-end' }}>OppiÄppi</Text>
 
+        <TouchableOpacity
+            style={styles.settingsButton}
+            onPress={toggleSettingsModal}
+          >
+            <Ionicons name="settings-sharp" size={25} color="white" />
+        </TouchableOpacity>
+        
       </View>
       <View style={{ flexDirection: 'row', backgroundColor: THEME.darkBlue, padding: 10, justifyContent: "space-between" }}>
-
-        {/* Left Header */}
-        <View>
-          <Button title="Settings" onPress={toggleSettingsModal} />
-          <SettingsModal isVisible={isSettingsModalVisible} onClose={toggleSettingsModal} />
-        </View>
 
         {/* Main Header Text */}
         <Text style={styles.headerText}>{title}</Text>
@@ -77,6 +78,8 @@ export default function Header({ title, studyWeeks, trophies }) {
         >
           {renderModalContent()}
         </Modal>
+
+        <SettingsModal isVisible={isSettingsModalVisible} onClose={toggleSettingsModal} />
       </View>
     </>
   )
@@ -149,4 +152,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: "bold",
   },
+  settingsButton: {
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    right: 20,
+    paddingBottom: 10
+  }
 });
