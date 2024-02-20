@@ -10,7 +10,7 @@ export const textSizeOptions = {
 
 // Create a context with a default value
 const TextSizeContext = React.createContext({
-  textSize: textSizeOptions.medium, // Default text size
+  textSize: textSizeOptions.Normaali, // Default text size
   setTextSize: () => {}, // Placeholder function, to be implemented with useState
 });
 

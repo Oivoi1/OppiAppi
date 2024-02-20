@@ -26,7 +26,7 @@ export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(2);
   const [trophies, setTrophies] = useState(0);
   const [title, setTitle] = useState('PÄÄSIVU');
-  const [textSize, setTextSize] = useState(textSizeOptions.medium);
+  const [textSize, setTextSize] = useState(textSizeOptions.Normaali);
   
 //load studyweeks and trophies from phone memory 
 useEffect(() => {
