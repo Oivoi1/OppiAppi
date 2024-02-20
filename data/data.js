@@ -275,7 +275,7 @@ export const TUVA_DATA = [
   {
     id: 3,
     title: "Lukiokoulutuksen opinnot ja niihin valmentautuminen",
-    scope: "1-30 viikkoa",
+    scope: "0-30 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
     initValue: 0,
     maxValue: 30,
@@ -284,7 +284,7 @@ export const TUVA_DATA = [
   {
     id: 4,
     title: "Ammatillisen koulutuksen opinnot ja niihin valmentautuminen",
-    scope: "1-30 viikkoa",
+    scope: "0-30 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
     initValue: 0,
     maxValue: 30,
@@ -293,7 +293,7 @@ export const TUVA_DATA = [
   {
     id: 5,
     title: "Työelämätaidot ja työelämässä tapahtuva oppiminen",
-    scope: "1-20 viikkoa",
+    scope: "0-20 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
     initValue: 0,
     maxValue: 20,
@@ -302,7 +302,7 @@ export const TUVA_DATA = [
   {
     id: 6,
     title: "Arjen taidot ja yhteiskunnallinen osallisuus",
-    scope: "1-20 viikkoa",
+    scope: "0-20 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
     initValue: 0,
     maxValue: 20,
@@ -327,7 +327,7 @@ export const TUVA_DATA = [
   {
     id: 9,
     title: "Henkilökohtainen kuntoutus",
-    scope: "1-10 viikkoa",
+    scope: "0-10 viikkoa",
     initValue: 0,
     maxValue: 10,
     checked: false,
@@ -390,7 +390,7 @@ export const STRINGS = [
   {
     tuvaHeading: "TUVA-koulutuksen osat",
     tuvaInstructions:
-      "Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
+      "Sijoita opintoviikot laatikoihin valintojesi mukaan yhdessä opettajan kanssa, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
     tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa pokaalia.",
     goalInstructions:
       "Valitse itsellesi sopivat tavoitteet yhdessä opettajan kanssa keskustellen. Kun näet opettajan kanssa keskustellen että valittu tavoite on suoritettu voit merkitä sen suoritetuksi."
