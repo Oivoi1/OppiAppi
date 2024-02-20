@@ -358,16 +358,13 @@ handle asyncstorage state saving also */
     if(modalDetail[0]) {
       let allTrue = true;
       for(var key in modalDetail) {
-        console.log(modalDetail[key] + key);
         if(!modalDetail[key]) {
           allTrue = false;
         }
       }
       if(allTrue) {
-        console.log("all true");
         return true;
-      }else //return false;
-      console.log("false");
+      }else false;
     }
   }
 
