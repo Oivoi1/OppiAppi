@@ -228,8 +228,8 @@ const styles = StyleSheet.create({
   counterLabel: {
     fontSize: 22,
     paddingTop: 10,
-    paddingRight: 15,
-    paddingLeft: 20,
+    paddingRight: 19,
+    paddingLeft: 26,
     fontFamily: "Bold",
     color: THEME.black,
     borderWidth: 3,
