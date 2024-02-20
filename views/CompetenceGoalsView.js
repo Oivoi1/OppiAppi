@@ -30,9 +30,9 @@ const BackButton = ( { onPress } ) => {
  * Candy like buttons CompetenceGoalsView
  */
 const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
-  const allCompleted =  tasks.every( task => task === 'done' )
   const completedTasks = tasks.filter(task => task === 'done').length
   const totalTasks = tasks.filter(task => task === 'active' || task === 'done').length
+  const allCompleted =  completedTasks == totalTasks && totalTasks != 0;
 
   return (
     <TouchableOpacity
