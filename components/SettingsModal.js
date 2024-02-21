@@ -23,7 +23,7 @@ const SettingsModal = ({ isVisible, onClose }) => {
   };
 
   return (
-    <Modal visible={isVisible} onRequestClose={onClose} transparent={true} animationType="slide">
+    <Modal visible={isVisible} onRequestClose={onClose} transparent={true} animationType="fade">
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           {/* Header */}
@@ -45,7 +45,7 @@ const SettingsModal = ({ isVisible, onClose }) => {
           ))}
           {/* Close button to exit the modal */}
           <TouchableOpacity style={styles.suljeButton} onPress={onClose}>
-            <Text style={styles.buttonText}>Sulje</Text>
+            <Text style={styles.buttonText}>SULJE</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    marginBottom: "19.4%",
+    marginTop: "25.7%"
   },
   modalContent: {
     margin: 20,
@@ -80,7 +82,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: "90%"
+    width: "90%",
+    bottom: "5%"
   },
   header: {
     fontSize: 24,

@@ -73,8 +73,8 @@ export default function Header({ title, studyWeeks, trophies }) {
         </TouchableOpacity>
 
         {/* Custom Modal */}
-        <Modal isVisible={isModalVisible} style={styles.modal}
-          animationType="fade"
+        <Modal animationType="fade" isVisible={isModalVisible} style={styles.modal}
+           backdropOpacity={0}
         >
           {renderModalContent()}
         </Modal>
@@ -116,14 +116,23 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end'
   },
   modal: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', // Adjust if you want the modal positioned differently
+    margin: 0, // Remove default margin to allow full width
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    marginBottom: "19.4%",
+    marginTop: "25.7%"
   },
   modalContent: {
     backgroundColor: 'white',
     paddingVertical: 40,
     paddingHorizontal: 20,
     borderRadius: 10,
+    maxHeight: '80%', // Adjust to control the maximum height and leave space at the top and bottom
+    width: '90%', // Ensure the modal content is full width
+    alignSelf: 'center', // Center the modal content horizontally
+    borderRadius: 20, // Optional: for styled corners
+    borderWidth: 3,
+    borderColor: THEME.darkBlue
   },
   modalHeaderText: {
     fontSize: 18,
