@@ -318,6 +318,56 @@ handle asyncstorage state saving also */
     }
     saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
   };
+
+  const allTrophiesChecked = (index) => {
+    let modalDetail = null;
+
+    switch(index) {
+      case 0:
+        modalDetail = showModalDetailFromFirst;
+        break;
+      case 1:
+        modalDetail = showModalDetailFromSecond;
+        break;
+      case 2:
+        modalDetail = showModalDetailFromThird;
+        break;
+      case 3:
+        modalDetail = showModalDetailFromFourth;
+        break;
+      case 4:
+        modalDetail = showModalDetailFromFifth;
+        break;
+      case 5:
+        modalDetail = showModalDetailFromSixth;
+        break;
+      case 6:
+        modalDetail = showModalDetailFromSeventh;
+        break;
+      case 7:
+        modalDetail = showModalDetailFromEight;
+        break;
+      case 8:
+        modalDetail = showModalDetailFromNinth;
+        break;
+      default:
+        console.log("allTrophiesChecked not found");
+        return false;
+    }
+
+    if(modalDetail[0]) {
+      let allTrue = true;
+      for(var key in modalDetail) {
+        if(!modalDetail[key]) {
+          allTrue = false;
+        }
+      }
+      if(allTrue) {
+        return true;
+      }else false;
+    }
+  }
+
   //Renders modals buttons for course complition
   const ModalDetailsCheckbox = ({ index }) => {
     const itemId = clickedIndex;
@@ -472,14 +522,22 @@ handle asyncstorage state saving also */
                       {index === 6 && valinnaisetopinnotText}
                       <View style={itemStyle}>                        
                         <View>
-                          <Text style={styles.itemTitle}>{item.title}</Text>
+                          <Text
+                            style={styles.itemTitle}
+                            adjustsFontSizeToFit={true}
+                            numberOfLines={4}
+                          >{item.title}</Text>
                           <TouchableOpacity
-                            style={styles.iconHelp}
+                            style={[styles.iconHelp, allTrophiesChecked(index) && {backgroundColor: THEME.darkBlue}]}
                             onPress={() => {
                               handleModalOpen(index);
                             }}
                           >
+                            {allTrophiesChecked(index) ?
+                            <Ionicons name="trophy" size={28} color="gold" />
+                            :
                             <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                            } 
                           </TouchableOpacity>
                           <Text style={styles.itemScope}>{item.scope}</Text>
                           {index >= 6 && valinnainenText}
@@ -638,7 +696,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     textAlign: "center",
     alignSelf: 'center',
-    maxWidth: '70%'
+    maxWidth: '68%'
   },
   itemScope: {
     fontSize: 16,
@@ -666,7 +724,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     position: "absolute",
     top: "5%",
-    right: 0,
+    right: -1,
     borderColor: THEME.darkBlue,
   },
   buttonContainer: {
@@ -749,15 +807,15 @@ const styles = StyleSheet.create({
   goalsButtonLabel: {
     fontFamily: "Bold",
     color: THEME.darkBlue,
-    fontSize: 18,
+    fontSize: 17,
   },
   goalsButtonContainer: {
     padding: 5,
     borderRadius: 100,
     backgroundColor: 'white',
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: THEME.darkBlue,
-    marginTop: 10,
+    marginVertical: 7,
     alignItems: "center",
     alignSelf: 'center',
     width: '60%'

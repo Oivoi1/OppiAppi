@@ -59,20 +59,16 @@ export const COMPETENCE_DATA = [
     description: 'Tutkintokoulutukseen valmentavassa koulutuksessa kehitetään opiskelijan opiskelu- ja urasuunnittelutaitoja, kuten kykyä työskennellä ja opiskella itsenäisesti, suunnitella omia opintoja ja ajankäyttöä sekä tehdä opintoihin liittyviä valintoja. Opiskelijaa tuetaan tiedostamaan koulutuksen ja työnteon merkitys omassa elämässään. Opiskelu- ja urasuunnittelutaitojen kehittymiseen liittyvät kiinteästi opiskelu/tutkintokielen taidon ja erityisesti urasuunnitteluun liittyvien tekstitaitojen hallinta.',
     tasks: [
       {
-        title: 'Asetan ja arvioin omia elämäntavoitteitani ja -toiveitani.',
-        status: 'active'
+        title: 'Asetan ja arvioin oman elämäni toiveita ja tavoitteita.',
       },
       {
         title: 'Osaan kuvailla itseäni oppijana ja opiskelijana.',
-        status: 'deactive'
       },
       {
         title: 'Tutustun erilaisiin tapoihin oppia ja hankkia osaamista.',
-        status: 'done'
       },
       {
         title: 'Käytän soveltuvia opiskelutaitoja.',
-        status: 'none'
       },
       {
         title: 'Suunnittelen omia opintojani tavoitteellisesti.',
@@ -106,32 +102,32 @@ export const COMPETENCE_DATA = [
         title: 'Saavutan sellaiset perustaidot (luku-, numero- ja digitaidot), joiden avulla pystyn opiskelemaan toisen asteen opinnoissa.',
       },
       {
-        title: 'Saavutan sellaisen opiskelu/tutkintokielen taidon, että se mahdollistaa toisen asteen koulutukseen osallistumisen.',
+        title: 'Saavutan sellaisen opiskelukielen taidon, joka mahdollistaa toisen asteen koulutukseen osallistumisen.',
       },
       {
         title: 'Kehitän eri tiedonalojen kielen osaamistani ja käytän opiskeltavaan aineeseen sopivia opiskelumenetelmiä.',
       },
       {
-        title: 'Korotan perusopetuksen oppimäärän arvosanoja erityisessä tutkinnossa, mikäli se on toiselle asteelle hakeutumisen näkökulmasta tarpeellista.',
+        title: 'Korotan perusopetuksen oppimäärän arvosanoja erityisessä tutkinnossa, mikäli se on tarpeellista.',
       },
     ]
   },
   {
-    buttonText: 'Lukio- koulutuksen opinnot',
+    buttonText: 'Lukiokoulutuksen opinnot',
     detailsTitle: 'Lukiokoulutuksen opinnot',
     description: 'Koulutuksen osa sisältää lukiokoulutukseen valmentavaa koulutusta ja lukio-opintoja opiskelijan valmiuksien mukaisesti. Suorittaessaan lukio-opintoja opiskelija saa tukea opiskelutaitojen ja -valmiuksien kehittämiseen osana valmentavaa koulutusta.\n\nOpiskelija vahvistaa opiskelukielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee lukiossa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot lukio-opiskeluun sekä vahvistaa erityisesti tiedonalojen kielen taitoaan eli eri oppiaineiden tekstitaitoja.\n\nOpiskelija tutustuu lukiokoulutukseen ja sen vaatimuksiin. Opiskelija voi valita omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan lukion opintojakson tai opintojaksoja, joita hän suorittaa osana valmentavaa koulutusta. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa lukiokoulutuksessa.',
     tasks: [
       {
-        title: 'Saavutan riittävän taidon lukion opetuskielessä ja eri tiedonalojen tekstitaidoissa (sanavarasto, luetun ymmärtämis- ja tulkintataidot sekä tuottamistaidot).',
+        title: 'Saavutan riittävän taidon lukion opetuskielessä ja eri tekstitaidoissa (sanavarasto, luetun ymmärtämis- ja tulkintataidot sekä tuottamistaidot).',
       },
       {
-        title: 'Osallistun opiskeltavaan oppiaineeseen sopivien opiskelumenetelmien ja tieto- ja viestintätekniikan käyttöön opiskelun apuna.',
+        title: 'Käytän koulutukseen sopivia opiskelumenetelmiä ja tieto- ja viestintätekniikkaa opiskelun apuna.',
       },
       {
         title: 'Tutustun lukiokoulutukseen ja sen käytäntöihin sekä arviointimenetelmiin.',
       },
       {
-        title: 'Arvioin lukio-opintojen sopivuuden itselleni.',
+        title: 'Osaan arvioida lukio-opintojen sopivuuden itselleni.',
       },
       {
         title: 'Suoritan kiinnostusten ja tavoitteideni mukaisia lukion opintoja.',
@@ -144,16 +140,16 @@ export const COMPETENCE_DATA = [
     description: 'Koulutuksen osa sisältää ammatillisia perustutkintojen tutkinnon osia sekä tutkinnon osia pienempiä kokonaisuuksia tai yhteisten tutkinnon osien osa-alueita opiskelijan valmiuksien mukaisesti. On tärkeää, että opiskelija saa opiskeluun riittävästi tukea sekä valmentavassa koulutuksessa että suorittaessaan ammatillisia opintoja valmentavan koulutuksen aikana. \n\nOpiskelija vahvistaa tutkintokielen hallintaa, opiskelutaitoja sekä tieto- ja viestintätekniikan käyttämistä osana opiskelua. Opiskelija harjoittelee ammatillisessa koulutuksessa tarvittavaa monilukutaitoa: erilaisten tekstien lukemista ja tulkintaa sekä erilaisten tekstien tuottamista. Tavoitteena on, että opiskelija saavuttaa riittävät tiedot ja taidot ammatilliseen opiskeluun sekä vahvistaa erityisesti ammatillisessa koulutuksessa tarvittavaa kielitaitoa.\n\nOpiskelija tutustuu ammatilliseen koulutukseen ja sen vaatimuksiin. Opiskelija voi suorittaa omien tavoitteidensa, valmiuksiensa ja kiinnostuksensa mukaan tutkinnon osia sekä pienempiä kokonaisuuksia tai yhteisten tukinnon osien osa-alueita. Valmentavan koulutuksen aikana opiskelija voi käyttää näiden suorittamiseen enemmän aikaa kuin varsinaisessa ammatillisessa koulutuksessa.',
     tasks: [
       {
-        title: 'Saavutan riittävän taidon ammatillisten opintojen opetuskielessä ja eri tiedonalojen tekstitaidoissa (sanavarasto, luetun ymmärtämis- ja tulkintataidot sekä tuottamistaidot).',
+        title: 'Saavutan riittävän taidon opintojen opetuskielessä ja eri tekstitaidoissa (sanavarasto, luetun ymmärtämis- ja tulkintataidot sekä tuottamistaidot).',
       },
       {
-        title: 'Osallistun alakohtaiseen koulutukseen sopivien opiskelumenetelmien ja tieto- ja viestintätekniikan käyttöön opiskelun apuna.',
+        title: 'Käytän koulutukseen sopivia opiskelumenetelmiä ja tieto- ja viestintätekniikkaa opiskelun apuna.',
       },
       {
         title: 'Tutustun ammatilliseen koulutukseen, sen käytäntöihin sekä arviointimenetelmiin.',
       },
       {
-        title: 'Arvioin ammatillisen koulutuksen sopivuuden itselleni.',
+        title: 'Osaan arvioida ammatillisen koulutuksen sopivuuden itselleni.',
       },
       {
         title: 'Suoritan itselleni sopivia ammatillisen koulutuksen opintoja (ammatilliset tutkinnon osat tai yhteiset tutkinnon osat).',
@@ -164,36 +160,36 @@ export const COMPETENCE_DATA = [
 
   
   {
-    buttonText: 'Työelämä- taidot',
-    detailsTitle: 'Työelämä- taidot',
+    buttonText: 'Työelämätaidot',
+    detailsTitle: 'Työelämätaidot',
     description: 'Koulutuksen osassa keskitytään keskeisiin työelämätaitoihin ja tuetaan työelämässä tapahtuvaa oppimista. Tavoitteena on vahvistaa opiskelijan oman toiminnan ohjaamista sekä viestintä-, vuorovaikutus- ja yhteistyötaitoja. Opiskelija tutustuu työelämässä tapahtuvaan koulutukseen.',
     tasks: [
       {
-        title: 'Tunnen työnhaun prosessin',
+        title: 'Tunnen työnhaun prosessin.',
       },
       {
-        title: 'Tutustun työpaikkoihin oppimisympäristöinä',
+        title: 'Tutustun työpaikkoihin oppimisympäristöinä.',
       },
       {
-        title: 'Tunnen työelämän ja yrittäjyyden keskeiset periaatteet',
+        title: 'Tunnen työelämän ja yrittäjyyden keskeiset periaatteet.',
       },
       {
-        title: 'Osallistun työyhteisön jäsenenä työpaikalla',
+        title: 'Osaan toimima työyhteisön jäsenenä työpaikalla.',
       },
       {
-        title: 'Hallitsen ajankäytön suunnittelua ja hallintaa',
+        title: 'Osaan suunnitella ja hallita ajankäyttöä.',
       },
       {
-        title: 'Tunnen omat oikeuteni ja velvollisuuteni työpaikalla',
+        title: 'Tunnen omat oikeuteni ja velvollisuuteni työpaikalla.',
       },
       {
-        title: 'Tiedostan mahdollisuuteni kansainvälisyysosaamisen kehittämiseen ja osallistun kansainväliseen toimintaan mahdollisuuksien mukaan',
+        title: 'Tunnistan mahdollisuuteni kansainvälisyysosaamisen kehittämiseen ja osallistun kansainväliseen toimintaan mahdollisuuksien mukaan.',
       },
       {
-        title: 'Tutustun yleisimpiin työpaikalla käytössä oleviin tietokoneohjelmiin ja työpaikan vuorovaikutustilanteiden kieleen',
+        title: 'Tutustun yleisimpiin työpaikalla käytössä oleviin tietokoneohjelmiin ja työpaikan vuorovaikutustilanteiden kieleen.',
       },
       {
-        title: 'Tiedostan tulevaisuuden haasteet ja työelämän muutokset',
+        title: 'Tiedostan tulevaisuuden haasteet ja työelämän muutokset.',
       },
     ]
 
@@ -204,34 +200,34 @@ export const COMPETENCE_DATA = [
     description: 'Koulutuksen osassa painottuvat opiskelijan arjessa toimimisen ja yhteiskunnallisen osallisuuden taitojen vahvistaminen. Arjen toimintakyvyn vahvistaminen ja osallisuuden edistäminen nähdään opiskelijan terveyttä ja hyvinvointia sekä osallisuutta edistävänä. Tavoitteena on myös vahvistaa arjen taitojen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitoja. ',
     tasks: [
       {
-        title: 'Arvioin ja vahvistan toimintakykyäni sekä hyvinvointiani',
+        title: 'Arvioin ja vahvistan toimintakykyäni sekä hyvinvointiani.',
       },
       {
-        title: 'Tunnen mielen hyvinvoinnin perusteet ja osaan vahvistaa sitä',
+        title: 'Tunnen mielen hyvinvoinnin perusteet ja tapoja vahvistaa sitä.',
       },
       {
-        title: 'Kehitän kotitalousosaamistani',
+        title: 'Kehitän kotitalousosaamistani.',
       },
       {
-        title: 'Vahvistan arjen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitojani ja harjoittelen kielenkäyttäjänä niissä tilanteissa',
+        title: 'Vahvistan arjen ja yhteiskunnallisen osallisuuden edellyttämiä tekstitaitoja ja harjaannun kielenkäyttäjänä niihin liittyvissä tilanteissa.',
       },
       {
-        title: 'Perehdyn yhteiskunnan tarjoamiin palveluihin ja osaan hakea tarvitsemiani palveluja',
+        title: 'Perehdyn yhteiskunnan tarjoamiin palveluihin ja osaan hakea tarvitsemiani palveluja.',
       },
       {
-        title: 'Tunnen yhteiskunnallisen vaikuttamisen tapoja ja toimin niiden mukaisesti',
+        title: 'Tunnen yhteiskunnallisen vaikuttamisen tapoja ja toimintaa.',
       },
       {
-        title: 'Hankin tietoja ja taitoja taloudellisen päätöksentekoni tueksi',
+        title: 'Hankin tietoja ja taitoja taloudellisen päätöksentekoni tueksi.',
       },
       {
-        title: 'Suunnittelen ja teen arkielämään liittyviä valintoja, päätöksiä ja hankintoja sekä pohdin itsenäisen asumisen mahdollisuuksia ja edellytyksiä',
+        title: 'Suunnittelen ja teen arkielämään liittyviä valintoja, päätöksiä ja hankintoja sekä pohdin itsenäisen asumisen mahdollisuuksia ja edellytyksiä.',
       },
       {
-        title: 'Tunnen turvalliset, vastuulliset ja kestävät toimintatavat opiskelu- ja asuinympäristössäni',
+        title: 'Tunnen turvalliset, vastuulliset ja kestävät toimintatavat opiskelu- ja asuinympäristössäni.',
       },
       {
-        title: 'Tutustun erilaisiin vapaa-ajanviettomahdollisuuksiin liikunnan, taiteen, kulttuurin tai muiden tapahtumien avulla',
+        title: 'Tutustun erilaisiin vapaa-ajanviettomahdollisuuksiin liikunnan, taiteen, kulttuurin tai muiden tapahtumien avulla.',
       },
 
     ]
@@ -243,13 +239,13 @@ export const COMPETENCE_DATA = [
     description: 'Opiskelija voi henkilökohtaisen opiskelusuunnitelmansa mukaisesti suorittaa valinnaisia koulutuksen osia omien yksilöllisten tarpeiden, kiinnostuksen ja valmiuksien mukaan koulutuksen järjestäjän paikallisesta tarjonnasta ja/tai muusta (alueellisesta tai valtakunnallisesta) tarjonnasta. Valinnaiset koulutuksen osat voivat koostua yhdestä tai useammasta osasta. Opiskelijoille, joiden äidinkieli on muu kuin opiskelukieli, voidaan järjestää oman äidinkielen opetusta. Valinnaiset opinnot voivat sisältää myös esimerkiksi järjestöissä tehtävää vapaaehtoistyötä ja siihen liittyviä kursseja.',
     tasks: [
       {
-        title: "Opiskelijavaikuttaminen ja osallisuus 0-3 viikkoa:",
+        title: "Opiskelijavaikuttaminen ja osallisuus: Osaan toimia opiskelijavaikuttajana oppilaitoksessa ja/tai muissa opiskeluympäristöissä.",
       },
       {
-        title: "Harrastuneisuus ja vapaaehtoistyö 0-3 viikkoa:",
+        title: "Harrastuneisuus ja vapaaehtoistyö: Osaan vahvistaa osaamistani omien tarpeideni, kiinnostuksen ja valmiuksieni mukaan harrastuksessa tai vapaaehtoistyössä.",
       },
       {
-        title: "Henkilökohtainen kuntoutus 0-10 viikkoa:",
+        title: "Henkilökohtainen kuntoutus: Edistän omaa työ- ja toimintakykyäni henkilökohtaisen kuntoutuksen keinoin.",
       },
     ]
   }
@@ -260,7 +256,7 @@ export const COMPETENCE_DATA = [
 export const TUVA_DATA = [
   {
     id: 1,
-    title: "Opiskelu- ja urasuunnittelutaidot",
+    title: "Opiskelu- ja urasuunnittelu- taidot",
     scope: "2-10 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698963",
     initValue: 2,
@@ -270,7 +266,7 @@ export const TUVA_DATA = [
   {
     id: 2,
     title: "Perustaitojen vahvistaminen",
-    scope: "1-30 viikkoa",
+    scope: "0-30 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
     initValue: 0,
     maxValue: 30,
@@ -279,7 +275,7 @@ export const TUVA_DATA = [
   {
     id: 3,
     title: "Lukiokoulutuksen opinnot ja niihin valmentautuminen",
-    scope: "1-30 viikkoa",
+    scope: "0-30 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698965",
     initValue: 0,
     maxValue: 30,
@@ -288,7 +284,7 @@ export const TUVA_DATA = [
   {
     id: 4,
     title: "Ammatillisen koulutuksen opinnot ja niihin valmentautuminen",
-    scope: "1-30 viikkoa",
+    scope: "0-30 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698966",
     initValue: 0,
     maxValue: 30,
@@ -297,7 +293,7 @@ export const TUVA_DATA = [
   {
     id: 5,
     title: "Työelämätaidot ja työelämässä tapahtuva oppiminen",
-    scope: "1-20 viikkoa",
+    scope: "0-20 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698967",
     initValue: 0,
     maxValue: 20,
@@ -306,7 +302,7 @@ export const TUVA_DATA = [
   {
     id: 6,
     title: "Arjen taidot ja yhteiskunnallinen osallisuus",
-    scope: "1-20 viikkoa",
+    scope: "0-20 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698968",
     initValue: 0,
     maxValue: 20,
@@ -331,7 +327,7 @@ export const TUVA_DATA = [
   {
     id: 9,
     title: "Henkilökohtainen kuntoutus",
-    scope: "1-10 viikkoa",
+    scope: "0-10 viikkoa",
     initValue: 0,
     maxValue: 10,
     checked: false,
@@ -394,7 +390,7 @@ export const STRINGS = [
   {
     tuvaHeading: "TUVA-koulutuksen osat",
     tuvaInstructions:
-      "Sijoita opintoviikot laatikoihin valintojesi mukaan, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
+      "Sijoita opintoviikot laatikoihin valintojesi mukaan yhdessä opettajan kanssa, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
     tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa pokaalia.",
     goalInstructions:
       "Valitse itsellesi sopivat tavoitteet yhdessä opettajan kanssa keskustellen. Kun näet opettajan kanssa keskustellen että valittu tavoite on suoritettu voit merkitä sen suoritetuksi."

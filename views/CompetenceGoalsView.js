@@ -6,6 +6,7 @@ import { Ionicons, FontAwesome6 } from '@expo/vector-icons'
 import { useRoute, useFocusEffect } from '@react-navigation/native'
 import CustomModalButton from '../components/CustomModalButton'
 import Modal from "react-native-modal";
+import CustomText from "../components/CustomText";
 
 const SCREEN_PADDING = 10
 const INDICATOR_SIZE = 120
@@ -29,9 +30,9 @@ const BackButton = ( { onPress } ) => {
  * Candy like buttons CompetenceGoalsView
  */
 const CompetenceIndicator = ( { top, left, item, tasks, onPress } ) => {
-  const allCompleted =  tasks.every( task => task === 'done' )
   const completedTasks = tasks.filter(task => task === 'done').length
   const totalTasks = tasks.filter(task => task === 'active' || task === 'done').length
+  const allCompleted =  completedTasks == totalTasks && totalTasks != 0;
 
   return (
     <TouchableOpacity
@@ -159,10 +160,10 @@ const CompetenceDetailsCheckbox = ( { index, taskName, handleCompleted, handleRe
   return (
     <View style={[styles.checkTaskContainer, status == 'deactive' && styles.inactiveContainer]}>
       <View style={[styles.checkTaskTextAndButton, status == 'deactive' && styles.inactiveContainer]}>
-        <Text style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}
+      <CustomText style={[styles.checkTaskText, status == 'deactive' && styles.inactiveText]}
           adjustsFontSizeToFit={true}
-          numberOfLines={4}
-        >{taskName}</Text>
+          numberOfLines={5}
+        >{taskName}</CustomText>
       </View>
       <View style={styles.selectButtons}>
           <SubstractButton />
@@ -471,9 +472,9 @@ const CompetenceGoalsView = ({navigation}) => {
           visible={isModalVisibleIntro}
         >
           {STRINGS.map((item, index) => (
-            <Text key={index} style={styles.instructions}>
-              {item.goalInstructions}
-            </Text>
+            <CustomText key={index} style={styles.instructions}>
+            {item.goalInstructions}
+          </CustomText>
           ))}
           <CustomModalButton
             onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
@@ -680,7 +681,7 @@ const styles = StyleSheet.create( {
   modalContainerInfo: {
     backgroundColor: THEME.white,
     width: "90%",
-    height: "40%",
+    height: "auto",
     padding: 40,
     borderRadius: 20,
     borderColor: THEME.darkBlue,
@@ -693,7 +694,6 @@ const styles = StyleSheet.create( {
   instructions: {
     marginTop: 30,
     marginBottom: 30,
-    fontSize: 16,
     fontFamily: "Regular",
     fontWeight: "bold",
     textAlign: "center"
