@@ -393,7 +393,7 @@ export const STRINGS = [
       "Sijoita opintoviikot laatikoihin valintojesi mukaan yhdessä opettajan kanssa, yhteensä 38 viikkoa. Pakolliset viikot ovat merkittynä valmiiksi.",
     tuvaInstructionsForCourseComplete: "Suoritettuasi opintoviikon, klikkaa pokaalia.",
     goalInstructions:
-      "Valitse itsellesi sopivat tavoitteet yhdessä opettajan kanssa keskustellen. Kun näet opettajan kanssa keskustellen että valittu tavoite on suoritettu voit merkitä sen suoritetuksi."
+      "Valitse itsellesi sopivat tavoitteet yhdessä opettajan kanssa keskustellen. Kun valittu tavoite on suoritettu niin voit merkitä sen suoritetuksi keskusteltuasi ensin opettajan kanssa."
   },
 ];
 
