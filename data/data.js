@@ -266,7 +266,7 @@ export const TUVA_DATA = [
   {
     id: 2,
     title: "Perustaitojen vahvistaminen",
-    scope: "1-30 viikkoa",
+    scope: "0-30 viikkoa",
     //url: "https://eperusteet.opintopolku.fi/#/_Toc408831087/toteutussuunnitelma/2689216/tutkintoonvalmentava/sisalto/2698964",
     initValue: 0,
     maxValue: 30,
