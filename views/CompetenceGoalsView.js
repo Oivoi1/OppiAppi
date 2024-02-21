@@ -376,6 +376,7 @@ const CompetenceGoalsView = ({navigation}) => {
       return () => {
         // Clean up when the screen goes out of focus
         setShowDetailsFrom(null);
+        navigation.setParams({detailsIndex: null});
       };
     }, [route.params])
   );
