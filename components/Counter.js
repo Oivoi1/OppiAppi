@@ -214,6 +214,10 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderTopRightRadius: 10,
     color: THEME.white,
+    paddingLeft: 11,
+    paddingRight: 11,
+    display: 'flex', // Set display to flex
+    alignItems: 'center', // Align items in the center vertically
   },
 
   counterLabelSubstract: {
@@ -223,6 +227,9 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderTopLeftRadius: 10,
     color: THEME.white,
+    paddingLeft: 11,
+    paddingRight: 11,
+    
   },
 
   counterLabel: {
