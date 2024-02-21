@@ -51,6 +51,23 @@ useEffect(() => {
 }
   fetchData();
 }, [])
+
+useEffect(() => {
+  const loadTextSizePreference = async () => {
+    try {
+      const savedSize = await AsyncStorage.getItem('textSizePreference');
+      if (savedSize !== null) {
+        setTextSize(Number(savedSize));
+      }
+    } catch (error) {
+      // Handle possible errors
+      console.error('Failed to load the text size from AsyncStorage', error);
+    }
+  };
+
+  loadTextSizePreference();
+}, []);
+
   
 
   const Tab = createMaterialTopTabNavigator();

@@ -2,16 +2,24 @@ import React, { useContext, useState } from 'react';
 import { Modal, StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native';
 import TextSizeContext, { textSizeOptions } from './TextSizeContext';
 import { THEME } from "../data/data";
-import CustomText from "../components/CustomText";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsModal = ({ isVisible, onClose }) => {
   const { textSize, setTextSize } = useContext(TextSizeContext);
   const [selectedSize, setSelectedSize] = useState(textSize);
 
-  // Function to handle text size change
-  const handleTextSizeChange = (size) => {
-    setTextSize(size);
-    setSelectedSize(size);
+  // Function to handle text size change and save it to AsyncStorage
+  const handleTextSizeChange = async (size) => {
+    setTextSize(size); // Update state
+    setSelectedSize(size); // Update local selected size for UI feedback
+
+    // Save the new size to AsyncStorage
+    try {
+      await AsyncStorage.setItem('textSizePreference', size.toString());
+    } catch (error) {
+      // Handle possible errors
+      console.error('Failed to save the text size to AsyncStorage', error);
+    }
   };
 
   return (

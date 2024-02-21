@@ -33,9 +33,9 @@ const TextSizeAdjuster = () => {
   return (
     <View>
       {/* Button for each text size option */}
-      <Button title="Small" onPress={() => saveTextSize(textSizeOptions.small)} />
-      <Button title="Medium" onPress={() => saveTextSize(textSizeOptions.medium)} />
-      <Button title="Large" onPress={() => saveTextSize(textSizeOptions.large)} />
+      <Button title="Small" onPress={() => saveTextSize(textSizeOptions.Pieni)} />
+      <Button title="Medium" onPress={() => saveTextSize(textSizeOptions.Normaali)} />
+      <Button title="Large" onPress={() => saveTextSize(textSizeOptions.Suuri)} />
     </View>
   );
 };
