@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Modal, StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { Modal, StyleSheet, View, TouchableOpacity, Text, Dimensions, ScrollView } from 'react-native';
 import TextSizeContext, { textSizeOptions } from './TextSizeContext';
 import { THEME } from "../data/data";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,10 +26,12 @@ const SettingsModal = ({ isVisible, onClose }) => {
     <Modal visible={isVisible} onRequestClose={onClose} transparent={true} animationType="fade">
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          {/* Header */}
           <Text style={styles.header}>Asetukset</Text>
-          {/* Subheader with dynamic fontSize */}
-          <Text style={[styles.subheader, { fontSize: selectedSize }]}>Tekstin koko:</Text>
+          <View style={styles.exampleTextContainer}>
+            <Text style={[styles.subheader, { fontSize: selectedSize }]}>
+              Tekstin koko: Esimerkki
+            </Text>
+          </View>
           {/* Iterate over textSizeOptions to create buttons dynamically */}
           {Object.entries(textSizeOptions).map(([key, value]) => (
             <TouchableOpacity
@@ -85,13 +87,23 @@ const styles = StyleSheet.create({
     width: "90%",
     bottom: "5%"
   },
+  exampleTextContainer: {
+    height: 50, 
+    width: '100%', 
+    overflow: 'hidden', 
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 15, // Adjust as needed
     paddingVertical: 5,
-    color: THEME.darkBlue,
-
+    color: THEME.white,
+    backgroundColor: THEME.darkBlue,
+    width: "100%",
+    textAlign: "center"
   },
   subheader: {
     marginBottom: 20, // Adjust as needed
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
 
-  suljeButton:{
+  suljeButton: {
     padding: 5,
     borderRadius: 30,
     backgroundColor: THEME.darkBlue,

@@ -750,7 +750,7 @@ const styles = StyleSheet.create({
   modalContainerInfo: {
     backgroundColor: THEME.white,
     width: "90%",
-    height: "40%",
+    height: "auto",
     padding: 40,
     borderRadius: 20,
     borderColor: THEME.darkBlue,

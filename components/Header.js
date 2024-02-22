@@ -5,6 +5,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import Modal from 'react-native-modal';
 import SettingsModal from './SettingsModal';
+import CustomText from "../components/CustomText";
+
 // <----- UTILS -----> //
 import { AppHeaderContext, saveDataToStorage, getDataFromStorage } from "../utils/GeneralFunctions";
 import { StatusBar } from "expo-status-bar";
@@ -31,7 +33,7 @@ export default function Header({ title, studyWeeks, trophies }) {
   const renderModalContent = () => (
     <View style={styles.modalContent}>
       <Text style={styles.modalHeaderText}>{modalContent.title}</Text>
-      <Text style={styles.modalText}>{modalContent.text}</Text>
+      <CustomText style={styles.modalText}>{modalContent.text}</CustomText>
       <CustomModalButton onPress={toggleModal} />
     </View>
   );
@@ -123,19 +125,20 @@ const styles = StyleSheet.create({
     marginTop: "25.7%"
   },
   modalContent: {
-    backgroundColor: 'white',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    maxHeight: '80%', // Adjust to control the maximum height and leave space at the top and bottom
-    width: '90%', // Ensure the modal content is full width
-    alignSelf: 'center', // Center the modal content horizontally
-    borderRadius: 20, // Optional: for styled corners
+    backgroundColor: THEME.white,
+    width: "90%",
+    height: "auto",
+    padding: 40,
+    borderRadius: 20,
+    borderColor: THEME.darkBlue,
     borderWidth: 3,
-    borderColor: THEME.darkBlue
+    alignSelf: "center",
+    fontFamily: "Regular",
+    position: "absolute",
+    top: "15%",
   },
   modalHeaderText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10
@@ -143,9 +146,8 @@ const styles = StyleSheet.create({
   },
   modalText: {
     textAlign: 'center',
-    marginVertical: 10,
-    fontSize: 16
-
+    marginVertical: 20,
+    fontWeight: "bold"
   },
   closeButton: {
     backgroundColor: THEME.darkBlue,
