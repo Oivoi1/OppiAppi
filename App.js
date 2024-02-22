@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TextSizeContext, { textSizeOptions } from './components/TextSizeContext';
 
 // <----- VIEWS -----> //
 import CompetenceGoalsView from "./views/CompetenceGoalsView";
@@ -25,7 +26,8 @@ export default function App() {
   const [studyWeeks, setStudyWeeks] = useState(2);
   const [trophies, setTrophies] = useState(0);
   const [title, setTitle] = useState('PÄÄSIVU');
-
+  const [textSize, setTextSize] = useState(textSizeOptions.Normaali);
+  
 //load studyweeks and trophies from phone memory 
 useEffect(() => {
   const fetchData = async() => {
@@ -49,6 +51,23 @@ useEffect(() => {
 }
   fetchData();
 }, [])
+
+useEffect(() => {
+  const loadTextSizePreference = async () => {
+    try {
+      const savedSize = await AsyncStorage.getItem('textSizePreference');
+      if (savedSize !== null) {
+        setTextSize(Number(savedSize));
+      }
+    } catch (error) {
+      // Handle possible errors
+      console.error('Failed to load the text size from AsyncStorage', error);
+    }
+  };
+
+  loadTextSizePreference();
+}, []);
+
   
 
   const Tab = createMaterialTopTabNavigator();
@@ -81,6 +100,7 @@ useEffect(() => {
 
   return (
     <>
+    <TextSizeContext.Provider value={{ textSize, setTextSize }}>
     <AppHeaderContext.Provider
       value={{ studyWeeks, setStudyWeeks, trophies, setTrophies }}
     >
@@ -182,6 +202,7 @@ useEffect(() => {
         <StatusBar style="dark" />
       </NavigationContainer>
     </AppHeaderContext.Provider>
+    </TextSizeContext.Provider>
     </>
   );
 }

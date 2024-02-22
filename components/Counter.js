@@ -1,7 +1,7 @@
 import { View,Text,TouchableOpacity,StyleSheet,ActivityIndicator } from "react-native";
 import React, { useContext, useReducer, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 
 
 // <----- UTILS -----> //
@@ -155,6 +155,7 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
       <>
         <View style={styles.counterContainer}>
           <TouchableOpacity
+            activeOpacity={0.7}
             //if minus is pressed substract totalweeks and also counter and toggle save to memory
             onPress={() => {
               dispatch({ type: "substract", id: itemId });
@@ -166,14 +167,15 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
                 : null;
             }}
           >
-            <Text style={styles.counterLabelSubstract}><Ionicons
-                name="remove-sharp"
-                size={25}
+            <Text style={styles.counterLabelSubstract}><FontAwesome6
+                name="minus"
+                size={30}
                 color="white"
               /></Text>
           </TouchableOpacity>
           <Text style={styles.counterLabel}>{state.count}</Text>
           <TouchableOpacity
+            activeOpacity={0.7}
             //if plus is pressed add totalweeks and also counter and toggle save to memory
             onPress={() => {
               studyWeeks < 38 ? dispatch({ type: "add", id: itemId }) : null;
@@ -183,9 +185,9 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
               state.count < maxValue ? handleSaveToStorageAdd(itemId) : null;
             }}
           >
-            <Text style={styles.counterLabelAdd}><Ionicons
-                name="add-sharp"
-                size={25}
+            <Text style={styles.counterLabelAdd}><FontAwesome6
+                name="plus"
+                size={30}
                 color="white"
               /></Text>
           </TouchableOpacity>
@@ -200,42 +202,41 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 5,
     marginBottom: 10,
-    borderRadius: 15,
-    backgroundColor: THEME.white,
+    borderRadius: 10,
+    backgroundColor: THEME.darkBlue,
 
   },
 
   counterLabelAdd: {
     height: "100%",
-    padding: "5%",
+    padding: "4%",
     backgroundColor: THEME.darkBlue,
     borderBottomRightRadius: 10,
     borderTopRightRadius: 10,
     color: THEME.white,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 11,
+    paddingRight: 11,
     display: 'flex', // Set display to flex
     alignItems: 'center', // Align items in the center vertically
-    marginRight: 15
   },
 
   counterLabelSubstract: {
     height: "100%",
-    padding: "5%",
+    padding: "4%",
     backgroundColor: THEME.brightRed,
     borderBottomLeftRadius: 10,
     borderTopLeftRadius: 10,
     color: THEME.white,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 11,
+    paddingRight: 11,
     
   },
 
   counterLabel: {
     fontSize: 22,
     paddingTop: 10,
-    paddingRight: 15,
-    paddingLeft: 20,
+    paddingRight: 19,
+    paddingLeft: 26,
     fontFamily: "Bold",
     color: THEME.black,
     borderWidth: 3,
@@ -243,5 +244,6 @@ const styles = StyleSheet.create({
     borderRightColor: THEME.darkBlue,
     borderTopColor: THEME.brightRed,
     borderBottomColor: THEME.darkBlue,
+    backgroundColor: 'white'
   },
 });
