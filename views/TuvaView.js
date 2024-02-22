@@ -77,42 +77,48 @@ export default function TuvaView({ navigation }) {
 
   //load showmodaldetailsfrom variables from phone memory
   useEffect(() => {
-    const fetchData = async () => {
-      //AsyncStorage.clear() //don't use this!
-      let data = await getDataFromStorage(TUVA_STORAGE_KEY);
-      console.log(data)
-
-      //init asyncstorage for first time
-      if (data.length <= 0) {
-        let tempModalDetailArray = [];
-        tempModalDetailArray.push(
-          { ...showModalDetailFromFirst },
-          { ...showModalDetailFromSecond },
-          { ...showModalDetailFromThird },
-          { ...showModalDetailFromFourth },
-          { ...showModalDetailFromFifth },
-          { ...showModalDetailFromSixth },
-          { ...showModalDetailFromSeventh },
-          { ...showModalDetailFromEight },
-          { ...showModalDetailFromNinth }
-        );
-        saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
-      }
-      //otherwise there should be data => set data
-      else {
-        setShowModalDetailFromFirst(data[0]);
-        setShowModalDetailFromSecond(data[1]);
-        setShowModalDetailFromThird(data[2]);
-        setShowModalDetailFromFourth(data[3]);
-        setShowModalDetailFromFifth(data[4]);
-        setShowModalDetailFromSixth(data[5]);
-        setShowModalDetailFromSeventh(data[6]);
-        setShowModalDetailFromEight(data[7]);
-        setShowModalDetailFromNinth(data[8]);
-      }
-    };
     fetchData();
-  }, []);
+  }, [modalWeeks]);
+
+  const fetchData = async () => {
+    //AsyncStorage.clear() //don't use this!
+    let data = [];
+
+    try {
+      data = await getDataFromStorage(TUVA_STORAGE_KEY);
+    } catch (error) {
+      console.log('Error fetching data in TuvaView:', error);
+    }
+
+    //init asyncstorage for first time
+    if (data.length <= 0) {
+      let tempModalDetailArray = [];
+      tempModalDetailArray.push(
+        { ...showModalDetailFromFirst },
+        { ...showModalDetailFromSecond },
+        { ...showModalDetailFromThird },
+        { ...showModalDetailFromFourth },
+        { ...showModalDetailFromFifth },
+        { ...showModalDetailFromSixth },
+        { ...showModalDetailFromSeventh },
+        { ...showModalDetailFromEight },
+        { ...showModalDetailFromNinth }
+      );
+      saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
+    }
+    //otherwise there should be data => set data
+    else {
+      setShowModalDetailFromFirst(data[0]);
+      setShowModalDetailFromSecond(data[1]);
+      setShowModalDetailFromThird(data[2]);
+      setShowModalDetailFromFourth(data[3]);
+      setShowModalDetailFromFifth(data[4]);
+      setShowModalDetailFromSixth(data[5]);
+      setShowModalDetailFromSeventh(data[6]);
+      setShowModalDetailFromEight(data[7]);
+      setShowModalDetailFromNinth(data[8]);
+    }
+  };
 
   const BackButton = ({ onPress }) => {
     return (
@@ -549,6 +555,7 @@ handle asyncstorage state saving also */
                             itemId={item.id}
                             setModalWeeks={setModalWeeks}
                             clickedIndex={clickedIndex}
+                            index={index}
                             stateToStorage={stateToStorage}
                             setStateToStorage={setStateToStorage}
                           />

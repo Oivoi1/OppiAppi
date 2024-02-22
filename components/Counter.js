@@ -10,9 +10,9 @@ import { AppHeaderContext } from "../utils/GeneralFunctions";
 import { saveDataToStorage,getDataFromStorage } from "../utils/GeneralFunctions";
 
 // <----- DATA -----> //
-import { TUVA_DATA, COUNTER_STORAGE_KEY, THEME } from "../data/data";
+import { TUVA_DATA, COUNTER_STORAGE_KEY, THEME, TUVA_STORAGE_KEY } from "../data/data";
 
-export default function Counter({initValue,maxValue,itemId,setModalWeeks,clickedIndex,stateToStorage,setStateToStorage }) {
+export default function Counter({initValue,maxValue,itemId,setModalWeeks,clickedIndex,index,stateToStorage,setStateToStorage }) {
   //global-state from App.js
   const { studyWeeks, setStudyWeeks } = useContext(AppHeaderContext);
 
@@ -127,8 +127,26 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
       setStateToStorage(newState);
       //console.log(newState);
       saveDataToStorage(COUNTER_STORAGE_KEY, newState);
+      addModalState(index);
     }
   };
+
+  const addModalState = async (index) => {
+    try {
+      data = await getDataFromStorage(TUVA_STORAGE_KEY);
+    } catch (error) {
+      console.log('Error fetching data in TuvaView:', error);
+    }
+
+    let newIndex = Object.keys(data[index]).length;
+
+    data[index] = {
+      ...data[index],
+      [newIndex]: false
+    }
+
+    saveDataToStorage(TUVA_STORAGE_KEY, data);
+  }
 
   //handle course substract state saving to async storage
   const handleSaveToStorageSubstract = (itemId) => {
@@ -145,8 +163,23 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
       setStateToStorage(newState);
       //console.log(newState);
       saveDataToStorage(COUNTER_STORAGE_KEY, newState);
+      substractModalState(index);
     }
   };
+
+  const substractModalState = async (index) => {
+    try {
+      data = await getDataFromStorage(TUVA_STORAGE_KEY);
+    } catch (error) {
+      console.log('Error fetching data in TuvaView:', error);
+    }
+
+    let lastIndex = Object.keys(data[index]).length-1;
+
+    delete data[index][lastIndex];
+
+    saveDataToStorage(TUVA_STORAGE_KEY, data);
+  }
 
   if (isLoading) {
     <ActivityIndicator size="large" animating={true} />;
