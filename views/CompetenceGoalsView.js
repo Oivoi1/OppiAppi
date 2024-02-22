@@ -221,6 +221,7 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
   }
 
   const toggleDetailsDropdown = () => {
+    
     Animated.timing(fadeAnim, {
       toValue: showDetails ? 0 : 1,
       duration: 150,
@@ -243,7 +244,9 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
         <TouchableOpacity onPress={toggleDetailsDropdown}>
           <View style={styles.accordionContainer}>
           <Text style={styles.accordionTitle}>Lisätietoa osaamisen tavoitteista  </Text>
-          <Ionicons name="chevron-down" size={28} color={THEME.gray}/>
+          <Animated.View style={{ transform: [{ rotate: showDetails ? '180deg' : '0deg' }] }}>
+            <Ionicons name="chevron-down" size={28} color={THEME.gray}/>
+          </Animated.View>
           </View>
         </TouchableOpacity>
         {showDetails && (
@@ -259,7 +262,7 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
             },
           ]}
           >
-            <Text style={ styles.detailsDescription }>{ item.description }</Text>
+            <CustomText style={ styles.detailsDescription }>{ item.description }</CustomText>
           </Animated.View>
         )}
       </View>
@@ -620,8 +623,8 @@ const styles = StyleSheet.create( {
   },
   detailsDescription: {
     fontFamily: 'Regular',
-    fontSize:18,
-    height: 'auto'
+    height: 'auto',
+    padding:10
   },
   detailsTitle: {
     margin: 10,

@@ -5,6 +5,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import Modal from 'react-native-modal';
 import SettingsModal from './SettingsModal';
+import CustomText from "../components/CustomText";
+
 // <----- UTILS -----> //
 import { AppHeaderContext, saveDataToStorage, getDataFromStorage } from "../utils/GeneralFunctions";
 import { StatusBar } from "expo-status-bar";
@@ -31,7 +33,7 @@ export default function Header({ title, studyWeeks, trophies }) {
   const renderModalContent = () => (
     <View style={styles.modalContent}>
       <Text style={styles.modalHeaderText}>{modalContent.title}</Text>
-      <Text style={styles.modalText}>{modalContent.text}</Text>
+      <CustomText style={styles.modalText}>{modalContent.text}</CustomText>
       <CustomModalButton onPress={toggleModal} />
     </View>
   );
@@ -73,8 +75,8 @@ export default function Header({ title, studyWeeks, trophies }) {
         </TouchableOpacity>
 
         {/* Custom Modal */}
-        <Modal isVisible={isModalVisible} style={styles.modal}
-          animationType="fade"
+        <Modal animationType="fade" isVisible={isModalVisible} style={styles.modal}
+           backdropOpacity={0}
         >
           {renderModalContent()}
         </Modal>
@@ -116,17 +118,27 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end'
   },
   modal: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', // Adjust if you want the modal positioned differently
+    margin: 0, // Remove default margin to allow full width
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    marginBottom: "19.4%",
+    marginTop: "25.7%"
   },
   modalContent: {
-    backgroundColor: 'white',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-    borderRadius: 10,
+    backgroundColor: THEME.white,
+    width: "90%",
+    height: "auto",
+    padding: 40,
+    borderRadius: 20,
+    borderColor: THEME.darkBlue,
+    borderWidth: 3,
+    alignSelf: "center",
+    fontFamily: "Regular",
+    position: "absolute",
+    top: "15%",
   },
   modalHeaderText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10
@@ -134,9 +146,8 @@ const styles = StyleSheet.create({
   },
   modalText: {
     textAlign: 'center',
-    marginVertical: 10,
-    fontSize: 16
-
+    marginVertical: 20,
+    fontWeight: "bold"
   },
   closeButton: {
     backgroundColor: THEME.darkBlue,

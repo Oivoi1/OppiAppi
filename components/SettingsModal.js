@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Modal, StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { Modal, StyleSheet, View, TouchableOpacity, Text, Dimensions, ScrollView } from 'react-native';
 import TextSizeContext, { textSizeOptions } from './TextSizeContext';
 import { THEME } from "../data/data";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -23,13 +23,15 @@ const SettingsModal = ({ isVisible, onClose }) => {
   };
 
   return (
-    <Modal visible={isVisible} onRequestClose={onClose} transparent={true} animationType="slide">
+    <Modal visible={isVisible} onRequestClose={onClose} transparent={true} animationType="fade">
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          {/* Header */}
           <Text style={styles.header}>Asetukset</Text>
-          {/* Subheader with dynamic fontSize */}
-          <Text style={[styles.subheader, { fontSize: selectedSize }]}>Tekstin koko:</Text>
+          <View style={styles.exampleTextContainer}>
+            <Text style={[styles.subheader, { fontSize: selectedSize }]}>
+              Tekstin koko: Esimerkki
+            </Text>
+          </View>
           {/* Iterate over textSizeOptions to create buttons dynamically */}
           {Object.entries(textSizeOptions).map(([key, value]) => (
             <TouchableOpacity
@@ -45,7 +47,7 @@ const SettingsModal = ({ isVisible, onClose }) => {
           ))}
           {/* Close button to exit the modal */}
           <TouchableOpacity style={styles.suljeButton} onPress={onClose}>
-            <Text style={styles.buttonText}>Sulje</Text>
+            <Text style={styles.buttonText}>SULJE</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -63,6 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    marginBottom: "19.4%",
+    marginTop: "25.7%"
   },
   modalContent: {
     margin: 20,
@@ -80,15 +84,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: "90%"
+    width: "90%",
+    bottom: "5%"
+  },
+  exampleTextContainer: {
+    height: 50, 
+    width: '100%', 
+    overflow: 'hidden', 
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center"
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 15, // Adjust as needed
     paddingVertical: 5,
-    color: THEME.darkBlue,
-
+    color: THEME.white,
+    backgroundColor: THEME.darkBlue,
+    width: "100%",
+    textAlign: "center"
   },
   subheader: {
     marginBottom: 20, // Adjust as needed
@@ -104,7 +119,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
 
-  suljeButton:{
+  suljeButton: {
     padding: 5,
     borderRadius: 30,
     backgroundColor: THEME.darkBlue,
