@@ -262,7 +262,7 @@ const CompetenceDetails = ( { item, tasksCompleted, handleTaskStatusChange } ) =
             },
           ]}
           >
-            <Text style={ styles.detailsDescription }>{ item.description }</Text>
+            <CustomText style={ styles.detailsDescription }>{ item.description }</CustomText>
           </Animated.View>
         )}
       </View>
@@ -623,8 +623,8 @@ const styles = StyleSheet.create( {
   },
   detailsDescription: {
     fontFamily: 'Regular',
-    fontSize:18,
-    height: 'auto'
+    height: 'auto',
+    padding:10
   },
   detailsTitle: {
     margin: 10,
