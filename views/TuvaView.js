@@ -510,7 +510,7 @@ handle asyncstorage state saving also */
                 {TUVA_DATA.map((item, index) => {
                   
                     // Apply the valinnainen style only for items after the "Valinnaiset opinnot"
-                    const itemStyle = index >= 6 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
+                    const itemStyle = index > 5 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
                     const valinnainenText = <View style={styles.valinnainenContainer}>
                     <Text style={styles.valinnainen}>VALINNAINEN</Text>
                     </View>
