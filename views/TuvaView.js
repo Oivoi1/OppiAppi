@@ -9,6 +9,7 @@ import { useFocusEffect } from "@react-navigation/native";
 // <----- COMPONENTS -----> //
 import Counter from "../components/Counter";
 import CustomModalButton from "../components/CustomModalButton";
+import CustomText from "../components/CustomText";
 
 // <----- DATA -----> //
 import { STRINGS, TUVA_DATA, ICONS_SVG, TUVA_STORAGE_KEY, THEME, COMPETENCE_STORAGE_KEY, TUVA_DATA_VALINNAISET } from "../data/data";
@@ -317,6 +318,56 @@ handle asyncstorage state saving also */
     }
     saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
   };
+
+  const allTrophiesChecked = (index) => {
+    let modalDetail = null;
+
+    switch(index) {
+      case 0:
+        modalDetail = showModalDetailFromFirst;
+        break;
+      case 1:
+        modalDetail = showModalDetailFromSecond;
+        break;
+      case 2:
+        modalDetail = showModalDetailFromThird;
+        break;
+      case 3:
+        modalDetail = showModalDetailFromFourth;
+        break;
+      case 4:
+        modalDetail = showModalDetailFromFifth;
+        break;
+      case 5:
+        modalDetail = showModalDetailFromSixth;
+        break;
+      case 6:
+        modalDetail = showModalDetailFromSeventh;
+        break;
+      case 7:
+        modalDetail = showModalDetailFromEight;
+        break;
+      case 8:
+        modalDetail = showModalDetailFromNinth;
+        break;
+      default:
+        console.log("allTrophiesChecked not found");
+        return false;
+    }
+
+    if(modalDetail[0]) {
+      let allTrue = true;
+      for(var key in modalDetail) {
+        if(!modalDetail[key]) {
+          allTrue = false;
+        }
+      }
+      if(allTrue) {
+        return true;
+      }else false;
+    }
+  }
+
   //Renders modals buttons for course complition
   const ModalDetailsCheckbox = ({ index }) => {
     const itemId = clickedIndex;
@@ -441,9 +492,9 @@ handle asyncstorage state saving also */
             visible={isModalVisibleIntro}
           >
             {STRINGS.map((item, index) => (
-              <Text key={index} style={styles.instructions}>
+              <CustomText key={index} style={styles.instructions}>
                 {item.tuvaInstructions}
-              </Text>
+              </CustomText>
             ))}
             <CustomModalButton
               onPress={() => setIsModalVisibleIntro(!isModalVisibleIntro)}
@@ -459,7 +510,7 @@ handle asyncstorage state saving also */
                 {TUVA_DATA.map((item, index) => {
                   
                     // Apply the valinnainen style only for items after the "Valinnaiset opinnot"
-                    const itemStyle = index > 5 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
+                    const itemStyle = index > 6 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
                     const valinnainenText = <View style={styles.valinnainenContainer}>
                     <Text style={styles.valinnainen}>VALINNAINEN</Text>
                     </View>
@@ -471,7 +522,23 @@ handle asyncstorage state saving also */
                       {index === 6 && valinnaisetopinnotText}
                       <View style={itemStyle}>                        
                         <View>
-                          <Text style={styles.itemTitle}>{item.title}</Text>
+                          <Text
+                            style={styles.itemTitle}
+                            adjustsFontSizeToFit={true}
+                            numberOfLines={4}
+                          >{item.title}</Text>
+                          <TouchableOpacity
+                            style={[styles.iconHelp, allTrophiesChecked(index) && {backgroundColor: THEME.darkBlue}]}
+                            onPress={() => {
+                              handleModalOpen(index);
+                            }}
+                          >
+                            {allTrophiesChecked(index) ?
+                            <Ionicons name="trophy" size={28} color="gold" />
+                            :
+                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                            } 
+                          </TouchableOpacity>
                           <Text style={styles.itemScope}>{item.scope}</Text>
                           {index >= 6 && valinnainenText}
                         </View>
@@ -485,14 +552,6 @@ handle asyncstorage state saving also */
                             stateToStorage={stateToStorage}
                             setStateToStorage={setStateToStorage}
                           />
-                          <TouchableOpacity
-                            style={styles.iconHelp}
-                            onPress={() => {
-                              handleModalOpen(index);
-                            }}
-                          >
-                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                          </TouchableOpacity>
                         </View>
                         <TouchableOpacity
                           onPress={() => navigation.navigate('CompetenceGoalsView', 
@@ -518,14 +577,14 @@ handle asyncstorage state saving also */
                   <View style={{ flex: 1 }}>
                     {
                       modalWeeks === 0 ? (
-                        <Text style={styles.instructions}>
+                        <CustomText style={styles.instructions}>
                           Valittuasi opintoviikkoja, alla olevaan näkymään tulee viikkojen määrä pokaaleita.
-                        </Text>
+                        </CustomText>
                       ) : (
                         STRINGS.map((item, index) => (
-                          <Text key={index} style={styles.instructions}>
+                          <CustomText key={index} style={styles.instructions}>
                             {item.tuvaInstructionsForCourseComplete} {/* This is your original instructions */}
-                          </Text>
+                          </CustomText>
                         ))
                       )
                     }
@@ -635,7 +694,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 5,
-    textAlign: "center"
+    textAlign: "center",
+    alignSelf: 'center',
+    maxWidth: '68%'
   },
   itemScope: {
     fontSize: 16,
@@ -649,7 +710,6 @@ const styles = StyleSheet.create({
   instructions: {
     marginTop: 30,
     marginBottom: 30,
-    fontSize: 16,
     fontFamily: "Regular",
     fontWeight: "bold",
     textAlign: "center"
@@ -663,8 +723,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "flex-end",
     position: "absolute",
-    top: "20%",
-    right: 0,
+    top: "5%",
+    right: -1,
     borderColor: THEME.darkBlue,
   },
   buttonContainer: {
@@ -747,15 +807,15 @@ const styles = StyleSheet.create({
   goalsButtonLabel: {
     fontFamily: "Bold",
     color: THEME.darkBlue,
-    fontSize: 18,
+    fontSize: 17,
   },
   goalsButtonContainer: {
     padding: 5,
     borderRadius: 100,
     backgroundColor: 'white',
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: THEME.darkBlue,
-    marginTop: 10,
+    marginVertical: 7,
     alignItems: "center",
     alignSelf: 'center',
     width: '60%'
