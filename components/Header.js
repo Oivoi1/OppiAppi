@@ -119,8 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Adjust if you want the modal positioned differently
     margin: 0, // Remove default margin to allow full width
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
-    marginBottom: "19.4%",
-    marginTop: "25.7%"
+   
   },
   modalContent: {
     backgroundColor: THEME.white,

@@ -24,7 +24,8 @@ useEffect (()=> {
             }
             
         } catch (error) {
-            alert(error)
+            const customMessage = "Säätietoja ei voida näyttää, koska sijaintipalvelut on kytketty pois päältä. Ota sijaintipalvelut käyttöön, jos haluat nähdä säätiedot.";
+            alert(customMessage);
             setIsLoading(false)
         }
     })()
