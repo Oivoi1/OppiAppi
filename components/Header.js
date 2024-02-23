@@ -32,7 +32,6 @@ export default function Header({ title, studyWeeks, trophies }) {
 
   const renderModalContent = () => (
     <View style={styles.modalContent}>
-      <Text style={styles.modalHeaderText}>{modalContent.title}</Text>
       <CustomText style={styles.modalText}>{modalContent.text}</CustomText>
       <CustomModalButton onPress={toggleModal} />
     </View>
@@ -65,8 +64,7 @@ export default function Header({ title, studyWeeks, trophies }) {
           style={[styles.headerViews, styles.headerRightView]}
           onPress={() =>
             toggleModal({
-              title: "Suoritetut opintoviikot",
-              text: "Tässä näet suoritettujen opintoviikkojen määrän. Voit lisätä tai vähentää suoritettujen opintoviikkojen määrää TUVA- osiossa.",
+              text: "Tässä näet suoritettujen ja valittujen opintoviikkojen määrän. Voit lisätä tai vähentää suoritettujen ja valittujen opintoviikkojen määrää TUVA- osiossa.",
             })
           }
         >
@@ -74,7 +72,7 @@ export default function Header({ title, studyWeeks, trophies }) {
           <Ionicons name="trophy" size={28} color="gold" />
         </TouchableOpacity>
 
-        {/* Custom Modal */}
+        {/* Trophy Modal */}
         <Modal animationType="fade" isVisible={isModalVisible} style={styles.modal}
            backdropOpacity={0}
         >
