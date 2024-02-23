@@ -12,7 +12,7 @@ import { saveDataToStorage,getDataFromStorage } from "../utils/GeneralFunctions"
 // <----- DATA -----> //
 import { TUVA_DATA, COUNTER_STORAGE_KEY, THEME, TUVA_STORAGE_KEY } from "../data/data";
 
-export default function Counter({initValue,maxValue,itemId,setModalWeeks,clickedIndex,index,stateToStorage,setStateToStorage }) {
+export default function Counter({initValue,maxValue,itemId,setModalWeeks,clickedIndex,index,stateToStorage,setStateToStorage, substractTrophies, setTrophies, trophies, updateData }) {
   //global-state from App.js
   const { studyWeeks, setStudyWeeks } = useContext(AppHeaderContext);
 
@@ -146,6 +146,7 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
     }
 
     saveDataToStorage(TUVA_STORAGE_KEY, data);
+    updateData();
   }
 
   //handle course substract state saving to async storage
@@ -176,9 +177,15 @@ export default function Counter({initValue,maxValue,itemId,setModalWeeks,clicked
 
     let lastIndex = Object.keys(data[index]).length-1;
 
+    //substract trophies if week was checked
+    if(data[index][lastIndex]) {
+      substractTrophies(setTrophies, trophies);
+    }
+
     delete data[index][lastIndex];
 
     saveDataToStorage(TUVA_STORAGE_KEY, data);
+    updateData();
   }
 
   if (isLoading) {

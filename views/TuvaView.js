@@ -93,17 +93,9 @@ export default function TuvaView({ navigation }) {
     //init asyncstorage for first time
     if (data.length <= 0) {
       let tempModalDetailArray = [];
-      tempModalDetailArray.push(
-        { ...showModalDetailFromFirst },
-        { ...showModalDetailFromSecond },
-        { ...showModalDetailFromThird },
-        { ...showModalDetailFromFourth },
-        { ...showModalDetailFromFifth },
-        { ...showModalDetailFromSixth },
-        { ...showModalDetailFromSeventh },
-        { ...showModalDetailFromEight },
-        { ...showModalDetailFromNinth }
-      );
+      for(let i=0; i<9; i++) {
+        tempModalDetailArray.push({[0]: false});
+      }
       saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
     }
     //otherwise there should be data => set data
@@ -558,6 +550,10 @@ handle asyncstorage state saving also */
                             index={index}
                             stateToStorage={stateToStorage}
                             setStateToStorage={setStateToStorage}
+                            substractTrophies={handleSetTrophiesSubstract}
+                            setTrophies={setTrophies}
+                            trophies={trophies}
+                            updateData={fetchData}
                           />
                         </View>
                         <TouchableOpacity
