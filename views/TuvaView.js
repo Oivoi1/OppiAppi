@@ -318,7 +318,7 @@ handle asyncstorage state saving also */
   };
 
   const allTrophiesChecked = (index) => {
-    if(isNaN(index)) {
+    if(!isNaN(index)) {
       let modalDetail = null;
 
       switch(index) {
@@ -354,16 +354,24 @@ handle asyncstorage state saving also */
           return false;
       }
 
-      if(modalDetail[0]) {
+      if (modalDetail[0]) {
         var allTrue = true;
-        for(var key in modalDetail) {
-          if(!modalDetail[key]) {
+        for (let key = 0; key < modalWeeks; key++) { // Use modalWeeks to limit the loop
+          if (modalDetail[key] === false) {
+            //console.log(key);
+            //console.log(modalWeeks);
             allTrue = false;
+            //console.log(`Found a false value at key: ${key}, setting allTrue to false.`);
+            break;
           }
         }
-        if(allTrue) {
+        if (allTrue) {
+          //console.log("All trophies checked: true");
           return true;
-        }else false;
+        } else {
+          //console.log("All trophies checked: false");
+          return false;
+        }
       }
     }
   } 
