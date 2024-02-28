@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/adaptive-icon-splash1.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#023B5D"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -19,12 +14,22 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.booennm.oppiapp"
+      "bundleIdentifier": "com.booennm.oppiapp",
+      "splash": {
+        "image": "./assets/adaptive-icon-splash1.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#023B5D"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "splash": {
+        "image": "./assets/adaptive-icon-splash1.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#023B5D"
       },
       "package": "com.booennm.oppiapp"
     },

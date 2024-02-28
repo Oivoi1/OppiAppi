@@ -93,9 +93,17 @@ export default function TuvaView({ navigation }) {
     //init asyncstorage for first time
     if (data.length <= 0) {
       let tempModalDetailArray = [];
-      for (let i = 0; i < 9; i++) {
-        tempModalDetailArray.push({ [0]: false });
-      }
+      tempModalDetailArray.push(
+        { ...showModalDetailFromFirst },
+        { ...showModalDetailFromSecond },
+        { ...showModalDetailFromThird },
+        { ...showModalDetailFromFourth },
+        { ...showModalDetailFromFifth },
+        { ...showModalDetailFromSixth },
+        { ...showModalDetailFromSeventh },
+        { ...showModalDetailFromEight },
+        { ...showModalDetailFromNinth }
+      );
       saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
     }
     //otherwise there should be data => set data
@@ -511,7 +519,7 @@ handle asyncstorage state saving also */
 
 
           <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 50, paddingTop: 10 }}>
-            {!tasksCompleted || !showModalDetailFromSeventh ?
+            {!tasksCompleted ?
               <Text style={styles.goalsButtonLabel}>Lataa...</Text>
               :
               <>
@@ -536,16 +544,12 @@ handle asyncstorage state saving also */
                             numberOfLines={4}
                           >{item.title}</Text>
                           <TouchableOpacity
-                            style={[styles.iconHelp, allTrophiesChecked(index) && { backgroundColor: THEME.darkBlue }]}
+                            style={styles.iconHelp}
                             onPress={() => {
                               handleModalOpen(index);
                             }}
                           >
-                            {allTrophiesChecked(index) ?
-                              <Ionicons name="trophy" size={28} color="gold" />
-                              :
-                              <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                            }
+                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
                           </TouchableOpacity>
                           <Text style={styles.itemScope}>{item.scope}</Text>
                           {index >= 6 && valinnainenText}
