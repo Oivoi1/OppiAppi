@@ -93,8 +93,8 @@ export default function TuvaView({ navigation }) {
     //init asyncstorage for first time
     if (data.length <= 0) {
       let tempModalDetailArray = [];
-      for(let i=0; i<9; i++) {
-        tempModalDetailArray.push({[0]: false});
+      for (let i = 0; i < 9; i++) {
+        tempModalDetailArray.push({ [0]: false });
       }
       saveDataToStorage(TUVA_STORAGE_KEY, tempModalDetailArray);
     }
@@ -320,7 +320,7 @@ handle asyncstorage state saving also */
   const allTrophiesChecked = (index) => {
     let modalDetail = null;
 
-    switch(index) {
+    switch (index) {
       case 0:
         modalDetail = showModalDetailFromFirst;
         break;
@@ -352,19 +352,27 @@ handle asyncstorage state saving also */
         console.log("allTrophiesChecked not found");
         return false;
     }
-
-    if(modalDetail[0]) {
+    
+    if (modalDetail[0]) {
       var allTrue = true;
-      for(var key in modalDetail) {
-        if(!modalDetail[key]) {
+      for (let key = 0; key < modalWeeks; key++) { // Use modalWeeks to limit the loop
+        if (modalDetail[key] === false) {
+          //console.log(key);
+          //console.log(modalWeeks);
           allTrue = false;
+          //console.log(`Found a false value at key: ${key}, setting allTrue to false.`);
+          break;
         }
       }
-      if(allTrue) {
+      if (allTrue) {
+        //console.log("All trophies checked: true");
         return true;
-      }else false;
+      } else {
+        //console.log("All trophies checked: false");
+        return false;
+      }
     }
-  }
+  } 
 
   //Renders modals buttons for course complition
   const ModalDetailsCheckbox = ({ index }) => {
@@ -506,19 +514,19 @@ handle asyncstorage state saving also */
               :
               <>
                 {TUVA_DATA.map((item, index) => {
-                  
-                    // Apply the valinnainen style only for items after the "Valinnaiset opinnot"
-                    const itemStyle = index > 5 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
-                    const valinnainenText = <View style={styles.valinnainenContainer}>
-                    <Text style={styles.valinnainen}>VALINNAINEN</Text>
-                    </View>
-                    const valinnaisetopinnotText = <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
-                  
 
-                    return (
-                      <View  key={item.id}>
+                  // Apply the valinnainen style only for items after the "Valinnaiset opinnot"
+                  const itemStyle = index > 5 ? [styles.itemContainer, styles.itemContainerValinnainen] : styles.itemContainer;
+                  const valinnainenText = <View style={styles.valinnainenContainer}>
+                    <Text style={styles.valinnainen}>VALINNAINEN</Text>
+                  </View>
+                  const valinnaisetopinnotText = <Text style={styles.heading1}>----- Valinnaiset opinnot -----</Text>
+
+
+                  return (
+                    <View key={item.id}>
                       {index === 6 && valinnaisetopinnotText}
-                      <View style={itemStyle}>                        
+                      <View style={itemStyle}>
                         <View>
                           <Text
                             style={styles.itemTitle}
@@ -526,16 +534,16 @@ handle asyncstorage state saving also */
                             numberOfLines={4}
                           >{item.title}</Text>
                           <TouchableOpacity
-                            style={[styles.iconHelp, allTrophiesChecked(index) && {backgroundColor: THEME.darkBlue}]}
+                            style={[styles.iconHelp, allTrophiesChecked(index) && { backgroundColor: THEME.darkBlue }]}
                             onPress={() => {
                               handleModalOpen(index);
                             }}
                           >
                             {allTrophiesChecked(index) ?
-                            <Ionicons name="trophy" size={28} color="gold" />
-                            :
-                            <Ionicons name="trophy-outline" size={28} color="#023B5D" />
-                            } 
+                              <Ionicons name="trophy" size={28} color="gold" />
+                              :
+                              <Ionicons name="trophy-outline" size={28} color="#023B5D" />
+                            }
                           </TouchableOpacity>
                           <Text style={styles.itemScope}>{item.scope}</Text>
                           {index >= 6 && valinnainenText}
@@ -557,8 +565,8 @@ handle asyncstorage state saving also */
                           />
                         </View>
                         <TouchableOpacity
-                          onPress={() => navigation.navigate('CompetenceGoalsView', 
-                          { detailsIndex: index < 6 ? index + 1 : 7 })}
+                          onPress={() => navigation.navigate('CompetenceGoalsView',
+                            { detailsIndex: index < 6 ? index + 1 : 7 })}
                         >
                           <View style={styles.goalsButtonContainer}>
                             <Text style={styles.goalsButtonLabel}>TAVOITTEET</Text>
@@ -567,9 +575,9 @@ handle asyncstorage state saving also */
                         {/* Conditional rendering for task completion */}
 
                       </View>
-                      </View>
-                    );
-                  }
+                    </View>
+                  );
+                }
                 )}
 
                 <Modal
@@ -657,12 +665,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 10,
     margin: 3,
-    padding:5,
+    padding: 5,
   },
-  valinnainen:{
-    color:THEME.brightRed,
-    fontSize:15,
-    fontFamily:'Bold'
+  valinnainen: {
+    color: THEME.brightRed,
+    fontSize: 15,
+    fontFamily: 'Bold'
   },
 
   itemContainer: {
