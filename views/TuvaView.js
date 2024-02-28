@@ -318,58 +318,52 @@ handle asyncstorage state saving also */
   };
 
   const allTrophiesChecked = (index) => {
-    let modalDetail = null;
+    if(isNaN(index)) {
+      let modalDetail = null;
 
-    switch (index) {
-      case 0:
-        modalDetail = showModalDetailFromFirst;
-        break;
-      case 1:
-        modalDetail = showModalDetailFromSecond;
-        break;
-      case 2:
-        modalDetail = showModalDetailFromThird;
-        break;
-      case 3:
-        modalDetail = showModalDetailFromFourth;
-        break;
-      case 4:
-        modalDetail = showModalDetailFromFifth;
-        break;
-      case 5:
-        modalDetail = showModalDetailFromSixth;
-        break;
-      case 6:
-        modalDetail = showModalDetailFromSeventh;
-        break;
-      case 7:
-        modalDetail = showModalDetailFromEight;
-        break;
-      case 8:
-        modalDetail = showModalDetailFromNinth;
-        break;
-      default:
-        console.log("allTrophiesChecked not found");
-        return false;
-    }
-    
-    if (modalDetail[0]) {
-      var allTrue = true;
-      for (let key = 0; key < modalWeeks; key++) { // Use modalWeeks to limit the loop
-        if (modalDetail[key] === false) {
-          //console.log(key);
-          //console.log(modalWeeks);
-          allTrue = false;
-          //console.log(`Found a false value at key: ${key}, setting allTrue to false.`);
+      switch(index) {
+        case 0:
+          modalDetail = showModalDetailFromFirst;
           break;
-        }
+        case 1:
+          modalDetail = showModalDetailFromSecond;
+          break;
+        case 2:
+          modalDetail = showModalDetailFromThird;
+          break;
+        case 3:
+          modalDetail = showModalDetailFromFourth;
+          break;
+        case 4:
+          modalDetail = showModalDetailFromFifth;
+          break;
+        case 5:
+          modalDetail = showModalDetailFromSixth;
+          break;
+        case 6:
+          modalDetail = showModalDetailFromSeventh;
+          break;
+        case 7:
+          modalDetail = showModalDetailFromEight;
+          break;
+        case 8:
+          modalDetail = showModalDetailFromNinth;
+          break;
+        default:
+          console.log("allTrophiesChecked not found");
+          return false;
       }
-      if (allTrue) {
-        //console.log("All trophies checked: true");
-        return true;
-      } else {
-        //console.log("All trophies checked: false");
-        return false;
+
+      if(modalDetail[0]) {
+        var allTrue = true;
+        for(var key in modalDetail) {
+          if(!modalDetail[key]) {
+            allTrue = false;
+          }
+        }
+        if(allTrue) {
+          return true;
+        }else false;
       }
     }
   } 
