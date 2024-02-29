@@ -7,7 +7,8 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/da6f8f58-dfda-4cea-aacd-b11921e62f71"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -23,7 +24,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon-foreground.png",
+        "backgroundImage": "./assets/adaptive-icon-background.png",
         "backgroundColor": "#FFFFFF"
       },
       "splash": {
@@ -43,6 +45,9 @@
       "eas": {
         "projectId": "da6f8f58-dfda-4cea-aacd-b11921e62f71"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
